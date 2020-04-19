@@ -2,12 +2,12 @@
 
 Manages inmates data and daily operations of a prison.
 
-# Features #
+## Features ##
 
-1. Prisoner Bio
-2. Prisoner Admissions
-3. Prisoner Housing
-4. Prisoner Belongings
+1. Prisoner Profile
+2. Admissions
+3. Housing
+4. Personal Belongings
 5. Medical History
 6. Court Productions
 7. Sentence Management
@@ -18,7 +18,7 @@ Manages inmates data and daily operations of a prison.
 12. Reports
 13. Administration
 
-# Technologies #
+## Technologies ##
 1. Angular
 2. ASP.NET Web API
 3. Bootstrap
