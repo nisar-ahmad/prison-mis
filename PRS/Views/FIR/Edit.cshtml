@@ -1,0 +1,209 @@
+﻿@using BootstrapSupport
+@model PRS.Models.FIR
+@{
+    ViewBag.Title = "EDIT FIR";
+}
+
+@section head{
+    @Styles.Render("~/content/typeahead")
+    @Styles.Render("~/content/duallistbox")
+}
+
+<div class="title">
+    @ViewBag.Title
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset class="form-horizontal">
+
+        @Html.HiddenFor(model => model.FIRId)
+        @Html.HiddenFor(model => model.AdmissionId)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIRNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.FIRNumber)
+                @Html.ValidationMessageFor(model => model.FIRNumber, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIRDate, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="FIRDate" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.FIRDate)">
+                @Html.ValidationMessageFor(model => model.FIRDate, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("Province صوبہ", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("ProvinceId", "-- Select Province --")
+                @Html.Label("*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("District ضلع", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("DistrictId", "-- Select District --")
+                @Html.Label("*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.PoliceStation, new { @class = "control-label" })
+            <div class="controls">
+                <input id="SelectedPS" type="hidden" />
+                <input id="PSName" name="PSName" type="text" autocomplete="off" value="@ViewBag.PSName" onkeypress="onKeyDownPSName(this);" />
+                <input id="PoliceStationId" type="hidden" name="PoliceStationId" value="@Model.PoliceStationId" />
+                @Html.Label("*", new { @class = "help-inline" })
+                @*  @Html.DropDownList("PoliceStationId", "-- Select Police Station --")
+                    @Html.ValidationMessageFor(model => model.PoliceStationId, "*", new { @class = "help-inline" })
+                *@
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DecisionStatus, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("DecisionStatus")
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DecisionDate, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DecisionDate" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DecisionDate)">
+                @Html.ValidationMessageFor(model => model.DecisionDate, "", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.JudgeType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("JudgeTypeId", ViewBag.FIRJudgeTypeId as SelectList, "-- Select Judge Type --", null)
+                @Html.ValidationMessageFor(model => model.JudgeTypeId, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DecisionAuthority, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DecisionAuthority)
+                @Html.ValidationMessageFor(model => model.DecisionAuthority, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            <div style="width: 50%">
+                <select id="sectionList" name="sectionList" multiple></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                &nbsp;
+                @Html.ActionLink("Back to Admission", "Details", "Admission", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] }, null)
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/js/duallistbox")
+    @Scripts.Render("~/bundles/typeahead")
+
+    <script>
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        function onKeyDownPSName(e) {
+            if ($("#PSName").val() != $("#SelectedPS").val()) {
+                $("#PoliceStationId").val("0");
+            }
+        }
+
+        $("#PSName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+            if (selectedItem) {
+                $("#PoliceStationId").val(selectedItem.PoliceStationId);
+                var name = $("#PSName").val().trim();
+                $("#PSName").val(name);
+                $("#SelectedPS").val(name);
+            }
+        });
+
+        $("#PSName").typeahead({
+            name: 'names',
+            valueKey: 'Name',
+            remote: '@Url.Content("~/PoliceStation/List/")%QUERY'
+        });
+
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+        var list = $('#sectionList').bootstrapDualListbox({
+            bootstrap2Compatible: true,
+            moveAllLabel: 'MOVE ALL',
+            removeAllLabel: 'REMOVE ALL',
+            moveSelectedLabel: 'MOVE SELECTED',
+            removeSelectedLabel: 'REMOVE SELECTED',
+            filterPlaceHolder: 'FILTER',
+            moveOnSelect: false,
+            preserveSelectionOnMove: 'all',
+            helperSelectNamePostfix: '_myhelper',
+            selectedListLabel: '<strong>Committed Sections</strong>',
+            nonSelectedListLabel: '<strong>Available Sections</strong>'
+        });
+
+        var getUrl = '@Url.Content("~/FIR/FIRSections")?firId=@Model.FIRId';
+
+        $.getJSON(getUrl,
+                    function (data) {
+
+                        var items = "";
+
+                        $.each(data, function (i, item) {
+                            items += "<option value='" + item.Value + "' " + item.Selected + ">" + item.Text + "</option>";
+                        });
+
+                        list.append(items);
+                        list.bootstrapDualListbox('refresh');
+                    });
+
+        attachDropDowns("ProvinceId", "DistrictId", "District", '@Url.Content("~/Prisoner/Districts/")');
+        attachDropDowns("DistrictId", "PoliceStationId", "Police Station", '@Url.Content("~/Prisoner/PoliceStations/")');
+
+        function attachDropDowns(parentId, childId, label, url, child2Id, parentKey) {
+            var parent = $('#' + parentId);
+            var child = $('#' + childId);
+
+            parent.change(populateDropDown);
+
+            function populateDropDown(selectedId) {
+                child.prop('disabled', 'disabled');
+
+                var getUrl = url + parent.val();
+
+                if (child2Id)
+                    getUrl = url + $('#' + child2Id).val() + "?" + parentKey + "=" + parent.val();
+
+                $.getJSON(getUrl,
+                    function (data) {
+                        var items = '<option>-- Select ' + label + ' --</option>';
+                        var isDisabled = true;
+
+                        $.each(data, function (i, item) {
+                            items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+                            isDisabled = false;
+                        });
+
+                        child.prop('disabled', isDisabled);
+                        child.html(items);
+                    });
+            }
+        }
+
+    </script>
+}

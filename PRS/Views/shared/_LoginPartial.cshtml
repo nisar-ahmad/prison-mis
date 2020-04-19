@@ -1,0 +1,15 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div class="row-fluid" style="padding-top:10px;">
+        <div class="span11 padtop">
+            @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage", @class = "login" })
+            &nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:document.getElementById('logoutForm').submit();" class="login">Log Out</a>
+        </div>
+        <div class="span1">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+            }
+        </div>
+    </div>
+}

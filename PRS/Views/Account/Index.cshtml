@@ -1,0 +1,13 @@
+﻿@model PRS.Models.RegisterModel
+@{
+    ViewBag.Title = "Manage Users";
+}
+
+<h4>@ViewBag.Title</h4>
+<hr />
+<ul>
+    <li>@Html.ActionLink("Register New User", "Register")</li>
+    <li>@Html.ActionLink("Reset User Password", "ResetPassword")</li>
+    <li>@Html.ActionLink("Change Your Password", "Manage")</li>
+</ul>
+

@@ -1,0 +1,215 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Prisons Management Information System";
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+}
+<link href="~/Content/homepage.css" rel="stylesheet" />
+<div class="hero-unit hero-home">
+    <div class="row">
+        <div class="span12">
+            <img src="~/Content/images/PunjabPrisons-Logo.png" width="171" height="151" />
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<!-- First Row -->
+<div class="row-fluid">
+    <div class="span4">
+        <a class="tile" href="~/Prisoner/Admit">
+            <div class="row-fluid tile tile-admit-prisoner">
+                <h3>Admit New <br />Prisoner</h3>
+            </div>
+        </a>
+    </div>
+    <div class="span4">
+        <a class="tile" href="~/Prisoner/SearchPrisoner?NextView=Medical">
+            <div class="row-fluid tile tile-health-admission">
+                <h3>Health <br />Information</h3>
+            </div>
+        </a>
+    </div>
+    <div class="span4">
+        <a class="tile" href="~/CourtHearing/List?ProductionDate=@DateTime.Now.ToString("dd-MMM-yyyy")">
+            <div class="row-fluid tile tile-court-hearing">
+                <h3>Court <br />Productions</h3>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Second Row -->
+<div class="row-fluid">
+    <div class="span4">
+        <a class="tile" href="~/Prisoner/SearchPrisoner">
+            <div class="row-fluid tile tile-search">
+                <h3>Search <br />Prisoner</h3>
+            </div>
+        </a>
+    </div>
+    <div class="span4">
+        <a class="tile" href="~/Reports/Stats">
+            <div class="row-fluid tile tile-reports">
+                <h3>Reports</h3>
+            </div>
+        </a>
+    </div>
+    <div class="span4">
+        <a class="tile" href="~/Settings/Edit/1">
+            <div class="row-fluid tile tile-settings">
+                <h3>Settings</h3>
+            </div>
+        </a>
+    </div>
+</div>
+            <br />
+            <hr>
+            <br />
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12 prs-actions-title">
+                            <span>Reports</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r36_c2.png"> &nbsp;&nbsp;<a href="~/Reports/Stats">Statistics</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r40_c2.png"> &nbsp;&nbsp;<a href="~/CourtHearing/List?ProductionDate=@DateTime.Now.ToString("dd-MMM-yyyy")">Daily Court Productions</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r44_c2.png"> &nbsp;&nbsp;<a href="~/Reports/AdmissionDiary">admission diary</a></li>
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r48_c2.png"> &nbsp;&nbsp;<a href="~/Reports/ReleaseDiary">release diary</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r52_c2.png"> &nbsp;&nbsp;<a href="~/Reports/Juveniles">juvenile prisoners</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r56_c2.png"> &nbsp;&nbsp;<a href="~/Reports/Females">female prisoners</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r60_c2.png"> &nbsp;&nbsp;<a href="~/Reports/AdmittedPrisoners">all admitted prisoners</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r64_c2.png"> &nbsp;&nbsp;<a href="~/Reports/ReleasedPrisoners">all released prisoners</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r28_c2.png"> &nbsp;&nbsp;<a href="~/Reports/AllPrisoners">ALL PRISONERS</a></li>
+
+
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r28_c2.png"> &nbsp;&nbsp;<a href="~/Reports/Visitors">visitor diary</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <hr>
+                <br />
+                <div class="container">
+                    <div class="row">
+                        <div class="span12 prs-actions-title">
+                            <span>Prisoners</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r2_c2.png"> &nbsp;&nbsp;<a href="~/Prisoner/SearchPrisoner">SEARCH PRISONER</a></li>
+                            <li><img src="~/Content/images/actions-icon-_r4_c2.png"> &nbsp;&nbsp;<a href="~/Prisoner/Admit">NEW ADMISSION</a></li>
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r8_c2.png"> &nbsp;&nbsp;<a href="~/Prisoner/SearchPrisoner?NextView=Medical">HEALTH INFORMATION</a></li>
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r28_c2.png"> &nbsp;&nbsp;<a href="~/Reports/AllPrisoners">ALL PRISONERS</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <hr>
+                <br />
+                <div class="container">
+                    <div class="row">
+                        <div class="span12 prs-actions-title">
+                            <span>Visitors</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r2_c2.png"> &nbsp;&nbsp;<a href="~/Visitor/Search">search visitors</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r4_c2.png"> &nbsp;&nbsp;<a href="~/Visitor/Search">new visitor</a></li>
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r28_c2.png"> &nbsp;&nbsp;<a href="~/Reports/Visitors">visitor diary</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <hr>
+                <br />
+                <div class="container">
+                    <div class="row">
+                        <div class="span12 prs-actions-title">
+                            <span>Setup</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r2_c4.png"> &nbsp;&nbsp;<a href="~/Account">user accounts </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r5_c4.png"> &nbsp;&nbsp;<a href="~/Jail">jails </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r9_c4.png"> &nbsp;&nbsp;<a href="~/Court">courts </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r13_c4.png"> &nbsp;&nbsp;<a href="~/Judge">judges </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r16_c4.png"> &nbsp;&nbsp;<a href="~/Occupation">occupations </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r18_c4.png"> &nbsp;&nbsp;<a href="~/Disease">diseases </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r25_c4.png"> &nbsp;&nbsp;<a href="~/MedicalTest">medical tests </a></li>
+
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r25_c4.png"> &nbsp;&nbsp;<a href="~/Barrack">barracks </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r29_c4.png"> &nbsp;&nbsp;<a href="~/PrisonerType">prisoner types </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r32_c4.png"> &nbsp;&nbsp;<a href="~/PrisonerSubType">sub types </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r34_c4.png"> &nbsp;&nbsp;<a href="~/MedicalOfficer">medical officers </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r37_c4.png"> &nbsp;&nbsp;<a href="~/CrimeType">crime types </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r41_c4.png"> &nbsp;&nbsp;<a href="~/JudgeType">judge types </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r45_c4.png"> &nbsp;&nbsp;<a href="~/RelationType">relation types </a></li>
+                        </ul>
+                    </div>
+                    <div class="span4 prs-actions">
+                        <ul>
+                            <li><img src="~/Content/images/actions-icon-_r29_c4.png"> &nbsp;&nbsp;<a href="~/RemissionType">remission types </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r49_c4.png"> &nbsp;&nbsp;<a href="~/Act">legislative acts </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r53_c4.png"> &nbsp;&nbsp;<a href="~/Section">sections </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r57_c4.png"> &nbsp;&nbsp;<a href="~/Province">provinces </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r61_c4.png"> &nbsp;&nbsp;<a href="~/District">districts </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r65_c4.png"> &nbsp;&nbsp;<a href="~/City">cities </a></li>
+                            <li><img src="~/Content/images/actions-icon-_r69_c4.png"> &nbsp;&nbsp;<a href="~/PoliceStation">police stations </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>

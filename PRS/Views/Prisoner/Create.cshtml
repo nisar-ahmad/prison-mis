@@ -1,0 +1,516 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Prisoner
+@{
+    ViewBag.Title = "New Prisoner";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+<h3>@ViewBag.Title</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.JailId)
+        @Html.HiddenFor(model => model.ApprovalStatus)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="title">BASIC INFORMATION بنیادی معلومات</div>
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CNIC, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.CNIC)
+                            @Html.ValidationMessageFor(model => model.CNIC, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.FatherOrHusbandName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.FatherOrHusbandName)
+                            @Html.ValidationMessageFor(model => model.FatherOrHusbandName, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PaternalGrandfatherName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaternalGrandfatherName)
+                            @Html.ValidationMessageFor(model => model.PaternalGrandfatherName, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.MaternalGrandfatherName, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.MaternalGrandfatherName)
+                            @Html.ValidationMessageFor(model => model.MaternalGrandfatherName, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="DateOfBirth" class="datepicker" data-date-format="dd-M-yyyy">
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Gender, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("Gender")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.MaritalStatus, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("MaritalStatus")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Religion, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("ReligionId", "-- Select Religion --")
+                            @Html.ValidationMessageFor(model => model.Religion, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Occupation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("OccupationId", "-- Select Occupation --")
+                            @Html.ValidationMessageFor(model => model.Occupation, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("Status")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Category, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("Category")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Class, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("Class")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.NarcoticsStatus, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("NarcoticsStatus")
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PrisonerType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PrisonerTypeId", "-- Select Prisoner Type --")
+                            @Html.ValidationMessageFor(model => model.PrisonerTypeId, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PrisonerSubType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PrisonerSubTypeId", "-- Select Prisoner Sub Type --")
+                            @Html.ValidationMessageFor(model => model.PrisonerSubTypeId, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Nationality, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("NationalityCountryId", "-- Select Nationality --")
+                            @Html.ValidationMessageFor(model => model.Nationality, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Caste, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Caste)
+                            @Html.ValidationMessageFor(model => model.Caste, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Alias, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Alias)
+                            @Html.ValidationMessageFor(model => model.Alias, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="title">PRESENT ADDRESS موجودہ پتہ</div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentCountry, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PresentCountryId", "-- Select Country --")
+                            @Html.ValidationMessageFor(model => model.PresentCountry, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentProvince, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PresentProvinceId", "-- Select Province --")
+                            @Html.ValidationMessageFor(model => model.PresentProvince, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentDistrict, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PresentDistrictId", "-- Select District --")
+                            @Html.ValidationMessageFor(model => model.PresentDistrict, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentCity, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PresentCityId", "-- Select City --")
+                            @Html.ValidationMessageFor(model => model.PresentCity, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentPoliceStation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PresentPoliceStationId", "-- Select Police Station --")
+                            @Html.ValidationMessageFor(model => model.PresentPoliceStation, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentMouza, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PresentMouza)
+                            @Html.ValidationMessageFor(model => model.PresentMouza, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentHouseNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PresentHouseNumber)
+                            @Html.ValidationMessageFor(model => model.PresentHouseNumber, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentStreet, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PresentStreet)
+                            @Html.ValidationMessageFor(model => model.PresentStreet, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PresentAreaOrColony, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PresentAreaOrColony)
+                            @Html.ValidationMessageFor(model => model.PresentAreaOrColony, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="title">PERMANENT ADDRESS مستقل پتہ</div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentCountry, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PermanentCountryId", "-- Select Country --")
+                            @Html.ValidationMessageFor(model => model.PermanentCountry, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentProvince, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PermanentProvinceId", "-- Select Province --")
+                            @Html.ValidationMessageFor(model => model.PermanentProvince, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentDistrict, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PermanentDistrictId", "-- Select District --")
+                            @Html.ValidationMessageFor(model => model.PermanentDistrict, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentCity, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PermanentCityId", "-- Select City --")
+                            @Html.ValidationMessageFor(model => model.PermanentCity, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentPoliceStation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("PermanentPoliceStationId", "-- Select Police Station --")
+                            @Html.ValidationMessageFor(model => model.PermanentPoliceStation, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentMouza, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PermanentMouza)
+                            @Html.ValidationMessageFor(model => model.PermanentMouza, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentHouseNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PermanentHouseNumber)
+                            @Html.ValidationMessageFor(model => model.PermanentHouseNumber, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentStreet, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PermanentStreet)
+                            @Html.ValidationMessageFor(model => model.PermanentStreet, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PermanentAreaOrColony, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PermanentAreaOrColony)
+                            @Html.ValidationMessageFor(model => model.PermanentAreaOrColony, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="title">EDUCATION تعلیم</div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.FormalEducation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("FormalEducationLevelId", "-- Select Formal Education --")
+                            @Html.ValidationMessageFor(model => model.FormalEducation, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.TechnicalEducation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("TechnicalEducationLevelId", "-- Select Technical Education --")
+                            @Html.ValidationMessageFor(model => model.TechnicalEducation, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.ReligiousEducation, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("ReligiousEducationLevelId", "-- Select Religious Education --")
+                            @Html.ValidationMessageFor(model => model.ReligiousEducation, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="title">FINANCIAL STATUS معاشی حیثیت</div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.MoveableAssets, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.MoveableAssets)
+                            @Html.ValidationMessageFor(model => model.MoveableAssets, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.ImmoveableAssets, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.ImmoveableAssets)
+                            @Html.ValidationMessageFor(model => model.ImmoveableAssets, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="title">MEDICAL INFORMATION میڈیکل</div>
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.IdentificationMark1, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.IdentificationMark1)
+                            @Html.ValidationMessageFor(model => model.IdentificationMark1, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.IdentificationMark2, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.IdentificationMark2)
+                            @Html.ValidationMessageFor(model => model.IdentificationMark2, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Scar, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Scar)
+                            @Html.ValidationMessageFor(model => model.Scar, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.Remarks, 3, 50, null)
+                            @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Age, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Age)
+                            @Html.ValidationMessageFor(model => model.Age, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Height, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.Height, new SelectList(PRS.Models.Lists.Heights))
+                            @Html.ValidationMessageFor(model => model.Height, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Weight, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Weight)
+                            @Html.ValidationMessageFor(model => model.Weight, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.BloodGroup, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.BloodGroup, new SelectList(PRS.Models.Lists.BloodGroups))
+                            @Html.ValidationMessageFor(model => model.BloodGroup, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                &nbsp; @Html.ActionLink("Cancel", "Index")
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    <script>
+
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+        attachDropDowns("PrisonerTypeId", "PrisonerSubTypeId", "Prisoner Sub Type", '@Url.Content("~/Prisoner/PrisonerSubTypes/")');
+
+        attachDropDowns("PresentCountryId", "PresentProvinceId", "Province", '@Url.Content("~/Prisoner/Provinces/")');
+        attachDropDowns("PresentProvinceId", "PresentDistrictId", "District", '@Url.Content("~/Prisoner/Districts/")');
+        attachDropDowns("PresentDistrictId", "PresentCityId", "City", '@Url.Content("~/Prisoner/Cities/")');
+        attachDropDowns("PresentDistrictId", "PresentPoliceStationId", "Police Station", '@Url.Content("~/Prisoner/PoliceStations/")');
+        attachDropDowns("PresentCityId", "PresentPoliceStationId", "Police Station", '@Url.Content("~/Prisoner/PoliceStations/")', "PresentDistrictId", "cityId");
+
+        attachDropDowns("PermanentCountryId", "PermanentProvinceId", "Province", '@Url.Content("~/Prisoner/Provinces/")');
+        attachDropDowns("PermanentProvinceId", "PermanentDistrictId", "District", '@Url.Content("~/Prisoner/Districts/")');
+        attachDropDowns("PermanentDistrictId", "PermanentCityId", "City", '@Url.Content("~/Prisoner/Cities/")');
+        attachDropDowns("PermanentDistrictId", "PermanentPoliceStationId", "Police Station", '@Url.Content("~/Prisoner/PoliceStations/")');
+        attachDropDowns("PermanentCityId", "PermanentPoliceStationId", "Police Station", '@Url.Content("~/Prisoner/PoliceStations/")', "PermanentDistrictId", "cityId");
+
+        function attachDropDowns(parentId, childId, label, url, child2Id, parentKey) {
+            var parent = $('#' + parentId);
+            var child = $('#' + childId);
+
+            parent.change(populateDropDown);
+
+            function populateDropDown(selectedId) {
+                child.prop('disabled', 'disabled');
+
+                var getUrl = url + parent.val();
+
+                if (child2Id)
+                    getUrl = url + $('#' + child2Id).val() + "?" + parentKey + "=" + parent.val();
+
+                $.getJSON(getUrl,
+                    function (data) {
+                        var items = '<option>-- Select ' + label + ' --</option>';
+                        var isDisabled = true;
+
+                        $.each(data, function (i, item) {
+                            items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+                            isDisabled = false;
+                        });
+
+                        child.prop('disabled', isDisabled);
+                        child.html(items);
+                    });
+            }
+        }
+
+    </script>
+}

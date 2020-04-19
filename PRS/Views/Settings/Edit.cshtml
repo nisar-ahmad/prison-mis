@@ -1,0 +1,103 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Settings 
+@{
+    ViewBag.Title = "Settings"; 
+}
+<h3 class="fontsettings">@ViewBag.Title</h3>
+<br />
+<div class="row-fluid">
+    <div class="span4">
+        <ul>
+            <li><a href="~/Account" title="Manage user accounts, roles and passwords">User Accounts</a></li>
+            <li><a href="~/Jail" title="Manage authorized jail capacity and other information">Jails</a></li>
+            <li><a href="~/Court" title="Manage information of courts">Courts</a></li>
+            <li><a href="~/Judge" title="Manage information of Judges">Judges</a></li>
+            <li><a href="~/Occupation" title="Manage Occupations">Occupations</a></li>
+            <li><a href="~/Disease" title="Manage information of Diseases">Diseases</a></li>
+            <li><a href="~/MedicalTest" title="Manage information of Medical Tests">Medical Tests</a></li>
+        </ul>
+    </div>
+    <div class="span5">
+        <ul>
+            <li><a href="~/Barrack" title="Manage barracks in jail">Barracks</a></li>
+            <li><a href="~/PrisonerType" title="Manage Prisoner Types">Prisoner Types</a></li>
+            <li><a href="~/PrisonerSubType" title="Manage Prisoner Sub Types">Sub Types</a></li>
+            <li><a href="~/MedicalOfficer" title="Manage information of Medical Officers">Medical Officers</a></li>
+            <li><a href="~/CrimeType" title="Manage Crime Types">Crime Types</a></li>
+            <li><a href="~/JudgeType" title="Manage Judge Types">Judge Types</a></li>
+            <li><a href="~/RelationType" title="Manage Relation Types">Relation Types</a></li>
+        </ul>
+    </div>
+    <div class="span3">
+        <ul>
+            <li><a href="~/Act" title="Manage Legislative Acts">Legislative Acts</a></li>
+            <li><a href="~/Section" title="Manage Sections">Sections</a></li>
+            <li><a href="~/Province" title="Manage Provinces">Provinces</a></li>
+            <li><a href="~/District" title="Manage Districts">Districts</a></li>
+            <li><a href="~/City" title="Manage Cities">Cities</a></li>
+            <li><a href="~/PoliceStation" title="Manage Police Stations">Police Stations</a></li>
+        </ul>
+    </div>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.SettingsId) 		
+        <div class="control-group"> 
+			@Html.LabelFor(model => model.Jail, new { @class = "control-label" })   
+			<div class="controls"> 
+				@Html.DropDownList("JailId") 
+				@Html.ValidationMessageFor(model => model.JailId, "*", new { @class="help-inline" })
+			</div>
+		</div> 
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Province, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("ProvinceId")
+                @Html.ValidationMessageFor(model => model.ProvinceId, "*", new { @class = "help-inline" })
+            </div>
+        </div> 
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.District, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("DistrictId")
+                @Html.ValidationMessageFor(model => model.DistrictId, "*", new { @class = "help-inline" })
+            </div>
+        </div> 
+        <div class="control-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CityId")
+                @Html.ValidationMessageFor(model => model.CityId, "*", new { @class = "help-inline" })
+            </div>
+        </div> 
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn" /> &nbsp; @Html.ActionLink("Back to Home", "Index", "Home")
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+	$('.datepicker').datepicker({autoclose: true});
+	</script>
+}
+ 
+

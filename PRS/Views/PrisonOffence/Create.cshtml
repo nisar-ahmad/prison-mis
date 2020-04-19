@@ -1,0 +1,157 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonOffence
+@{
+    ViewBag.Title = "New Offence";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()  
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>@ViewBag.Title</legend>
+
+        @Html.Hidden("PrisonerId", Request["PrisonerId"])
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.DateOfOffence, new { @class = "control-label" })
+
+			<div class="controls">
+				<input type="text" name="DateOfOffence" class="datepicker" data-date-format="dd-M-yyyy" value="@DateTime.Now.ToString("dd-MMM-yyyy")">
+				@Html.ValidationMessageFor(model => model.DateOfOffence, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.Offence, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.Offence)
+				@Html.ValidationMessageFor(model => model.Offence, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.Witnesses, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.Witnesses)
+				@Html.ValidationMessageFor(model => model.Witnesses, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.NameAndRankOfReportingPerson, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.NameAndRankOfReportingPerson)
+				@Html.ValidationMessageFor(model => model.NameAndRankOfReportingPerson, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.Evidence, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.Evidence)
+				@Html.ValidationMessageFor(model => model.Evidence, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.DefenceOfPrisoner, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.DefenceOfPrisoner)
+				@Html.ValidationMessageFor(model => model.DefenceOfPrisoner, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.FindingsOfSuperintendent, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.FindingsOfSuperintendent)
+				@Html.ValidationMessageFor(model => model.FindingsOfSuperintendent, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.PunishmentAwarded, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.PunishmentAwarded)
+				@Html.ValidationMessageFor(model => model.PunishmentAwarded, "*", new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.DateOfInfliction, new { @class = "control-label" })
+
+			<div class="controls">
+				<input type="text" name="DateOfInfliction" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfInfliction)">
+				@Html.ValidationMessageFor(model => model.DateOfInfliction, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.MedicalOfficerCertificate, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.MedicalOfficerCertificate)
+				@Html.ValidationMessageFor(model => model.MedicalOfficerCertificate, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+
+			<div class="controls">
+				@Html.EditorFor(model => model.Remarks)
+				@Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn btn-primary" /> &nbsp; 
+                @Html.ActionLink("Cancel", "Index", new {PrisonerId = Request["PrisonerId"]})
+			</div>
+        </div>
+    </fieldset>
+}
+
+
+
+@section Scripts {
+
+	<script>
+
+	    $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+	    $('.datepicker').datepicker({ autoclose: true });
+
+	</script>
+}
+
+
+

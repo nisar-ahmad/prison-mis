@@ -1,0 +1,55 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Appeal
+@{
+    ViewBag.Title = "Appeal Details";
+}
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.DateOfAppeal)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfAppeal)</dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Court)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Court.Name)
+    </dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Status)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Status)
+    </dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.DateOfResult)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.DateOfResult)
+    </dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+
+</dl>
+
+<dl class="dl-horizontal">
+    <dt></dt>
+    <dd>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AppealId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-primary" })
+        | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] })
+    </dd>
+</dl>

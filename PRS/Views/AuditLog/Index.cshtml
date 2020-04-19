@@ -1,0 +1,60 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.AuditLog>
+@{
+    ViewBag.Title = "Audit Log";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<div class="row-fluid">
+    <div class="span7">
+        <h3>@ViewBag.Title</h3>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.OperationDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Operation)</th>
+            <th>@Html.DisplayNameFor(model => model.Entity)</th>
+            <th>@Html.DisplayNameFor(model => model.EntityKey)</th>
+            <th>@Html.DisplayNameFor(model => model.UserName)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => item.OperationDate)</td>
+                <td>@GetOperationString(item.Operation)</td>
+                <td>@Html.DisplayFor(model => item.Entity)</td>
+                <td>@Html.DisplayFor(model => item.EntityKey)</td>
+                <td>@Html.DisplayFor(model => item.UserName)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+
+
+@functions 
+{
+    string GetOperationString(string op)
+    {
+        string operation = "";
+
+        switch (op)
+        {
+            case "A": operation = "ADDED"; break;
+            case "M": operation = "MODIFIED"; break;
+            case "D": operation = "DELETED"; break;
+            default: break;
+        }
+
+        return operation;
+    }
+}

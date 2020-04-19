@@ -1,0 +1,86 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.PrisonerViewModel>
+@{
+    int i = 1;
+
+    var showReleaseInfo = (ViewBag.ShowReleaseInfo != null ? ViewBag.ShowReleaseInfo : false);
+}
+
+
+        
+    <table class="table" id="table2excel">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>@Html.DisplayNameFor(model => model.PrisonerNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.AdmissionId)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Parentage)</th>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <th>@Html.DisplayNameFor(model => model.District)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+                @if (showReleaseInfo)
+                {
+                    <th>@Html.DisplayNameFor(model => model.Years)</th>
+                    <th>@Html.DisplayNameFor(model => model.Months)</th>
+                    <th>@Html.DisplayNameFor(model => model.Days)</th>
+                    <th>@Html.DisplayNameFor(model => model.HealthOnAdmission)</th>
+                    <th>@Html.DisplayNameFor(model => model.HealthOnRelease)</th>
+                    <th>@Html.DisplayNameFor(model => model.WeightOnAdmission)</th>
+                    <th>@Html.DisplayNameFor(model => model.WeightOnRelease)</th>
+                }
+                else
+                {
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th>@Html.DisplayNameFor(model => model.FIRs)</th>
+                    <th>@Html.DisplayNameFor(model => model.UnderSections)</th>
+                    <th>@Html.DisplayNameFor(model => model.PoliceStation)</th>
+                    <th>@Html.DisplayNameFor(model => model.TrialCourt)</th>
+                    <th>Date of Hearing تاریخ پیشی</th>
+
+                }
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                        @{ i++; }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.PrisonerNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AdmissionId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Parentage)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                    <td>@Html.DisplayFor(modelItem => item.District)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                    @if (showReleaseInfo)
+                    {
+                        <td>@Html.DisplayFor(modelItem => item.Years)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Months)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Days)</td>
+                        <td>@Html.DisplayFor(modelItem => item.HealthOnAdmission)</td>
+                        <td>@Html.DisplayFor(modelItem => item.HealthOnRelease)</td>
+                        <td>@Html.DisplayFor(modelItem => item.WeightOnAdmission)</td>
+                        <td>@Html.DisplayFor(modelItem => item.WeightOnRelease)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FIRs)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UnderSections)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PoliceStation)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TrialCourt)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateOfHearing)</td>
+                    }
+                    <td>@Html.ActionLink("Details", "Details", "Prisoner", new { PrisonerId = item.PrisonerId }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+<button class="btn btn-success fontstyle" id="btn-export">Export</button> &nbsp;<a href="javascript:window.print()" class="btn btn-info">Print</a>&nbsp;

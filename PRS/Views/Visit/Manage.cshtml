@@ -1,0 +1,208 @@
+﻿@using BootstrapSupport
+@model PRS.Models.VisitViewModel
+@{
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+    ViewBag.Title = "Manage Visit ملاقات کی تفصیل";
+
+    var visitId = 0;
+
+    if (Request["VisitId"] != null)
+    { 
+       visitId = Convert.ToInt32(Request["VisitId"]);
+    }
+}
+
+@section head{
+    @Styles.Render("~/content/typeahead")
+}
+
+<table class="table2columns">
+    <tr>
+        <td>
+            <div class="title">@ViewBag.Title</div>
+
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Visit.VisitId)
+            @Html.HiddenFor(model => model.Visit.VisitorId)
+
+            <fieldset class="form-horizontal">
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visitor.CNIC, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DisplayFor(model => model.Visitor.CNIC)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visitor.Name, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DisplayFor(model => model.Visitor.Name)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.Prisoner, new { @class = "control-label" })
+                    <div class="controls">
+
+                        @{var prisonerName = "";}
+
+                        @if (Model.Visit.Prisoner != null)
+                        {
+                            prisonerName = Model.Visit.Prisoner.Name + " S/O " + Model.Visit.Prisoner.FatherOrHusbandName;
+                        }
+
+                        <input id="PrisonerName" type="text" autocomplete="off" value='@prisonerName' />
+                        @Html.HiddenFor(model => model.Visit.PrisonerId)
+                        @Html.ValidationMessageFor(model => model.Visit.PrisonerId, "*", new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.DateOfVisit, new { @class = "control-label" })
+                    <div class="controls">
+                        <input type="text" name="Visit.DateOfVisit" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.Visit.DateOfVisit)">
+                        @Html.ValidationMessageFor(model => model.Visit.DateOfVisit, "*", new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                @if (Model.Visit.SerialNumber > 0)
+                {
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Visit.SerialNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DisplayFor(model => model.Visit.SerialNumber)
+                            @Html.HiddenFor(model => model.Visit.SerialNumber)
+                        </div>
+                    </div>
+                }
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.BatchNumber, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Visit.BatchNumber)
+                        @Html.ValidationMessageFor(model => model.Visit.BatchNumber, string.Empty, new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.PurposeOfVisit, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Visit.PurposeOfVisit)
+                        @Html.ValidationMessageFor(model => model.Visit.PurposeOfVisit, string.Empty, new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.LuggageDetails, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(model => model.Visit.LuggageDetails, 7, 50, null)
+                        @Html.ValidationMessageFor(model => model.Visit.LuggageDetails, string.Empty, new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.MobileTokenNumber, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Visit.MobileTokenNumber)
+                        @Html.ValidationMessageFor(model => model.Visit.MobileTokenNumber, string.Empty, new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Visit.Remarks, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(model => model.Visit.Remarks, 3, 50, null)
+                        @Html.ValidationMessageFor(model => model.Visit.Remarks, string.Empty, new { @class = "help-inline" })
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+
+                        @if (visitId > 0)
+                        {
+                            @Html.ActionLink("Print", "Print", new { VisitId = Model.Visit.VisitId }, new { @class = "btn btn-success", target = "_blank" });
+                        }
+                    </div>
+                </div>
+            </fieldset>
+            }
+
+        </td>
+        <td>
+            <div class="title">PREVIOUS VISITS سابقہ ملاقاتیں
+                <div class="float-right">@Html.ActionLink("<< Back", "Register", "Visitor", new { VisitorId = Request["VisitorId"] }, new { @class = "btn btn-small btn-info" })</div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>@Html.DisplayNameFor(model => model.Visit.DateOfVisit)</th>
+                        <th>@Html.DisplayNameFor(model => model.Visit.Prisoner)</th>
+                        <th>@Html.DisplayNameFor(model => model.Visit.PurposeOfVisit)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        var i = 1;
+                    }
+
+                    @foreach (var item in Model.Visitor.Visits)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@Html.DisplayFor(modelItem => item.DateOfVisit)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PurposeOfVisit)</td>
+                            <td>@Html.ActionLink("Edit", "Manage", new { VisitorId = item.VisitorId, VisitId = item.VisitId })
+                             @Html.ActionLink("Print", "Print", new { VisitId = item.VisitId }, new { target = "_blank" })</td>
+                        </tr>
+
+                        i++;
+                    }
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/typeahead")
+    <script>
+
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+        $("#PrisonerName").typeahead({
+            name: 'names',
+            valueKey: 'DisplayName',
+            remote: '@Url.Content("~/Visit/List/")%QUERY'
+        });
+
+        $("#PrisonerName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+            if (selectedItem) {
+                $("#Visit_PrisonerId").val(selectedItem.PrisonerId);
+            }
+            else
+                $("#Visit_PrisonerId").val("");
+        });
+
+    </script>
+}

@@ -1,0 +1,30 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Country
+@{
+    ViewBag.Title = "Delete Country";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<h4>Are you sure you want to delete this?</h4>
+
+<fieldset class="form-horizontal">
+    <legend></legend>
+
+    <dl class="dl-horizontal">
+		<dt>
+			@Html.Label("Name", new { @class = "control-label" })
+		</dt>    
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+    </dl>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <div class="control-group">
+		<div class="controls">
+			<input type="submit" value="Delete" class="btn" /> &nbsp; @Html.ActionLink("Cancel", "Index")
+		</div>
+    </div>
+}

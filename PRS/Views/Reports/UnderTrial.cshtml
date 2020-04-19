@@ -1,0 +1,53 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.Admission>
+@{
+    ViewBag.Title = "Under-Trial Prisoners";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row-fluid">
+        <div class="span11">
+            <h4>Alphabetical List of @ViewBag.Title</h4>
+        </div>
+        <div class="span1">
+            <input type="submit" name="Print" value="Print" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Gender)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.DateOfBirth)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.PresentDistrict)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.FatherOrHusbandName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.DateOfBirth)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.PresentDistrict.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                <td>@Html.ActionLink("Details", "Details", "Prisoner", new { PrisonerId = item.PrisonerId }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-success" id="btn-export">Export</button> &nbsp;&nbsp;
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("UnderTrial", new { page }))
+@Html.ActionLink("Back to Reports", "Index")
+

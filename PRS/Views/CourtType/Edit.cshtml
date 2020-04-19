@@ -1,0 +1,55 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtType
+@{
+    ViewBag.Title = "Edit Court Type";
+}
+<h3>@ViewBag.Title</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.CourtTypeId)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn" /> &nbsp; @Html.ActionLink("Cancel", "Index")
+            </div>
+        </div>
+
+    </fieldset>
+}
+
+@section Scripts {
+    <script>
+        $.validator.setDefaults({
+            highlight: function(element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function(element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+    </script>
+}

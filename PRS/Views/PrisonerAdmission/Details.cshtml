@@ -1,0 +1,204 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonerAdmission
+@{
+    ViewBag.Title = "Admission Details";
+}
+
+<table style="width:100%">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.PrisonerNumber)</dt>
+		        <dd>@Html.DisplayFor(model => model.PrisonerNumber)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.PreviousOccupation)</dt>
+		        <dd>@Html.DisplayFor(model => model.PreviousOccupation)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.Residence)</dt>
+		        <dd>@Html.DisplayFor(model => model.Residence)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.Village)</dt>
+		        <dd>@Html.DisplayFor(model => model.Village)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.PoliceStation)</dt>
+		        <dd>@Html.DisplayFor(model => model.PoliceStation)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.District)</dt>
+		        <dd>@Html.DisplayFor(model => model.District)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.PersonalDescriptionAndHeight)</dt>
+		        <dd>@Html.DisplayFor(model => model.PersonalDescriptionAndHeight)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.TransferJailOrDistrict)</dt>
+		        <dd>@Html.DisplayFor(model => model.TransferJailOrDistrict)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.ChargedWithActAndSection)</dt>
+		        <dd>@Html.DisplayFor(model => model.ChargedWithActAndSection)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfWarrantCommitment)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfWarrantCommitment)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateToProducePrisoner)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateToProducePrisoner)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfRemand)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfRemand)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.HealthOnAdmission)</dt>
+		        <dd>@Html.DisplayFor(model => model.HealthOnAdmission)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.HealthOnRelease)</dt>
+		        <dd>@Html.DisplayFor(model => model.HealthOnRelease)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.WeightOnAdmission)</dt>
+		        <dd>@Html.DisplayFor(model => model.WeightOnAdmission)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.WeightOnRelease)</dt>
+		        <dd>@Html.DisplayFor(model => model.WeightOnRelease)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.EducationOnAdmission)</dt>
+		        <dd>@Html.DisplayFor(model => model.EducationOnAdmission)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.EducationOnRelease)</dt>
+		        <dd>@Html.DisplayFor(model => model.EducationOnRelease)</dd>
+	        </dl>
+
+        </td>
+
+        <td>
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfSentence)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfSentence)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfReleaseWithFullSentence)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfReleaseWithFullSentence)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.SentencingCourt)</dt>
+		        <dd>@Html.DisplayFor(model => model.SentencingCourt)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.ConvictedUnderSection)</dt>
+		        <dd>@Html.DisplayFor(model => model.ConvictedUnderSection)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.Sentence)</dt>
+		        <dd>@Html.DisplayFor(model => model.Sentence)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.Classification)</dt>
+		        <dd>@Html.DisplayFor(model => model.Classification.Name)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.PreviousConviction)</dt>
+		        <dd>@Html.DisplayFor(model => model.PreviousConviction)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfPaymentOfFine)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfPaymentOfFine)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfAppeal)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfAppeal)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.ResultOfAppeal)</dt>
+		        <dd>@Html.DisplayFor(model => model.ResultOfAppeal)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfImposition)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfImposition)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfRemoval)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfRemoval)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfRelease)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfRelease)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.AuthorityForRelease)</dt>
+		        <dd>@Html.DisplayFor(model => model.AuthorityForRelease)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.DateOfDisposal)</dt>
+		        <dd>@Html.DisplayFor(model => model.DateOfDisposal)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.BarrackOrCell)</dt>
+		        <dd>@Html.DisplayFor(model => model.BarrackOrCell)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+		        <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+	        </dl>
+
+            <dl class="dl-horizontal">
+		        <dt></dt>
+		        <dd>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerAdmissionId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-primary" }) &nbsp; 
+                    @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] })
+                </dd>
+	        </dl>
+        </td>
+    </tr>
+</table>
+
+    

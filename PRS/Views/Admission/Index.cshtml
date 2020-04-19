@@ -1,0 +1,59 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.Admission>
+@{
+    ViewBag.Title = "ADMISSIONS داخلے"; 
+}
+
+<div class="title">@ViewBag.Title</div>
+
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+        <th>@Html.DisplayNameFor(model => model.PrisonerNumber)</th>
+        <th>@Html.DisplayNameFor(model => model.Barrack)</th>
+        <th>@Html.DisplayNameFor(model => model.BlockNumber)</th>
+        <th>@Html.DisplayNameFor(model => model.CellNumber)</th>
+        <th>@Html.DisplayNameFor(model => model.HealthOnAdmission)</th>
+        <th>@Html.DisplayNameFor(model => model.WeightOnAdmission)</th>
+        <th>@Html.DisplayNameFor(model => model.CommunicableDisease)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+        <th>@Html.DisplayNameFor(model => model.HealthOnRelease)</th>
+        <th>@Html.DisplayNameFor(model => model.WeightOnRelease)</th>
+		<th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    string DateOfAdmission = Html.DisplayFor(o => item.DateOfAdmission).ToHtmlString();
+    <tr>
+        <td>@Html.ActionLink(DateOfAdmission, "Details", new { PrisonerId = Request["PrisonerId"], AdmissionId = item.AdmissionId })</td>
+        <td>@Html.ActionLink(item.PrisonerNumber, "Details", new { PrisonerId = Request["PrisonerId"], AdmissionId = item.AdmissionId })</td>
+        <td>@Html.DisplayFor(modelItem => item.Barrack.Name)</td> 
+        <td>@Html.DisplayFor(modelItem => item.BlockNumber)</td> 
+        <td>@Html.DisplayFor(modelItem => item.CellNumber)</td> 
+        <td>@Html.DisplayFor(modelItem => item.HealthOnAdmission)</td> 
+        <td>@Html.DisplayFor(modelItem => item.WeightOnAdmission)</td> 
+        <td>@Html.DisplayFor(modelItem => item.CommunicableDisease.Name)</td> 
+        <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td> 
+        <td>@Html.DisplayFor(modelItem => item.HealthOnRelease)</td> 
+        <td>@Html.DisplayFor(modelItem => item.WeightOnRelease)</td> 
+        <td>
+			<div class="btn-group">
+				<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					Action
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>@Html.ActionLink("Edit", "Edit", new { PrisonerId = Request["PrisonerId"], AdmissionId = item.AdmissionId })</li>
+					<li>@Html.ActionLink("Details", "Details", new { PrisonerId = Request["PrisonerId"], AdmissionId = item.AdmissionId })</li>
+				</ul>
+			</div>
+        </td> 
+    </tr> 
+}
+</tbody>
+</table>
+
+
+

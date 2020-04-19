@@ -1,0 +1,69 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.PrisonerTransaction>
+@{
+    ViewBag.Title = "PRISONER CASH LEDGER";
+}
+<div class="title">
+    @ViewBag.Title
+    <div class="float-right">@Html.ActionLink("NEW CASH ENTRY", "Create", new { PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-success" })</div>
+</div>
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.TransactionType)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfTransaction)</th>
+            <th>@Html.DisplayNameFor(model => model.Amount)</th>
+            <th>@Html.DisplayNameFor(model => model.Reference)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            int balance = 0;
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TransactionType)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfTransaction)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Reference)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Action
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.PrisonerTransactionId, PrisonerId = Request["PrisonerId"] })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.PrisonerTransactionId, PrisonerId = Request["PrisonerId"] })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+
+            if (item.TransactionType == PRS.Models.TransactionType.Credit)
+            {
+                balance += item.Amount;
+            }
+            else
+            {
+                balance -= item.Amount;
+            }
+
+        }
+        <tr>
+            <td></td>
+            <td style="text-align:right;"><strong>Balance :</strong></td>
+            <td><strong>@balance</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

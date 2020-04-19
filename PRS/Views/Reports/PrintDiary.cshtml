@@ -1,0 +1,57 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.PrisonerViewModel>
+@{
+    Layout = "";
+
+    int i = 1;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="font-size: 8pt;">
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Parentage)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+                <th>@Html.DisplayNameFor(model => model.Years)</th>
+                <th>@Html.DisplayNameFor(model => model.Months)</th>
+                <th>@Html.DisplayNameFor(model => model.Days)</th>
+                <th>@Html.DisplayNameFor(model => model.HealthOnAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.HealthOnRelease)</th>
+                <th>@Html.DisplayNameFor(model => model.WeightOnAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.WeightOnRelease)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                        @{ i++; }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Parentage)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Years)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Months)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Days)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HealthOnAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HealthOnRelease)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WeightOnAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WeightOnRelease)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

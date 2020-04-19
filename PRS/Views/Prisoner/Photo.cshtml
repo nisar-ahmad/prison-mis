@@ -1,0 +1,7 @@
+﻿@model PRS.Models.Prisoner
+@{   
+    ViewBag.Title = "Prisoner Photo تصویر";
+}
+<div class="title">@ViewBag.Title</div>
+
+<iframe name="photoFrame" src="~/ScriptCam/index.aspx?PrisonerId=@Request["PrisonerId"]" width="600" height="500" style="border:none;"/>

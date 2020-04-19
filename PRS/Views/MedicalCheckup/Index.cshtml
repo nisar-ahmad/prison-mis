@@ -1,0 +1,47 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.MedicalCheckup> 
+@{
+    ViewBag.Title = "Index"; 
+}
+<h3>@ViewBag.Title</h3> 
+<p>
+    @Html.ActionLink("Add New", "Create")
+</p>
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.DateOfCheckup)</th>
+        <th>@Html.DisplayNameFor(model => model.BloodPressure)</th>
+        <th>@Html.DisplayNameFor(model => model.Pulse)</th>
+        <th>@Html.DisplayNameFor(model => model.Temperature)</th>
+        <th>@Html.DisplayNameFor(model => model.Prescription)</th>
+		<th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.DateOfCheckup)</td> 
+        <td>@Html.DisplayFor(modelItem => item.BloodPressure)</td> 
+        <td>@Html.DisplayFor(modelItem => item.Pulse)</td> 
+        <td>@Html.DisplayFor(modelItem => item.Temperature)</td> 
+        <td>@Html.DisplayFor(modelItem => item.Prescription)</td> 
+        <td>
+			<div class="btn-group">
+				<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					Action
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>@Html.ActionLink("Edit", "Edit", new { id=item.MedicalCheckupId })</li>
+					<li>@Html.ActionLink("Details", "Details", new { id=item.MedicalCheckupId })</li>
+				</ul>
+			</div>
+        </td> 
+    </tr> 
+}
+</tbody>
+</table>
+
+
+

@@ -1,0 +1,47 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.PrisonerViewModel>
+@{
+    ViewBag.Title = "Release Diary";
+    ViewBag.ShowReleaseInfo = true;
+}
+
+@using (Html.BeginForm())
+{
+    <div class="title">
+        PRISONERS RELEASED BETWEEN
+        <input type="text" name="StartDate" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.StartDate">
+        AND
+        <input type="text" name="EndDate" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.EndDate">
+        <input type="submit" value="Refresh" class="btn btn-success fontstyle" />&nbsp;&nbsp;
+        TOTAL = @ViewBag.Total
+        <div class="float-right">
+            @*<input type="submit" name="Print" value="Print" class="btn btn-small" />*@
+            @Html.ActionLink("<< Back", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
+}
+
+@Html.Partial("_AdmissionPartial", Model)
+
+@Html.ActionLink("<< Back To Reports", "Index", null, new { @class = "btn btn-info" })
+
+@section Scripts {
+
+    <script>
+        $('.datepicker').datepicker({ autoclose: true });
+    </script>
+<script>
+    $("#btn-export").click(function () {
+        $("#table2excel").table2excel({
+            // exclude CSS class
+            exclude: ".noExl",
+            name: "PMIS Export"
+        });
+    });
+</script>
+}
+
+
+

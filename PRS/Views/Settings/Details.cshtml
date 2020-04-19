@@ -1,0 +1,16 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Settings 
+@{
+    ViewBag.Title = "Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Jail) </dt>
+		<dd>@Html.DisplayFor(model => model.Jail.Name)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.SettingsId }) | @Html.ActionLink("Back to List", "Index") </dd>
+	</dl>
+

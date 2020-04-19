@@ -1,0 +1,49 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.CourtHearing> 
+@{
+    ViewBag.Title = "COURT PRODUCTIONS کورٹ پیشیاں"; 
+}
+<div class="title">@ViewBag.Title
+    <div class="float-right">@Html.ActionLink("New Court Production", "Create", new { PrisonerId = Request["PrisonerId"] }, new { @class= "btn btn-small btn-success" })</div>
+</div>
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.DateOfHearing)</th>
+            <th>@Html.DisplayNameFor(model => model.FIR)</th>
+            <th>@Html.DisplayNameFor(model => model.Court)</th>
+            <th>@Html.DisplayNameFor(model => model.JudgeType)</th>
+            <th>@Html.DisplayNameFor(model => model.Judge)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfCourtOrder)</th>
+            <th>@Html.DisplayNameFor(model => model.Remarks)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.DateOfHearing)</td>
+                <td>@Html.DisplayFor(modelItem => item.FIR.FIRNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Court.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.JudgeType.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Judge.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfCourtOrder)</td>
+                <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+                            Action
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.CourtHearingId, PrisonerId = Request["PrisonerId"] })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.CourtHearingId, PrisonerId = Request["PrisonerId"] })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

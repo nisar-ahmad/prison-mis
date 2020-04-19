@@ -1,0 +1,29 @@
+﻿@model PRS.Models.LoginModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/shared/_BootstrapLayout.empty.cshtml";
+}
+<img src="~/Content/images/unodc-logo-login.png" title="UNODC" class="centered" />
+<hr>
+<h2 class="text-center"><img src="~/Content/images/pmis-logo.png" alt="Prison Registry System"></h2>
+<hr>
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4 class="form-signin-heading">Please sign in</h4>
+    <hr>
+    
+    @Html.TextBoxFor(m => m.UserName, new { @class = "input-block-level", @placeholder = "User Name" })
+    @Html.ValidationMessageFor(m => m.UserName, string.Empty, new { @class = "help-inline" })
+    @Html.PasswordFor(m => m.Password, new { @class = "input-block-level", @placeholder = "Password" })
+    @Html.ValidationMessageFor(m => m.Password, string.Empty, new { @class = "help-inline" })
+    
+    <label class="checkbox">
+        <input id="RememberMe" type="checkbox" name="RememberMe" value="false" title="Remember me" />
+        Remember me
+   
+    </label>
+    
+    <button class="btn btn-primary btn-login" type="submit">Sign in</button>
+}

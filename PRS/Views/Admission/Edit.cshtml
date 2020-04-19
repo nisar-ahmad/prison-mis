@@ -1,0 +1,204 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Admission
+@{
+    ViewBag.Title = "Edit Admission";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+
+        @Html.HiddenFor(model => model.AdmissionId)
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="title">ADMISSION & RELEASE INFORMATION داخلہ و رہائی</div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.PrisonerNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PrisonerNumber)
+                            @Html.ValidationMessageFor(model => model.PrisonerNumber, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.DateOfAdmission, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="DateOfAdmission" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfAdmission)">
+                            @Html.ValidationMessageFor(model => model.DateOfAdmission, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    @*<div class="control-group"> @Html.LabelFor(model => model.DateOfWarrantCommitment, new { @class = "control-label" })
+                        <div class="controls">  <input type="text" name="DateOfWarrantCommitment" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfWarrantCommitment)">
+                            @Html.ValidationMessageFor(model => model.DateOfWarrantCommitment, string.Empty, new { @class="help-inline" })
+                        </div>
+                    </div>
+                    *@
+                    <div class="control-group"> @Html.LabelFor(model => model.DateOfRemand, new { @class = "control-label" })
+                        <div class="controls">  <input type="text" name="DateOfRemand" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfRemand)">
+                            @Html.ValidationMessageFor(model => model.DateOfRemand, string.Empty, new { @class="help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.DateOfReleaseWithFullSentence, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" id="DateOfReleaseWithFullSentence" name="DateOfReleaseWithFullSentence" class="datepicker" data-date-format="dd-M-yyyy" 
+                                   value="@Html.DisplayFor(model => model.DateOfReleaseWithFullSentence)" placeholder="Enter or Calculate ->">
+                            <button type="button" class="btn btn-small btn-success" onclick="calculateDateOfRelease()">CALCULATE</button> 
+                            @Html.ValidationMessageFor(model => model.DateOfReleaseWithFullSentence, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.DateOfRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="DateOfRelease" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfRelease)">
+                            @Html.ValidationMessageFor(model => model.DateOfRelease, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.DecisionStatus, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("DecisionStatus")
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.JudgeType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("JudgeTypeId", "-- Select Judge Type --")
+                            @Html.ValidationMessageFor(model => model.JudgeTypeId, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.AuthorityForRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.AuthorityForRelease)
+                            @Html.ValidationMessageFor(model => model.AuthorityForRelease, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.Remarks)
+                            @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="title">
+                        MEDICAL INFORMATION میڈیکل
+                        <div class="float-right">@Html.ActionLink("Back", "Details", new { AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class = "btn btn-small btn-info" })</div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.HealthOnAdmission, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.HealthOnAdmission)
+                            @Html.ValidationMessageFor(model => model.HealthOnAdmission, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.WeightOnAdmission, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.WeightOnAdmission)
+                            @Html.ValidationMessageFor(model => model.WeightOnAdmission, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.KnownAilment, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.KnownAilment)
+                            @Html.ValidationMessageFor(model => model.KnownAilment, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CommunicableDisease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("DiseaseId", "-- Select Disease --")
+                            @Html.ValidationMessageFor(model => model.DiseaseId, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.ExplainedInjuries, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.ExplainedInjuries)
+                            @Html.ValidationMessageFor(model => model.ExplainedInjuries, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.UnexplainedInjuries, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.UnexplainedInjuries)
+                            @Html.ValidationMessageFor(model => model.UnexplainedInjuries, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.MedicalRemarks, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.MedicalRemarks)
+                            @Html.ValidationMessageFor(model => model.MedicalRemarks, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.HealthOnRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.HealthOnRelease)
+                            @Html.ValidationMessageFor(model => model.HealthOnRelease, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.WeightOnRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.WeightOnRelease)
+                            @Html.ValidationMessageFor(model => model.WeightOnRelease, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-primary" /> &nbsp; @Html.ActionLink("Cancel", "Details", new { AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId })
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    <script>
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        function calculateDateOfRelease()
+        {
+	        var url = "@Url.Content("~/CourtDecisionSection/CalculateDateOfRelease?PrisonerId=" + Request["PrisonerId"])";
+	        $.get(url,
+                function (data)
+                {
+                    //alert(data);
+                    $("#DateOfReleaseWithFullSentence").val(data);
+                });
+        }
+
+        $('.datepicker').datepicker({ autoclose: true });
+    </script>
+}
+
+

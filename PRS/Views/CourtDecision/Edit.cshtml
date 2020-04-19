@@ -1,0 +1,139 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtDecision
+@{
+    ViewBag.Title = "Edit Court Decision"; 
+}
+
+<div class="title">
+    @ViewBag.Title
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+
+        @Html.HiddenFor(model => model.CourtDecisionId)
+        @Html.HiddenFor(model => model.AdmissionId)
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="control-group">
+			@Html.LabelFor(model => model.FIR, new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("FIRId", "-- Select FIR Number --")
+				@Html.ValidationMessageFor(model => model.FIRId, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			@Html.LabelFor(model => model.CourtHearing, new { @class = "control-label" })
+			<div class="controls">
+                @Html.DropDownList("CourtHearingId", "-- Select Court Hearing --")
+                @Html.ValidationMessageFor(model => model.CourtHearingId, "*", new { @class = "help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DecisionStatus, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("DecisionStatus")
+                @Html.ValidationMessageFor(model => model.DecisionStatus, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.CourtDecisionType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CourtDecisionType")
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfSentenceStart, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfSentenceStart" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfSentenceStart)">
+                @Html.ValidationMessageFor(model => model.DateOfSentenceStart, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Is382BApplied, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Is382BApplied)
+                @Html.ValidationMessageFor(model => model.Is382BApplied, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfUnderTrialStart, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfUnderTrialStart" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfUnderTrialStart)">
+                @Html.ValidationMessageFor(model => model.DateOfUnderTrialStart, "", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfUnderTrialEnd, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfUnderTrialEnd" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfUnderTrialEnd)">
+                @Html.ValidationMessageFor(model => model.DateOfUnderTrialEnd, "", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Admission.DateOfReleaseWithFullSentence, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" id="DateOfReleaseWithFullSentence" name="DateOfReleaseWithFullSentence" class="datepicker" data-date-format="dd-M-yyyy" value="@ViewBag.DateOfReleaseWithFullSentence"
+                       placeholder="Enter or Calculate ->">
+                <button type="button" class="btn btn-small btn-success" onclick="calculateDateOfRelease()">CALCULATE</button> 
+                @*@Html.ValidationMessageFor(model => model.Admission.DateOfReleaseWithFullSentence, "*", new { @class = "help-inline" })*@
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DecisionAuthority, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DecisionAuthority)
+                @Html.ValidationMessageFor(model => model.DecisionAuthority, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Remarks)
+                @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"]})
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+	<script>
+   
+	    $.validator.setDefaults({
+	        highlight: function (element) {
+	            $(element).closest(".control-group").addClass("error");
+	        },
+	        unhighlight: function (element) {
+	            $(element).closest(".control-group").removeClass("error");
+	        }
+	    });
+
+        function calculateDateOfRelease()
+        {
+	        var url = "@Url.Content("~/CourtDecisionSection/CalculateDateOfRelease?PrisonerId=" + Request["PrisonerId"])";
+	        $.get(url,
+                function (data)
+                {
+                    //alert(data);
+                    $("#DateOfReleaseWithFullSentence").val(data);
+                });
+        }
+
+	    $('.datepicker').datepicker({ autoclose: true });
+
+	</script>
+} 

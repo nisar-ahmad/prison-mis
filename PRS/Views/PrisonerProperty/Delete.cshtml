@@ -1,0 +1,37 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonerProperty
+@{
+    ViewBag.Title = "Delete Prisoner Belonging";
+}
+
+<h4>Are you sure you want to delete this prisoner belonging?</h4>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Prisoner)</dt>
+	<dd>@Html.DisplayFor(model => model.Prisoner.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Description)</dt>
+	<dd>@Html.DisplayFor(model => model.Description)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfDeposit)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfDeposit)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfReturn)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfReturn)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>
+        @using (Html.BeginForm()) {
+		    <input type="submit" value="Delete" class="btn btn-danger" /> 
+            @Html.ActionLink("Cancel", "Index", new { PrisonerId = Request["PrisonerId"] })
+        }
+	</dd>
+</dl>

@@ -1,0 +1,109 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.Admission>
+@{
+    ViewBag.Title = "Prisoner Admissions";
+}
+
+<h4>@ViewBag.Title</h4>
+
+@using (Html.BeginForm())
+{
+    <table id="table2excel">
+        <tr>
+            <td>Category</td>
+            <td>Gender</td>
+            <td>Class</td>
+            <td>Admission From</td>
+            <td>Admission To</td>
+            <td>Release From</td>
+            <td>Release To</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("Category", ViewBag.Category as SelectList, "-- All Status --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("Gender", ViewBag.Gender as SelectList, "-- All Genders --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("Class", ViewBag.Class as SelectList, "-- All Classes --", new { @class = "select-auto" })
+            </td>
+            <td>
+                <input type="text" name="AdmissionFrom" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.AdmissionFrom">
+            </td>
+            <td>
+                <input type="text" name="AdmissionTo" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.AdmissionTo">
+            </td>
+            <td>
+                <input type="text" name="ReleaseFrom" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.ReleaseFrom">
+            </td>
+            <td>
+                <input type="text" name="ReleaseTo" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.ReleaseTo">
+            </td>
+            <td>
+                <input type="submit" value="Refresh" class="btn" />
+                <input type="submit" name="Print" value="Print" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+}
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Gender)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.CNIC)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Class)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Category)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.DateOfBirth)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.PresentDistrict)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.FatherOrHusbandName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.CNIC)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Class)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.DateOfBirth)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.PresentDistrict.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                <td>@Html.ActionLink("Details", "Details", "Prisoner", new { PrisonerId = item.PrisonerId }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-success" id="btn-export">Export</button> &nbsp;&nbsp;
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Prisoners", new { page }))
+@Html.ActionLink("Back to Reports", "Index")
+
+@section Scripts {
+
+    <script>
+        $('.datepicker').datepicker({autoclose: true});
+    </script>
+<script>
+    $("#btn-export").click(function () {
+        $("#table2excel").table2excel({
+            // exclude CSS class
+            exclude: ".noExl",
+            name: "PMIS Export"
+        });
+    });
+</script>
+}
+
+

@@ -1,0 +1,47 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.Classification>
+@{
+    ViewBag.Title = "Classification / Grade of Prisoners";
+}
+
+<h4>@ViewBag.Title</h4>
+
+@if(User.IsAdmin())
+{
+<p>
+    @Html.ActionLink("New Classification", "Create")
+</p>
+}
+
+<table class="table">
+	<thead>
+    <tr>
+        <th>
+			@Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+        <td>
+            @if(User.IsAdmin())
+            {
+                @Html.ActionLink("Edit", "Edit", new { id=item.ClassificationId }) 
+                <span> | </span>
+                @Html.ActionLink("Delete", "Delete", new { id=item.ClassificationId })
+            }
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
+
+

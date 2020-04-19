@@ -1,0 +1,51 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Judge 
+@{
+    ViewBag.Title = "Edit Judge"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.JudgeId) 		
+        <div class="control-group"> 
+			@Html.LabelFor(model => model.Court, new { @class = "control-label" })   
+			<div class="controls"> 
+				@Html.DropDownList("CourtId", "-- Select Court --") 
+				@Html.ValidationMessageFor(model => model.CourtId, "*", new { @class="help-inline" })
+			</div>
+		</div> 		
+        <div class="control-group"> @Html.LabelFor(model => model.Name, new { @class = "control-label" })  
+			<div class="controls">  @Html.EditorFor(model => model.Name) 
+				@Html.ValidationMessageFor(model => model.Name, "*", new { @class="help-inline" })
+			</div>
+		</div> 
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn" /> &nbsp; @Html.ActionLink("Cancel", "Index")
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+	$('.datepicker').datepicker({autoclose: true});
+	</script>
+}
+ 
+

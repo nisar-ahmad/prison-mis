@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRS", "PRS\PRS.csproj", "{F266617D-B987-4AE6-B7EF-1066E840D707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRSFingerEnrollment", "PRSFingerEnrollment\PRSFingerEnrollment.csproj", "{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRSFingerIdentify", "PRSFingerIdentify\PRSFingerIdentify.csproj", "{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://nisarahmad.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PRS\\PRS.csproj
+		SccProjectName1 = PRS
+		SccLocalPath1 = PRS
+		SccProjectUniqueName2 = PRSFingerEnrollment\\PRSFingerEnrollment.csproj
+		SccProjectName2 = PRSFingerEnrollment
+		SccLocalPath2 = PRSFingerEnrollment
+		SccProjectUniqueName3 = PRSFingerIdentify\\PRSFingerIdentify.csproj
+		SccProjectName3 = PRSFingerIdentify
+		SccLocalPath3 = PRSFingerIdentify
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F266617D-B987-4AE6-B7EF-1066E840D707}.Release|x86.ActiveCfg = Release|Any CPU
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Debug|x86.ActiveCfg = Debug|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Debug|x86.Build.0 = Debug|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Release|Any CPU.ActiveCfg = Release|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Release|x86.ActiveCfg = Release|x86
+		{F62D5BFC-73FB-4BAE-8860-9B7F3E633B98}.Release|x86.Build.0 = Release|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Debug|x86.ActiveCfg = Debug|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Debug|x86.Build.0 = Debug|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Release|Any CPU.ActiveCfg = Release|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Release|Mixed Platforms.Build.0 = Release|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Release|x86.ActiveCfg = Release|x86
+		{59B1ED7B-2CE7-43E4-9E3C-FCD1CE9D87F4}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,161 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtDecisionSection
+@{
+    ViewBag.Title = "New Section Decision";
+}
+
+<div class="title">
+    @ViewBag.Title
+    <div class="float-right">
+        @Html.ActionLink("Back", "Details", "CourtDecision", new { id = Model.CourtDecisionId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-success" })
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+
+        @Html.HiddenFor(model => model.CourtDecisionSectionId)
+        @Html.HiddenFor(model => model.CourtDecisionId)
+        @Html.HiddenFor(model => model.FIRId)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIR.FIRNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DisplayFor(model => model.FIR.FIRNumber)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIR.FIRDate, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DisplayFor(model => model.FIR.FIRDate)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Section, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("SectionId", "-- Select Section --")
+                @Html.ValidationMessageFor(model => model.SectionId, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.CourtDecisionType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CourtDecisionType")
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.SectionDecisionType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("SectionDecisionType")
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.SentenceType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("SentenceType")
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Sentence", new { @class = "control-label" })
+            <div class="controls">
+                Years :
+                @Html.TextBoxFor(model => model.SentenceYears, new { @class = "input-mini" })
+                Months :
+                @Html.TextBoxFor(model => model.SentenceMonths, new { @class = "input-mini" })
+                Days :
+                @Html.TextBoxFor(model => model.SentenceDays, new { @class = "input-mini" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FineAmount, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.FineAmount)
+                @Html.ValidationMessageFor(model => model.FineAmount, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.IsFinePaid, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.IsFinePaid)
+                @Html.ValidationMessageFor(model => model.IsFinePaid, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FurtherSentenceType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("FurtherSentenceType")
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Sentence In Lieu of Fine", new { @class = "control-label" })
+            <div class="controls">
+                Years :
+                @Html.TextBoxFor(model => model.FurtherSentenceYears, new { @class = "input-mini" })
+                Months :
+                @Html.TextBoxFor(model => model.FurtherSentenceMonths, new { @class = "input-mini" })
+                Days :
+                @Html.TextBoxFor(model => model.FurtherSentenceDays, new { @class = "input-mini" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Stripes, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Stripes)
+                @Html.ValidationMessageFor(model => model.Stripes, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Remarks)
+                @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        @*<div class="control-group">
+            @Html.LabelFor(model => model.Is382BApplied, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Is382BApplied)
+                @Html.ValidationMessageFor(model => model.Is382BApplied, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>*@
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back", "Details", "CourtDecision", new { id = Model.CourtDecisionId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-info" })
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+    <script>
+
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+    </script>
+} 

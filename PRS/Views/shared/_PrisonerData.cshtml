@@ -1,0 +1,223 @@
+﻿@using System.Web.Optimization
+@using PRS.Models;
+@using BootstrapSupport
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/content/css")
+    @Styles.Render("~/content/typeahead")
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+    @* favicons and touch icons go here *@
+</head>
+<body>
+    
+    <div class="container-fluid bodymargin">
+        @Html.Partial("_header")
+        <div class="row-fluid" style="padding-top: 30px;">
+            <div class="span12">
+                @Html.Partial("_alerts")
+                @Html.Partial("_validationSummary")
+
+                @{
+                    var routeValues = new { PrisonerId = Request["PrisonerId"] };
+                    var routeValuesWithAdmissionId = new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] };
+                    var photoUrl = string.Format("~/Content/images/photo-{0}.jpg", ViewBag.PrisonerGender);
+                    var status = ViewBag.PrisonerStatus;
+                }
+
+                <div class="row-fluid">
+                    <div class="span2"></div>
+                    <div class="span10">
+                        Search by Name
+                        <input id="PrisonerName" type="text" autocomplete="off" />
+                        @Html.ActionLink("New Admission", "Admit", "Prisoner", null, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Re-Admission", "Admit", "Prisoner", routeValues, new { @class = "btn btn-success" })
+                        @if(status == PrisonerStatus.Admitted)
+                        {
+                            @Html.ActionLink("Remand OUT", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "PhysicalRemandOut" }, new { @class = "btn btn-primary" }) 
+                            @Html.Raw(" ")
+                            @Html.ActionLink("Remand IN", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckIn", Type = "PhysicalRemandIn" }, new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink("Release Prisoner", "Release", "Admission", routeValuesWithAdmissionId, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Search", "SearchPrisoner", "Prisoner", null, null)
+                    </div>
+                </div>
+                <hr />
+                <div class="row-fluid">
+                    <div class="span2">
+                        <a href="~/Prisoner/Photo?PrisonerId=@Request["PrisonerId"]">
+                            <img src="~/Photos/@Request["PrisonerId"]_front.png" onerror="this.onerror=null;this.src='@Url.Content(photoUrl)'" />
+                        </a>
+                        <strong>@ViewBag.PrisonerName, @ViewBag.PrisonerAge</strong>
+                        <p style="color:red;"><strong>Computer # @ViewBag.ComputerNumber</strong></p>
+                        <p>Prisoner # @ViewBag.PrisonerNumber</p>
+                        Fingerprint: @ViewBag.Fingerprint
+
+                        <p><img style="display:block; margin-left:auto; margin-right:auto;" src="~/Fingerprints/@Request["PrisonerId"]_finger_1.png" onerror="this.onerror = null; src=''" alt="" /></p>
+
+                        <ul class="nav nav-list">
+                            @Html.MenuLink("Prisoner Profile", "Details", "Prisoner", routeValues)
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown"
+                                   href="#">
+                                    Check OUT
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu rightMenu">
+                                    @if (status == PrisonerStatus.Admitted)
+                                    {
+                                        <li>@Html.ActionLink("Physical Remand", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "PhysicalRemandOut" }, null)</li>
+                                    }
+                                    <li>@Html.ActionLink("Bail", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "Bail" }, null)</li>
+                                    <li>@Html.ActionLink("External Treatment", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "ExternalTreatmentOut" }, null)</li>
+                                    <li>@Html.ActionLink("Transfer to Another Jail", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "TransferOut" }, null)</li>
+                                    <li>@Html.ActionLink("Parole", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckOut", Type = "Parole" }, null)</li>
+                                    <li>@Html.ActionLink("Release Prisoner", "Release", "Admission", routeValues, null)</li>
+                                    <li>@Html.ActionLink("History", "History", "CheckInOut", routeValues, null)</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown"
+                                   href="#">
+                                    Check IN
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu rightMenu">
+                                    @if (status == PrisonerStatus.Admitted)
+                                    {
+                                        <li>@Html.ActionLink("Return from Physical Remand", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckIn", Type = "PhysicalRemandIn" }, null)</li>
+                                    }
+                                    <li>@Html.ActionLink("Re-Admission", "Admit", "Prisoner", routeValues, null)</li>
+                                    <li>@Html.ActionLink("Return from External Treatment", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckIn", Type = "ExternalTreatmentIn" }, null)</li>
+                                    <li>@Html.ActionLink("Transfer From Another Jail", "Index", "CheckInOut", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], Status = "CheckIn", Type = "TransferIn" }, null)</li>
+                                    <li>@Html.ActionLink("History", "History", "CheckInOut", routeValues, null)</li>
+                                </ul>
+                            </li>
+                            @Html.MenuLink("Admissions", "Index", "Admission", routeValues, null, "Details")
+                            @Html.MenuLink("FIRs / Warrants", "Create", "FIR", routeValues, null)
+                            @Html.MenuLink("Housing", "Housing", "Admission", routeValues)
+                            @Html.MenuLink("Court Productions", "Index", "CourtHearing", routeValues)
+                            @Html.MenuLink("Court Decisions", "Index", "CourtDecision", routeValues)
+                            @Html.MenuLink("Appeals", "Index", "Appeal", routeValues)
+                            @Html.MenuLink("Remissions", "Index", "EarnedRemission", routeValues)
+                            @Html.MenuLink("Medical Treatments", "Index", "MedicalTreatment", routeValues)
+                            @Html.MenuLink("Cash Ledger", "Index", "PrisonerTransaction", routeValues)
+                            @Html.MenuLink("Belongings", "Index", "PrisonerProperty", routeValues)
+                            @Html.MenuLink("Children", "Index", "Child", routeValues)
+
+
+
+                        </ul>
+                    </div>
+                    <div class="span10">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row text-right">
+            <button class="btn btn-success fontstyle" id="btn-export">Export</button> &nbsp;<a href="javascript:window.print()" class="btn btn-info">Print</a>&nbsp;
+        </div>
+        </div>
+        <br />
+    <br />
+    <br />
+    <br />
+    <div class="container footerbg fontms">
+        <div class="container footerin">
+            <footer>
+                <div class="row">
+                    <div class="span6 footerlogo">
+                        <img src="~/Content/images/pmis-logo-white.png">
+                    </div>
+                    <div class="span6 footerlogo2">
+                        <img src="~/Content/images/unodc-logo-white.png">
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row fontfooter">
+                    <div class="span3">
+                        <ul>
+                            <li>&nbsp;</li>
+                            <li class="footertop"><strong>PMIS ACTIONS</strong></li>
+                            <li><a href="~/Prisoner/Admit">Admit new prisoner</a></li>
+                            <li><a href="~/Prisoner/SearchPrisoner?NextView=Medical">health information</a></li>
+                            <li><a href="~/CourtHearing/List?ProductionDate=@DateTime.Now.ToString("dd-MMM-yyyy")">court production</a></li>
+                            <li><a href="~/Prisoner/SearchPrisoner">search prisoners</a></li>
+                            <li><a href="~/Reports">reports</a></li>
+                            <li><a href="~/Settings">settings</a></li>
+                        </ul>
+                    </div>
+                    <div class="span3">
+                        <ul>
+                            <li>&nbsp;</li>
+                            <li><a href="~/AboutPMIS">About PMIS</a></li>
+                            <li><a href="~/AboutUNODC">About UNODC</a></li>
+                            <li><a href="~/Help">Help & Support</a></li>
+                            <li><a href="~/Feedback">Submit feedback</a></li>
+                        </ul>
+                    </div>
+                    <div class="span3">
+                        <ul>
+                            <li>&nbsp;</li>
+
+                        </ul>
+                    </div>
+                    <div class="span3">
+                        <ul>
+                            <li>&nbsp;</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <br />
+        <br />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span12 footer-copyright">
+                © 2014 Onwards. Prison Management Information System (PMIS), developed by <a href="http://unodc.org/pakistan" target="_blank">UNODC Pakistan</a>.
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/js")
+    @Scripts.Render("~/bundles/typeahead")
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        $("#PrisonerName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+            if (selectedItem) {
+                window.location.replace('@Url.Content("~/Prisoner/Details?PrisonerId=")' + selectedItem.PrisonerId);
+            }
+        });
+
+        $("#PrisonerName").typeahead({
+            name: 'names',
+            valueKey: 'Name',
+            remote: '@Url.Content("~/Prisoner/List/")%QUERY'
+        });
+
+        $("#btn-export").click(function () {
+            $("#table2excel").table2excel({
+                // exclude CSS class
+                exclude: ".noExl",
+                name: "PMIS Export"
+            });
+        });
+    </script>
+        
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtHearing
+@{
+    ViewBag.Title = "New Court Production"; 
+}
+@section head{
+    @Styles.Render("~/content/typeahead")
+}
+
+<div class="title">
+    @ViewBag.Title
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <fieldset class="form-horizontal">
+
+        @Html.Hidden("PrisonerId", Request["PrisonerId"])
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.FIR, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("FIRId", "-- Select FIR Number --")
+                @Html.ValidationMessageFor(model => model.FIRId, "*", new { @class="help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Court, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("CourtId", "-- Select Court --")
+                @Html.ValidationMessageFor(model => model.CourtId, "*", new { @class="help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.JudgeType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("JudgeTypeId", "-- Select Judge Type --")
+                @Html.ValidationMessageFor(model => model.JudgeTypeId, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Judge, new { @class = "control-label" })
+            <div class="controls">
+                <input id="SelectedJudge" type="hidden" />
+                <input id="JudgeName" name="JudgeName" type="text" autocomplete="off" value="@ViewBag.JudgeName" onkeypress="onKeyDownJudgeName(this);" />
+                <input id="JudgeId" type="hidden" name="JudgeId" value="@Model.JudgeId" />
+                @Html.Label("*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group"> @Html.LabelFor(model => model.DateOfCourtOrder, new { @class = "control-label" })
+			<div class="controls">
+				<input type="text" name="DateOfCourtOrder" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfCourtOrder)">
+				@Html.ValidationMessageFor(model => model.DateOfCourtOrder, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.DateOfHearing, new { @class = "control-label" })
+			<div class="controls">
+				<input type="text" name="DateOfHearing" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfHearing)">
+				@Html.ValidationMessageFor(model => model.DateOfHearing, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Remarks)
+                @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class="help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                &nbsp; @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"]})
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/typeahead")
+
+    <script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+	});
+
+	function onKeyDownJudgeName(e) {
+	    if ($("#JudgeName").val() != $("#SelectedJudge").val()) {
+	        $("#JudgeId").val("0");
+	    }
+	}
+
+	$("#JudgeName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+	    if (selectedItem) {
+	        $("#JudgeId").val(selectedItem.JudgeId);
+	        var name = $("#JudgeName").val().trim();
+	        $("#JudgeName").val(name);
+	        $("#SelectedJudge").val(name);
+	    }
+	});
+
+	$("#JudgeName").typeahead({
+	    name: 'names',
+	    valueKey: 'Name',
+	    remote: '@Url.Content("~/Judge/List/")%QUERY'
+	});
+
+	$('.datepicker').datepicker({ autoclose: true });
+
+	attachDropDowns("CourtId", "JudgeId", "Judge", '@Url.Content("~/CourtHearing/Judges/")');
+
+	function attachDropDowns(parentId, childId, label, url, child2Id, parentKey) {
+	    var parent = $('#' + parentId);
+	    var child = $('#' + childId);
+
+	    parent.change(populateDropDown);
+
+	    function populateDropDown(selectedId) {
+	        child.prop('disabled', 'disabled');
+
+	        var getUrl = url + parent.val();
+
+	        if (child2Id)
+	            getUrl = url + $('#' + child2Id).val() + "?" + parentKey + "=" + parent.val();
+
+	        $.getJSON(getUrl,
+                function (data) {
+                    var items = '<option>-- Select ' + label + ' --</option>';
+                    var isDisabled = true;
+
+                    $.each(data, function (i, item) {
+                        items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+                        isDisabled = false;
+                    });
+
+                    child.prop('disabled', isDisabled);
+                    child.html(items);
+                });
+	    }
+	}
+
+    </script>
+}
+
+

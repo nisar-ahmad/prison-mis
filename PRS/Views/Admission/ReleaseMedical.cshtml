@@ -1,0 +1,286 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Admission
+@{
+    ViewBag.Title = "Health on Release";
+    //Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+    Layout = "~/Views/Shared/_PrisonerMedicalData.cshtml";
+}
+
+<div class="title">
+    BASIC INFORMATION بنیادی معلومات
+    <div class="float-right">@Html.ActionLink("<< Back", "Index", "MedicalTreatment", new { PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-info" })</div>
+</div>
+<table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.CNIC)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.CNIC)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Name)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.FatherOrHusbandName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.PaternalGrandfatherName)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.PaternalGrandfatherName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.MaternalGrandfatherName)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.MaternalGrandfatherName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.DateOfBirth)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.DateOfBirth)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Gender)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Gender)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.MaritalStatus)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.MaritalStatus)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Religion)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Religion.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Occupation)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Occupation.Name)</dd>
+            </dl>
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Status)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Status)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Category)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Category)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Class)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Class)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.NarcoticsStatus)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.NarcoticsStatus)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.PrisonerType)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.PrisonerType.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.PrisonerSubType)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.PrisonerSubType.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Nationality)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Nationality.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Caste)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Caste)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Prisoner.Alias)</dt>
+                <dd>@Html.DisplayFor(model => model.Prisoner.Alias)</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
+
+<div class="title">ADMISSION INFORMATION داخلہ</div>
+<table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PrisonerNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.PrisonerNumber)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Barrack) </dt>
+                <dd>@Html.DisplayFor(model => model.Barrack.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.BlockNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.BlockNumber)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CellNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.CellNumber)</dd>
+            </dl>
+
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfWarrantCommitment)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfWarrantCommitment)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfRemand)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfRemand)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfRelease)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfRelease)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+                <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.AdmissionId)
+
+        <table class="table2columns">
+            <tr>
+                <td>
+                    <div class="title-maroon">HEALTH PROFILE طبی معلومات</div>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.IdentificationMark1)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.IdentificationMark1)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.IdentificationMark2)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.IdentificationMark2)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.Scar)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.Scar)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.Height)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.Height)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.Weight)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.Weight)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.Prisoner.BloodGroup)</dt>
+                        <dd>@Html.DisplayFor(model => model.Prisoner.BloodGroup)</dd>
+                    </dl>
+                </td>
+                <td>
+                    <div class="title-maroon">HEALTH ON ADMISSION داخلے پر صحت</div>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.HealthOnAdmission)</dt>
+                        <dd>@Html.DisplayFor(model => model.HealthOnAdmission)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.WeightOnAdmission)</dt>
+                        <dd>@Html.DisplayFor(model => model.WeightOnAdmission)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.KnownAilment)</dt>
+                        <dd>@Html.DisplayFor(model => model.KnownAilment)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.CommunicableDisease)</dt>
+                        <dd>@Html.DisplayFor(model => model.CommunicableDisease.Name)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.ExplainedInjuries)</dt>
+                        <dd>@Html.DisplayFor(model => model.ExplainedInjuries)</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.UnexplainedInjuries)</dt>
+                        <dd>@Html.DisplayFor(model => model.UnexplainedInjuries)</dd>
+                    </dl>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="title-maroon">HEALTH ON RELEASE رہائی پر صحت</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.HealthOnRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.HealthOnRelease)
+                            @Html.ValidationMessageFor(model => model.HealthOnRelease, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.WeightOnRelease, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.WeightOnRelease)
+                            @Html.ValidationMessageFor(model => model.WeightOnRelease, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.MedicalRemarks, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.MedicalRemarks, 4, 100, null)
+                            @Html.ValidationMessageFor(model => model.MedicalRemarks, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="control-group">
+            <div class="controls">
+                @Html.ActionLink("<< Back", "Index", "MedicalTreatment", new { PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-info" })
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    <script>
+
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+    </script>
+}

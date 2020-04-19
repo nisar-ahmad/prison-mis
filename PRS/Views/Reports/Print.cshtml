@@ -1,0 +1,49 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<PRS.Models.PrisonerAdmission>
+@{
+    ViewBag.Title = "";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="font-size:8pt;">
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DateOfAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoner.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoner.Gender)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoner.DateOfBirth)</th>
+                <th>@Html.DisplayNameFor(model => model.District)</th>
+                <th>@Html.DisplayNameFor(model => model.ChargedWithActAndSection)</th>
+                <th>@Html.DisplayNameFor(model => model.Classification)</th>
+                <th>@Html.DisplayNameFor(model => model.DateOfRelease)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Prisoner.FatherOrHusbandName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Prisoner.Gender)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Prisoner.DateOfBirth)</td>
+                    <td>@Html.DisplayFor(modelItem => item.District)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChargedWithActAndSection)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Classification.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+

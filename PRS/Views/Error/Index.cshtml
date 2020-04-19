@@ -1,0 +1,15 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Error";
+}
+
+<h4>@ViewBag.Title</h4>
+
+<p>
+    An error has occured! Please contact your administrator for help.
+</p>
+<h5>Error Details:</h5>
+
+<p>
+    @Request["message"]
+</p>

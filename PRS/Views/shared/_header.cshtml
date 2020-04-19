@@ -1,0 +1,83 @@
+﻿<div class="row-fluid">
+    <div class="span12">
+        <div class="navbar navbar-inverse navbar-fixed-top nav-collapse navcol menu-shadow">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="row-fluid">
+                        <div class="span1">
+                            <h4>
+                                <img src="~/Content/images/pmis-logo.png" class="unodc-prs-logo"></h4>
+                        </div>
+                        <div class="span7 padtop">
+                            <div class="nav-collapse collapse">
+                                <ul class="nav">
+                                    <li><a href="~/Home">Home</a></li>
+                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Prisoners<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="~/Prisoner/SearchPrisoner">Search Prisoner</a></li>
+                                            <li><a href="~/Prisoner/Admit">New Admission</a></li>
+                                            <li><a href="~/Prisoner/SearchPrisoner?NextView=Medical">Health Information</a></li>
+                                            <li><a href="~/Reports/AllPrisoners">All Prisoners</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visitors<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="~/Visitor/Search">Manage Visitor</a></li>
+                                            <li><a href="~/Reports/Visitors">Visitors Diary</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            @Html.Partial("_ReportLinksPartial")
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Setup <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+
+                                            <li><a href="~/Settings/Edit/1" title="All Settings and Setup Pages">Settings</a></li>
+                                            <li><a href="~/Account" title="Manage user accounts, roles and passwords">User Accounts</a></li>
+                                            <li><a href="~/Jail" title="Manage authorized jail capacity and other information">Jails</a></li>
+                                            <li><a href="~/Court" title="Manage information of courts">Courts</a></li>
+                                            <li><a href="~/Judge" title="Manage information of Judges">Judges</a></li>
+                                            <li><a href="~/Occupation" title="Manage Occupations">Occupations</a></li>
+                                            <li><a href="~/Disease" title="Manage information of Diseases">Diseases</a></li>
+                                            <li><a href="~/MedicalTest" title="Manage information of Medical Tests">Medical Tests</a></li>
+
+                                            <li><a href="~/Barrack" title="Manage barracks in jail">Barracks</a></li>
+                                            <li><a href="~/PrisonerType" title="Manage Prisoner Types">Prisoner Types</a></li>
+                                            <li><a href="~/PrisonerSubType" title="Manage Prisoner Sub Types">Sub Types</a></li>
+                                            <li><a href="~/RemissionType" title="Manage Remission Types">Remission Types</a></li>
+                                            <li><a href="~/MedicalOfficer" title="Manage information of Medical Officers">Medical Officers</a></li>
+                                            <li><a href="~/CourtType" title="Manage Court Types">Court Types</a></li>
+                                            <li><a href="~/CrimeType" title="Manage Crime Types">Crime Types</a></li>
+                                            <li><a href="~/JudgeType" title="Manage Judge Types">Judge Types</a></li>
+                                            <li><a href="~/RelationType" title="Manage Relation Types">Relation Types</a></li>
+
+                                            <li><a href="~/Act" title="Manage Legislative Acts">Legislative Acts</a></li>
+                                            <li><a href="~/Section" title="Manage Sections">Sections</a></li>
+                                            <li><a href="~/Province" title="Manage Provinces">Provinces</a></li>
+                                            <li><a href="~/District" title="Manage Districts">Districts</a></li>
+                                            <li><a href="~/City" title="Manage Cities">Cities</a></li>
+                                            <li><a href="~/PoliceStation" title="Manage Police Stations">Police Stations</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="~/Help" target="_blank">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="span2 fontstyle">@Html.Partial("_LoginPartial")</div>
+                        <div class="span2 padtop">
+                            <img src="~/Content/images/unodc-logo.png" title="UNODC" class="unodc-logo-nav" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

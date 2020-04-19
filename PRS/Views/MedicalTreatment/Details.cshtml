@@ -1,0 +1,138 @@
+﻿@using BootstrapSupport
+@model PRS.Models.MedicalTreatment 
+@{
+    ViewBag.Title = "Medical Treatment Details"; 
+}
+
+<div class="title">MEDICAL TREATMENT علاج
+    <div class="float-right">@Html.ActionLink("Edit", "Edit",  new {MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new {@class = "btn btn-small btn-warning"})</div>
+</div>
+
+ <table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+	            <dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.DateOfDischarge)</dt>
+	            <dd>@Html.DisplayFor(model => model.DateOfDischarge)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.Diagnosis)</dt>
+	            <dd>@Html.DisplayFor(model => model.Diagnosis)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.Disease) </dt>
+	            <dd>@Html.DisplayFor(model => model.Disease.Name)</dd>
+            </dl> 
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.Treatment)</dt>
+	            <dd>@Html.DisplayFor(model => model.Treatment)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.DietaryRequirements)</dt>
+	            <dd>@Html.DisplayFor(model => model.DietaryRequirements)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+	            <dt>@Html.DisplayNameFor(model => model.MedicalOfficer)</dt>
+	            <dd>@Html.DisplayFor(model => model.MedicalOfficer.Name)</dd>
+            </dl> 
+        </td>
+    </tr>
+</table>
+
+ <table class="table2columns">
+    <tr>
+        <td>
+            <div class="title">MEDICAL CHECKUPS معائنے
+                <div class="float-right">@Html.ActionLink("New Checkup", "Create", "MedicalCheckup", new {MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class= "btn btn-small btn-success" })</div>
+            </div>
+            <table class="table">
+	            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.MedicalCheckups.FirstOrDefault().DateOfCheckup)</th>
+                    <th>@Html.DisplayNameFor(model => model.MedicalCheckups.FirstOrDefault().BloodPressure)</th>
+                    <th>@Html.DisplayNameFor(model => model.MedicalCheckups.FirstOrDefault().Pulse)</th>
+                    <th>@Html.DisplayNameFor(model => model.MedicalCheckups.FirstOrDefault().Temperature)</th>
+                    <th>@Html.DisplayNameFor(model => model.MedicalCheckups.FirstOrDefault().Prescription)</th>
+		            <th></th>
+                </tr>
+	            </thead>
+	            <tbody>
+            @foreach (var item in Model.MedicalCheckups) {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfCheckup)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.BloodPressure)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.Pulse)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.Temperature)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.Prescription)</td> 
+                    <td>
+			            <div class="btn-group">
+				            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					            Action
+					            <span class="caret"></span>
+				            </a>
+				            <ul class="dropdown-menu">
+                                @{ var routeValues = new { id = item.MedicalCheckupId, MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }; }
+					            <li>@Html.ActionLink("Edit", "Edit", "MedicalCheckup", routeValues, null)</li>
+					            <li>@Html.ActionLink("Details", "Details", "MedicalCheckup", routeValues, null)</li>
+				            </ul>
+			            </div>
+                    </td> 
+                </tr> 
+            }
+            </tbody>
+            </table>
+        </td>
+        <td>
+            <div class="title">PRESCRIBED TESTS میڈیکل ٹیسٹ
+                <div class="float-right">@Html.ActionLink("New Test", "Create", "PrescribedTest", new {MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class= "btn btn-small btn-success" })</div>
+            </div>
+            <table class="table">
+	            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.PrescribedTests.FirstOrDefault().DateOfTest)</th>
+                    <th>@Html.DisplayNameFor(model => model.PrescribedTests.FirstOrDefault().MedicalTest)</th>
+                    <th>@Html.DisplayNameFor(model => model.PrescribedTests.FirstOrDefault().TestType)</th>
+                    <th>@Html.DisplayNameFor(model => model.PrescribedTests.FirstOrDefault().TestResults)</th>
+		            <th></th>
+                </tr>
+	            </thead>
+	            <tbody>
+            @foreach (var item in Model.PrescribedTests) {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfTest)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.MedicalTest.Name)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.TestType)</td> 
+                    <td>@Html.DisplayFor(modelItem => item.TestResults)</td> 
+                    <td>
+			            <div class="btn-group">
+				            <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					            Action
+					            <span class="caret"></span>
+				            </a>
+				            <ul class="dropdown-menu">
+                                @{ var routeValues = new { id = item.PrescribedTestId, MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId}; }
+					            <li>@Html.ActionLink("Edit", "Edit", "PrescribedTest", routeValues, null)</li>
+					            <li>@Html.ActionLink("Details", "Details", "PrescribedTest", routeValues, null)</li>
+				            </ul>
+			            </div>
+                    </td> 
+                </tr> 
+            }
+            </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>@Html.ActionLink("Edit", "Edit", new { MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class = "btn btn-warning" }) 
+        | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"], UserType = Request["UserType"] }) </dd>
+</dl>
+

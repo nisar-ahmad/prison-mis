@@ -1,0 +1,29 @@
+﻿@using BootstrapSupport
+@model PRS.Models.FIR 
+@{
+    ViewBag.Title = "FIR Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.FIRNumber)</dt>
+		<dd>@Html.DisplayFor(model => model.FIRNumber)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.FIRDate)</dt>
+		<dd>@Html.DisplayFor(model => model.FIRDate)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.PoliceStation) </dt>
+		<dd>@Html.DisplayFor(model => model.PoliceStation.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Admission) </dt>
+		<dd>@Html.DisplayFor(model => model.Admission.PrisonerNumber)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id = Model.FIRId, PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] }, new { @class = "btn btn-primary" }) | 
+            @Html.ActionLink("Back to Admission", "Details", "Admission", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] }, null)</dd>
+	</dl>
+

@@ -1,0 +1,35 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Prison
+@{
+    ViewBag.Title = "Prison Details";
+}
+
+<h4>@ViewBag.Title</h4>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Name)</dt>    
+	<dd>@Html.DisplayFor(model => model.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.District)</dt>    
+	<dd>@Html.DisplayFor(model => model.District)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Province)</dt>    
+	<dd>@Html.DisplayFor(model => model.Province)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Capacity)</dt>    
+	<dd>@Html.DisplayFor(model => model.Capacity)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt></dt>    
+	<dd>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PrisonId }) |
+        @Html.ActionLink("Back", "Index")
+	</dd>
+</dl>

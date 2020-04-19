@@ -1,0 +1,39 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.CheckInOut>
+@{
+    ViewBag.Title = "Check In / Out History";        
+}
+<div class="title">
+    @ViewBag.Title
+</div>
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfCheckInOut)</th>
+            <th>@Html.DisplayNameFor(model => model.PrisonerNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Authority)</th>
+            <th>@Html.DisplayNameFor(model => model.JudgeType)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Status.ToString().ToSeparatedWords()</td>
+                <td>@item.Type.ToString().ToSeparatedWords()</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfCheckInOut)</td>
+                <td>@Html.DisplayFor(modelItem => item.PrisonerNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Authority)</td>
+                <td>@Html.DisplayFor(modelItem => item.JudgeType.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

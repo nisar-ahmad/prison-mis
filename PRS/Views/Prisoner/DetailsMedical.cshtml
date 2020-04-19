@@ -1,0 +1,330 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Prisoner
+@{
+    Layout = "~/Views/Shared/_PrisonerMedicalData.cshtml";
+    ViewBag.Title = "Prisoner Details";
+}
+<div class="title">
+    BASIC INFORMATION بنیادی معلومات
+        <div class="float-right">@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-warning" })</div>
+</div>
+<table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CNIC)</dt>
+                <dd>@Html.DisplayFor(model => model.CNIC)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+                <dd>@Html.DisplayFor(model => model.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Alias)</dt>
+                <dd>@Html.DisplayFor(model => model.Alias)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.FatherOrHusbandName)</dt>
+                <dd>@Html.DisplayFor(model => model.FatherOrHusbandName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PaternalGrandfatherName)</dt>
+                <dd>@Html.DisplayFor(model => model.PaternalGrandfatherName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.MaternalGrandfatherName)</dt>
+                <dd>@Html.DisplayFor(model => model.MaternalGrandfatherName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Caste)</dt>
+                <dd>@Html.DisplayFor(model => model.Caste)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfBirth)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Gender)</dt>
+                <dd>@Html.DisplayFor(model => model.Gender)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.MaritalStatus)</dt>
+                <dd>@Html.DisplayFor(model => model.MaritalStatus)</dd>
+            </dl>
+
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Status)</dt>
+                <dd>@Html.DisplayFor(model => model.Status)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Category)</dt>
+                <dd>@Html.DisplayFor(model => model.Category)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Class)</dt>
+                <dd>@Html.DisplayFor(model => model.Class)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.NarcoticsStatus)</dt>
+                <dd>@Html.DisplayFor(model => model.NarcoticsStatus)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PrisonerType)</dt>
+                <dd>@Html.DisplayFor(model => model.PrisonerType.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PrisonerSubType)</dt>
+                <dd>@Html.DisplayFor(model => model.PrisonerSubType.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Nationality)</dt>
+                <dd>@Html.DisplayFor(model => model.Nationality.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Religion)</dt>
+                <dd>@Html.DisplayFor(model => model.Religion.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Occupation)</dt>
+                <dd>@Html.DisplayFor(model => model.Occupation.Name)</dd>
+            </dl>
+
+        </td>
+    </tr>
+</table>
+
+<table class="table2columns">
+    <tr>
+        <td>
+            <div class="title">PRESENT ADDRESS موجودہ پتہ</div>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentCountry)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentCountry.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentProvince)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentProvince.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentDistrict)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentDistrict.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentCity)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentCity.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentPoliceStation)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentPoliceStation.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentMouza)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentMouza)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentHouseNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentHouseNumber)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentStreet)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentStreet)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PresentAreaOrColony)</dt>
+                <dd>@Html.DisplayFor(model => model.PresentAreaOrColony)</dd>
+            </dl>
+        </td>
+        <td>
+            <div class="title">
+                PERMANENT ADDRESS مستقل پتہ
+                    <div class="float-right">@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-warning" })</div>
+            </div>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentCountry)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentCountry.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentProvince)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentProvince.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentDistrict)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentDistrict.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentCity)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentCity.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentPoliceStation)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentPoliceStation.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentMouza)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentMouza)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentHouseNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentHouseNumber)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentStreet)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentStreet)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PermanentAreaOrColony)</dt>
+                <dd>@Html.DisplayFor(model => model.PermanentAreaOrColony)</dd>
+            </dl>
+
+        </td>
+    </tr>
+</table>
+
+<table class="table2columns">
+    <tr>
+        <td>
+            <div class="title">EDUCATION تعلیم</div>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.FormalEducation)</dt>
+                <dd>@Html.DisplayFor(model => model.FormalEducation.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.TechnicalEducation)</dt>
+                <dd>@Html.DisplayFor(model => model.TechnicalEducation.Name)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.ReligiousEducation)</dt>
+                <dd>@Html.DisplayFor(model => model.ReligiousEducation.Name)</dd>
+            </dl>
+        </td>
+        <td>
+            <div class="title">
+                NEXT OF KIN INFORMATION وارث
+                <div class="float-right">@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-warning" })</div>
+            </div>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.NextOfKinName)</dt>
+                <dd>@Html.DisplayFor(model => model.NextOfKinName)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.NextOfKinRelationType)</dt>
+                <dd>@Html.DisplayFor(model => model.NextOfKinRelationType.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.NextOfKinContact)</dt>
+                <dd>@Html.DisplayFor(model => model.NextOfKinContact)</dd>
+            </dl>
+            @*<div class="title">
+            FINANCIAL STATUS معاشی حیثیت
+                <div class="float-right">@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-warning" })</div>
+        </div>
+
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.MoveableAssets)</dt>
+            <dd>@Html.DisplayFor(model => model.MoveableAssets)</dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.ImmoveableAssets)</dt>
+            <dd>@Html.DisplayFor(model => model.ImmoveableAssets)</dd>
+        </dl>*@
+        </td>
+    </tr>
+</table>
+
+<div class="title">
+    MEDICAL INFORMATION میڈیکل
+        <div class="float-right">@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-warning" })</div>
+</div>
+<table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.IdentificationMark1)</dt>
+                <dd>@Html.DisplayFor(model => model.IdentificationMark1)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.IdentificationMark2)</dt>
+                <dd>@Html.DisplayFor(model => model.IdentificationMark2)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Scar)</dt>
+                <dd>@Html.DisplayFor(model => model.Scar)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+                <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+            </dl>
+
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Age)</dt>
+                <dd>@Html.DisplayFor(model => model.Age)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Height)</dt>
+                <dd>@Html.DisplayFor(model => model.Height)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Weight)</dt>
+                <dd>@Html.DisplayFor(model => model.Weight)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.BloodGroup)</dt>
+                <dd>@Html.DisplayFor(model => model.BloodGroup)</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
+
+<dl class="dl-horizontal">
+    <dt></dt>
+    <dd>@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-warning" })</dd>
+</dl>

@@ -1,0 +1,881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F266617D-B987-4AE6-B7EF-1066E840D707}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PRS</RootNamespace>
+    <AssemblyName>PRS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <IncludeAppPool>true</IncludeAppPool>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.5.4\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.2\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfReportGenerator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PdfReportGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivatorEx.2.0.2\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.2\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BootstrapBundleConfig.cs" />
+    <Compile Include="App_Start\HtmlHelpers.cs" />
+    <Compile Include="App_Start\TypeaheadBundleConfig.cs" />
+    <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
+    <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
+    <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
+    <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppealController.cs" />
+    <Compile Include="Controllers\CourtTypeController.cs" />
+    <Compile Include="Controllers\EarnedRemissionController.cs" />
+    <Compile Include="Controllers\RemissionTypeController.cs" />
+    <Compile Include="Controllers\ActController.cs" />
+    <Compile Include="Controllers\AdmissionController.cs" />
+    <Compile Include="Controllers\BarrackController.cs" />
+    <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\AuditLogController.cs" />
+    <Compile Include="Controllers\CheckInOutController.cs" />
+    <Compile Include="Controllers\ChildController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\CourtController.cs" />
+    <Compile Include="Controllers\CourtDecisionSectionController.cs" />
+    <Compile Include="Controllers\CourtDecisionController.cs" />
+    <Compile Include="Controllers\CourtHearingController.cs" />
+    <Compile Include="Controllers\CrimeTypeController.cs" />
+    <Compile Include="Controllers\DiseaseController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ExampleLayoutsController.cs" />
+    <Compile Include="Controllers\FIRController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JailController.cs" />
+    <Compile Include="Controllers\JudgeController.cs" />
+    <Compile Include="Controllers\OccupationController.cs" />
+    <Compile Include="Controllers\VisitController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
+    <Compile Include="Controllers\PrisonerTransactionController.cs" />
+    <Compile Include="Controllers\PrisonerTypeController.cs" />
+    <Compile Include="Controllers\RelationTypeController.cs" />
+    <Compile Include="Controllers\MedicalCheckupController.cs" />
+    <Compile Include="Controllers\MedicalOfficerController.cs" />
+    <Compile Include="Controllers\MedicalTestController.cs" />
+    <Compile Include="Controllers\MedicalTreatmentController.cs" />
+    <Compile Include="Controllers\PoliceStationController.cs" />
+    <Compile Include="Controllers\PrescribedTestController.cs" />
+    <Compile Include="Controllers\PrisonerController.cs" />
+    <Compile Include="Controllers\PrisonerPropertyController.cs" />
+    <Compile Include="Controllers\PrisonerSubTypeController.cs" />
+    <Compile Include="Controllers\JudgeTypeController.cs" />
+    <Compile Include="Controllers\PrisonOffenceController.cs" />
+    <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Controllers\PRSBaseController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DateDifference.cs" />
+    <Compile Include="Models\PRSContext.cs" />
+    <Compile Include="Models\PRSModels.cs" />
+    <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
+    <Compile Include="NavigationRoutes\NamedRoute.cs" />
+    <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
+    <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
+    <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="bin\PdfReportGenerator.dll" />
+    <Content Include="Content\body.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-duallistbox.css" />
+    <Content Include="Content\bootstrap-mvc-validation.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\font.css" />
+    <Content Include="Content\fonts\Nexa_Free_Bold-webfont.svg" />
+    <Content Include="Content\homepage.css" />
+    <Content Include="Content\images\actions-icon-_r12_c2.png" />
+    <Content Include="Content\images\actions-icon-_r13_c4.png" />
+    <Content Include="Content\images\actions-icon-_r16_c4.png" />
+    <Content Include="Content\images\actions-icon-_r18_c4.png" />
+    <Content Include="Content\images\actions-icon-_r1_c1.png" />
+    <Content Include="Content\images\actions-icon-_r20_c2.png" />
+    <Content Include="Content\images\actions-icon-_r21_c4.png" />
+    <Content Include="Content\images\actions-icon-_r24_c2.png" />
+    <Content Include="Content\images\actions-icon-_r25_c4.png" />
+    <Content Include="Content\images\actions-icon-_r28_c2.png" />
+    <Content Include="Content\images\actions-icon-_r29_c4.png" />
+    <Content Include="Content\images\actions-icon-_r2_c2.png" />
+    <Content Include="Content\images\actions-icon-_r2_c3.png" />
+    <Content Include="Content\images\actions-icon-_r2_c4.png" />
+    <Content Include="Content\images\actions-icon-_r32_c4.png" />
+    <Content Include="Content\images\actions-icon-_r34_c4.png" />
+    <Content Include="Content\images\actions-icon-_r36_c2.png" />
+    <Content Include="Content\images\actions-icon-_r37_c4.png" />
+    <Content Include="Content\images\actions-icon-_r40_c2.png" />
+    <Content Include="Content\images\actions-icon-_r41_c4.png" />
+    <Content Include="Content\images\actions-icon-_r44_c2.png" />
+    <Content Include="Content\images\actions-icon-_r45_c4.png" />
+    <Content Include="Content\images\actions-icon-_r48_c2.png" />
+    <Content Include="Content\images\actions-icon-_r49_c4.png" />
+    <Content Include="Content\images\actions-icon-_r4_c2.png" />
+    <Content Include="Content\images\actions-icon-_r52_c2.png" />
+    <Content Include="Content\images\actions-icon-_r53_c4.png" />
+    <Content Include="Content\images\actions-icon-_r56_c2.png" />
+    <Content Include="Content\images\actions-icon-_r57_c4.png" />
+    <Content Include="Content\images\actions-icon-_r5_c4.png" />
+    <Content Include="Content\images\actions-icon-_r60_c2.png" />
+    <Content Include="Content\images\actions-icon-_r61_c4.png" />
+    <Content Include="Content\images\actions-icon-_r64_c2.png" />
+    <Content Include="Content\images\actions-icon-_r65_c4.png" />
+    <Content Include="Content\images\actions-icon-_r68_c2.png" />
+    <Content Include="Content\images\actions-icon-_r69_c4.png" />
+    <Content Include="Content\images\actions-icon-_r8_c2.png" />
+    <Content Include="Content\images\actions-icon-_r9_c4.png" />
+    <Content Include="Content\images\admit.png" />
+    <Content Include="Content\images\admit2.png" />
+    <Content Include="Content\images\adyala-jail.jpg" />
+    <Content Include="Content\images\adyala-jail2.jpg" />
+    <Content Include="Content\images\adyala-jail3.jpg" />
+    <Content Include="Content\images\bg-login.jpg" />
+    <Content Include="Content\images\court.png" />
+    <Content Include="Content\images\court2.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\health.png" />
+    <Content Include="Content\images\health2.png" />
+    <Content Include="Content\images\photo-female.jpg" />
+    <Content Include="Content\images\photo-male.jpg" />
+    <Content Include="Content\images\photo-other.jpg" />
+    <Content Include="Content\images\pmis-logo-white.png" />
+    <Content Include="Content\images\pmis-logo.jpg" />
+    <Content Include="Content\images\pmis-logo.png" />
+    <Content Include="Content\images\PunjabPrisons-Logo.png" />
+    <Content Include="Content\images\reports.png" />
+    <Content Include="Content\images\reports2.png" />
+    <Content Include="Content\images\search-icon.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\search2.png" />
+    <Content Include="Content\images\searchbg.png" />
+    <Content Include="Content\images\searchbg2.png" />
+    <Content Include="Content\images\settings.png" />
+    <Content Include="Content\images\settings2.png" />
+    <Content Include="Content\images\unodc-logo-black.png" />
+    <Content Include="Content\images\unodc-logo-login.png" />
+    <Content Include="Content\images\unodc-logo-white.png" />
+    <Content Include="Content\images\unodc-logo.png" />
+    <Content Include="Content\images\unodc-prs-icon-fingerprint.png" />
+    <Content Include="Content\images\unodc-prs-icon-user.png" />
+    <Content Include="Content\images\unodc-prs-logo-black.png" />
+    <Content Include="Content\images\unodc-prs-logo-white.png" />
+    <Content Include="Content\images\unodc-prs-tile-admit-prisoner.png" />
+    <Content Include="Content\images\unodc-prs-tile-court-hearing.png" />
+    <Content Include="Content\images\unodc-prs-tile-health-admission.png" />
+    <Content Include="Content\images\unodc-prs-tile-health-exam.png" />
+    <Content Include="Content\images\unodc-prs-tile-prisoners.png" />
+    <Content Include="Content\images\unodc-prs-tile-reports.png" />
+    <Content Include="Content\images\unodc-prs-tile-search.png" />
+    <Content Include="Content\images\unodc-prs-tile-settings.png" />
+    <Content Include="Content\images\unodc_prs_ui_3 - Copy.jpg" />
+    <Content Include="Content\images\unodc_prs_ui_3.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\print.css" />
+    <Content Include="Content\typeahead.js-bootstrap.css" />
+    <Content Include="Content\video\UNODC PMIS Video Dec 2014.mp4" />
+    <Content Include="Global.asax" />
+    <Content Include="Help\assets\css\bootstrap-responsive.css" />
+    <Content Include="Help\assets\css\bootstrap.css" />
+    <Content Include="Help\assets\css\docs.css" />
+    <Content Include="Help\assets\css\prettify.css" />
+    <Content Include="Help\assets\img\Admission New.png" />
+    <Content Include="Help\assets\img\bs-docs-masthead-pattern.png" />
+    <Content Include="Help\assets\img\Court Hearing New.png" />
+    <Content Include="Help\assets\img\External Contact Edit.jpg" />
+    <Content Include="Help\assets\img\External Contact Edit.png" />
+    <Content Include="Help\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Help\assets\img\glyphicons-halflings.png" />
+    <Content Include="Help\assets\img\Medical Exam Edit.png" />
+    <Content Include="Help\assets\img\Prison Offence Edit.jpg" />
+    <Content Include="Help\assets\img\Prison Offence Edit.png" />
+    <Content Include="Help\assets\img\Prison Registry System 1.png" />
+    <Content Include="Help\assets\img\Prisoner Belonging Edit.jpg" />
+    <Content Include="Help\assets\img\Prisoner Belonging Edit.png" />
+    <Content Include="Help\assets\img\Prisoner Details.png" />
+    <Content Include="Help\assets\img\Prisoner Edit.png" />
+    <Content Include="Help\assets\img\Prisoner List.jpg" />
+    <Content Include="Help\assets\img\Prisoner List.png" />
+    <Content Include="Help\assets\img\Prisoner New.jpg" />
+    <Content Include="Help\assets\img\Prisoner New.png" />
+    <Content Include="Help\assets\img\Prisoner Search.png" />
+    <Content Include="Help\assets\img\Reports Convicted Prisoners.jpg" />
+    <Content Include="Help\assets\img\Reports Convicted Prisoners.png" />
+    <Content Include="Help\assets\img\Reports Non-Serious Offence.jpg" />
+    <Content Include="Help\assets\img\Reports Non-Serious Offence.png" />
+    <Content Include="Help\assets\img\Reports Prisoner Admissions.jpg" />
+    <Content Include="Help\assets\img\Reports Prisoner Admissions.png" />
+    <Content Include="Help\assets\img\Reports Release Diary.png" />
+    <Content Include="Help\assets\img\Reports Serious Offence.jpg" />
+    <Content Include="Help\assets\img\Reports Serious Offence.png" />
+    <Content Include="Help\assets\img\Reports Under-Trial Prisoners.jpg" />
+    <Content Include="Help\assets\img\Reports Under-Trial Prisoners.png" />
+    <Content Include="Help\assets\img\Reports.png" />
+    <Content Include="Help\assets\img\Setup Edit Prison Information.png" />
+    <Content Include="Help\assets\img\Setup Manage Users.png" />
+    <Content Include="Help\assets\img\Setup New Classification.png" />
+    <Content Include="Help\assets\img\Setup New Court.png" />
+    <Content Include="Help\assets\img\Setup Register New User.png" />
+    <Content Include="Help\assets\img\unodc-prs-logo.png" />
+    <Content Include="Help\assets\js\application.js" />
+    <Content Include="Help\assets\js\bootstrap-affix.js" />
+    <Content Include="Help\assets\js\bootstrap-alert.js" />
+    <Content Include="Help\assets\js\bootstrap-button.js" />
+    <Content Include="Help\assets\js\bootstrap-carousel.js" />
+    <Content Include="Help\assets\js\bootstrap-collapse.js" />
+    <Content Include="Help\assets\js\bootstrap-dropdown.js" />
+    <Content Include="Help\assets\js\bootstrap-modal.js" />
+    <Content Include="Help\assets\js\bootstrap-popover.js" />
+    <Content Include="Help\assets\js\bootstrap-scrollspy.js" />
+    <Content Include="Help\assets\js\bootstrap-tab.js" />
+    <Content Include="Help\assets\js\bootstrap-tooltip.js" />
+    <Content Include="Help\assets\js\bootstrap-transition.js" />
+    <Content Include="Help\assets\js\bootstrap-typeahead.js" />
+    <Content Include="Help\assets\js\bootstrap.js" />
+    <Content Include="Help\assets\js\bootstrap.min.js" />
+    <Content Include="Help\assets\js\google-code-prettify\prettify.css" />
+    <Content Include="Help\assets\js\google-code-prettify\prettify.js" />
+    <Content Include="Help\assets\js\holder.js" />
+    <Content Include="Help\assets\js\holder\holder.js" />
+    <Content Include="Help\assets\js\html5shiv.js" />
+    <Content Include="Help\assets\js\jquery-1.10.2.min.js" />
+    <Content Include="Help\assets\js\jquery.js" />
+    <Content Include="Help\assets\js\prettify.js" />
+    <Content Include="Help\index.htm" />
+    <Content Include="Help\index.html" />
+    <Content Include="Help\video\UNODC PMIS Video Dec 2014.mp4" />
+    <Content Include="ScriptCam\jquery.min.js" />
+    <Content Include="ScriptCam\scriptcam.js" />
+    <Content Include="ScriptCam\scriptcam.min.js" />
+    <Content Include="ScriptCam\scriptcam.swf" />
+    <Content Include="ScriptCam\swfobject.js" />
+    <Content Include="ScriptCam\upload.gif" />
+    <Content Include="ScriptCam\index.aspx" />
+    <Content Include="ScriptCam\webcamlogo.png" />
+    <Content Include="scripts\bootstrap-datepicker.js" />
+    <Content Include="scripts\bootstrap-datepicker.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\html5shiv.js" />
+    <Content Include="CodeTemplates\AddView\CSHTML\BootstrapForm.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BootstrapForm1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Create.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Create1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Delete.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Delete1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Details.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Details1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Edit.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Edit1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\Empty.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Empty1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="CodeTemplates\AddView\CSHTML\List.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>List1.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="Help\assets\img\Thumbs.db" />
+    <Content Include="Help\assets\js\README.md" />
+    <Content Include="Content\fonts\Nexa_Free_Bold-webfont.eot" />
+    <Content Include="Content\fonts\Nexa_Free_Bold-webfont.ttf" />
+    <Content Include="Content\fonts\Nexa_Free_Bold-webfont.woff" />
+    <Content Include="Help\documentation.pdf" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\Package.pubxml" />
+    <None Include="Properties\PublishProfiles\unodc-pmis.pubxml" />
+    <None Include="Properties\PublishProfiles\WebDAV.pubxml" />
+    <Content Include="ScriptCam\scriptcam.lic" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-migrate-1.1.1.js" />
+    <Content Include="scripts\jquery-migrate-1.1.1.min.js" />
+    <Content Include="scripts\jquery.bootstrap-duallistbox.js" />
+    <Content Include="scripts\jquery.table2excel.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive-custom-for-bootstrap.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\scriptcam.js" />
+    <Content Include="scripts\scriptcam.swf" />
+    <Content Include="scripts\swfobject.js" />
+    <Content Include="scripts\typeahead.js" />
+    <Content Include="scripts\typeahead.min.js" />
+    <Content Include="Content\images\upload.gif" />
+    <Content Include="Content\images\webcamlogo.png" />
+    <Content Include="Views\CourtHearing\List.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\shared\Index.cshtml" />
+    <Content Include="Views\shared\Details.cshtml" />
+    <Content Include="Views\shared\Create.cshtml" />
+    <Content Include="Views\shared\_validationSummary.cshtml" />
+    <Content Include="Views\shared\_BootstrapLayout.narrow.cshtml" />
+    <Content Include="Views\shared\_BootstrapLayout.empty.cshtml" />
+    <Content Include="Views\shared\_BootstrapLayout.basic.cshtml" />
+    <Content Include="Views\shared\_alerts.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\ExampleLayouts\TBD.cshtml" />
+    <Content Include="Views\ExampleLayouts\Starter.cshtml" />
+    <Content Include="Views\ExampleLayouts\SignIn.cshtml" />
+    <Content Include="Views\ExampleLayouts\Narrow.cshtml" />
+    <Content Include="Views\ExampleLayouts\Marketing.cshtml" />
+    <Content Include="Views\ExampleLayouts\Fluid.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Classification\Index.cshtml" />
+    <Content Include="Views\Classification\Details.cshtml" />
+    <Content Include="Views\Classification\Create.cshtml" />
+    <Content Include="Views\Classification\Edit.cshtml" />
+    <Content Include="Views\Classification\Delete.cshtml" />
+    <Content Include="Views\PrisonOffence\Index.cshtml" />
+    <Content Include="Views\PrisonOffence\Details.cshtml" />
+    <Content Include="Views\PrisonOffence\Create.cshtml" />
+    <Content Include="Views\PrisonOffence\Edit.cshtml" />
+    <Content Include="Views\PrisonOffence\Delete.cshtml" />
+    <Content Include="Views\Prison\Index.cshtml" />
+    <Content Include="Views\Prison\Details.cshtml" />
+    <Content Include="Views\Prison\Create.cshtml" />
+    <Content Include="Views\Prison\Edit.cshtml" />
+    <Content Include="Views\Prison\Delete.cshtml" />
+    <Content Include="Views\PrisonerProperty\Index.cshtml" />
+    <Content Include="Views\PrisonerProperty\Details.cshtml" />
+    <Content Include="Views\PrisonerProperty\Create.cshtml" />
+    <Content Include="Views\PrisonerProperty\Edit.cshtml" />
+    <Content Include="Views\PrisonerProperty\Delete.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\ReleaseDiary.cshtml" />
+    <Content Include="Views\Reports\Prisoners.cshtml" />
+    <Content Include="Views\Reports\Convicted.cshtml" />
+    <Content Include="Views\Reports\UnderTrial.cshtml" />
+    <Content Include="Views\PrisonerAdmission\Index.cshtml" />
+    <Content Include="Views\PrisonerAdmission\Details.cshtml" />
+    <Content Include="Views\PrisonerAdmission\Create.cshtml" />
+    <Content Include="Views\PrisonerAdmission\Edit.cshtml" />
+    <Content Include="Views\PrisonerAdmission\Delete.cshtml" />
+    <Content Include="Views\shared\_PrisonerData.cshtml" />
+    <Content Include="Views\Reports\_ViewStart.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Court\_ViewStart.cshtml" />
+    <Content Include="Views\Classification\_ViewStart.cshtml" />
+    <Content Include="Views\Prison\_ViewStart.cshtml" />
+    <Content Include="Views\Reports\Print.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\AuditLog\Index.cshtml" />
+    <Content Include="Views\Reports\PrintDiary.cshtml" />
+    <Content Include="Views\Error\_ViewStart.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\shared\_header.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Country\Delete.cshtml" />
+    <Content Include="Views\Country\_ViewStart.cshtml" />
+    <Content Include="Views\Prisoner\Index.cshtml" />
+    <Content Include="Views\Prisoner\Details.cshtml" />
+    <Content Include="Views\Prisoner\Create.cshtml" />
+    <Content Include="Views\Prisoner\Edit.cshtml" />
+    <Content Include="Views\Prisoner\Delete.cshtml" />
+    <Content Include="Views\Prisoner\Empty.cshtml" />
+    <Content Include="Views\Admission\Index.cshtml" />
+    <Content Include="Views\Admission\Details.cshtml" />
+    <Content Include="Views\Admission\Create.cshtml" />
+    <Content Include="Views\Admission\Edit.cshtml" />
+    <Content Include="Views\Admission\Delete.cshtml" />
+    <Content Include="Views\CourtHearing\Index.cshtml" />
+    <Content Include="Views\CourtHearing\Details.cshtml" />
+    <Content Include="Views\CourtHearing\Create.cshtml" />
+    <Content Include="Views\CourtHearing\Edit.cshtml" />
+    <Content Include="Views\CourtHearing\Delete.cshtml" />
+    <Content Include="Views\FIR\Index.cshtml" />
+    <Content Include="Views\FIR\Details.cshtml" />
+    <Content Include="Views\FIR\Create.cshtml" />
+    <Content Include="Views\FIR\Edit.cshtml" />
+    <Content Include="Views\FIR\Delete.cshtml" />
+    <Content Include="Views\MedicalTreatment\Index.cshtml" />
+    <Content Include="Views\MedicalTreatment\Details.cshtml" />
+    <Content Include="Views\MedicalTreatment\Create.cshtml" />
+    <Content Include="Views\MedicalTreatment\Edit.cshtml" />
+    <Content Include="Views\MedicalTreatment\Delete.cshtml" />
+    <Content Include="Views\PrescribedTest\Index.cshtml" />
+    <Content Include="Views\PrescribedTest\Details.cshtml" />
+    <Content Include="Views\PrescribedTest\Create.cshtml" />
+    <Content Include="Views\PrescribedTest\Edit.cshtml" />
+    <Content Include="Views\PrescribedTest\Delete.cshtml" />
+    <Content Include="Views\MedicalCheckup\Index.cshtml" />
+    <Content Include="Views\MedicalCheckup\Details.cshtml" />
+    <Content Include="Views\MedicalCheckup\Create.cshtml" />
+    <Content Include="Views\MedicalCheckup\Edit.cshtml" />
+    <Content Include="Views\MedicalCheckup\Delete.cshtml" />
+    <Content Include="Views\Prisoner\Admit.cshtml" />
+    <Content Include="Views\Prisoner\Search.cshtml" />
+    <Content Include="Views\Admission\Admit.cshtml" />
+    <Content Include="Views\FIR\Admit.cshtml" />
+    <Content Include="Views\Admission\AdmitMedical.cshtml" />
+    <Content Include="Views\Prisoner\Photo.cshtml" />
+    <Content Include="scripts\scriptcam.lic" />
+    <Content Include="Views\Barrack\Index.cshtml" />
+    <Content Include="Views\Barrack\Details.cshtml" />
+    <Content Include="Views\Barrack\Create.cshtml" />
+    <Content Include="Views\Barrack\Edit.cshtml" />
+    <Content Include="Views\Barrack\Delete.cshtml" />
+    <Content Include="Views\Barrack\_ViewStart.cshtml" />
+    <Content Include="Views\Judge\Index.cshtml" />
+    <Content Include="Views\Judge\Details.cshtml" />
+    <Content Include="Views\Judge\Create.cshtml" />
+    <Content Include="Views\Judge\Edit.cshtml" />
+    <Content Include="Views\Judge\Delete.cshtml" />
+    <Content Include="Views\Judge\_ViewStart.cshtml" />
+    <Content Include="Views\MedicalOfficer\Index.cshtml" />
+    <Content Include="Views\MedicalOfficer\Details.cshtml" />
+    <Content Include="Views\MedicalOfficer\Create.cshtml" />
+    <Content Include="Views\MedicalOfficer\Edit.cshtml" />
+    <Content Include="Views\MedicalOfficer\Delete.cshtml" />
+    <Content Include="Views\MedicalOfficer\_ViewStart.cshtml" />
+    <Content Include="Views\Disease\Index.cshtml" />
+    <Content Include="Views\Disease\Details.cshtml" />
+    <Content Include="Views\Disease\Create.cshtml" />
+    <Content Include="Views\Disease\Edit.cshtml" />
+    <Content Include="Views\Disease\Delete.cshtml" />
+    <Content Include="Views\MedicalTest\Index.cshtml" />
+    <Content Include="Views\MedicalTest\Details.cshtml" />
+    <Content Include="Views\MedicalTest\Create.cshtml" />
+    <Content Include="Views\MedicalTest\Edit.cshtml" />
+    <Content Include="Views\MedicalTest\Delete.cshtml" />
+    <Content Include="Views\Disease\_ViewStart.cshtml" />
+    <Content Include="Views\MedicalTest\_ViewStart.cshtml" />
+    <Content Include="Views\Province\Index.cshtml" />
+    <Content Include="Views\Province\Details.cshtml" />
+    <Content Include="Views\Province\Create.cshtml" />
+    <Content Include="Views\Province\Edit.cshtml" />
+    <Content Include="Views\Province\Delete.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
+    <Content Include="Views\District\Details.cshtml" />
+    <Content Include="Views\District\Create.cshtml" />
+    <Content Include="Views\District\Edit.cshtml" />
+    <Content Include="Views\District\Delete.cshtml" />
+    <Content Include="Views\Province\_ViewStart.cshtml" />
+    <Content Include="Views\District\_ViewStart.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
+    <Content Include="Views\City\Details.cshtml" />
+    <Content Include="Views\City\Create.cshtml" />
+    <Content Include="Views\City\Edit.cshtml" />
+    <Content Include="Views\City\Delete.cshtml" />
+    <Content Include="Views\City\_ViewStart.cshtml" />
+    <Content Include="Views\PoliceStation\Index.cshtml" />
+    <Content Include="Views\PoliceStation\Details.cshtml" />
+    <Content Include="Views\PoliceStation\Create.cshtml" />
+    <Content Include="Views\PoliceStation\Edit.cshtml" />
+    <Content Include="Views\PoliceStation\Delete.cshtml" />
+    <Content Include="Views\CrimeType\Index.cshtml" />
+    <Content Include="Views\CrimeType\Details.cshtml" />
+    <Content Include="Views\CrimeType\Create.cshtml" />
+    <Content Include="Views\CrimeType\Edit.cshtml" />
+    <Content Include="Views\CrimeType\Delete.cshtml" />
+    <Content Include="Views\CrimeType\_ViewStart.cshtml" />
+    <Content Include="Views\Court\Index.cshtml" />
+    <Content Include="Views\Court\Details.cshtml" />
+    <Content Include="Views\Court\Create.cshtml" />
+    <Content Include="Views\Court\Edit.cshtml" />
+    <Content Include="Views\Court\Delete.cshtml" />
+    <Content Include="Views\PoliceStation\_ViewStart.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Details.cshtml" />
+    <Content Include="Views\Settings\Create.cshtml" />
+    <Content Include="Views\Settings\Edit.cshtml" />
+    <Content Include="Views\Settings\Delete.cshtml" />
+    <Content Include="Views\Jail\Index.cshtml" />
+    <Content Include="Views\Jail\Details.cshtml" />
+    <Content Include="Views\Jail\Create.cshtml" />
+    <Content Include="Views\Jail\Edit.cshtml" />
+    <Content Include="Views\Jail\Delete.cshtml" />
+    <Content Include="Views\Jail\_ViewStart.cshtml" />
+    <Content Include="Views\Settings\_ViewStart.cshtml" />
+    <Content Include="Views\Act\Index.cshtml" />
+    <Content Include="Views\Act\Details.cshtml" />
+    <Content Include="Views\Act\Create.cshtml" />
+    <Content Include="Views\Act\Edit.cshtml" />
+    <Content Include="Views\Act\Delete.cshtml" />
+    <Content Include="Views\Act\_ViewStart.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\Section\Details.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Edit.cshtml" />
+    <Content Include="Views\Section\Delete.cshtml" />
+    <Content Include="Views\PrisonerType\Index.cshtml" />
+    <Content Include="Views\PrisonerType\Details.cshtml" />
+    <Content Include="Views\PrisonerType\Create.cshtml" />
+    <Content Include="Views\PrisonerType\Edit.cshtml" />
+    <Content Include="Views\PrisonerType\Delete.cshtml" />
+    <Content Include="Views\PrisonerType\_ViewStart.cshtml" />
+    <Content Include="Views\Section\_ViewStart.cshtml" />
+    <Content Include="Views\PrisonerSubType\Index.cshtml" />
+    <Content Include="Views\PrisonerSubType\Details.cshtml" />
+    <Content Include="Views\PrisonerSubType\Create.cshtml" />
+    <Content Include="Views\PrisonerSubType\Edit.cshtml" />
+    <Content Include="Views\PrisonerSubType\Delete.cshtml" />
+    <Content Include="Views\PrisonerSubType\_ViewStart.cshtml" />
+    <Content Include="Views\Prisoner\SearchPrisoner.cshtml" />
+    <Content Include="Views\Child\Index.cshtml" />
+    <Content Include="Views\Child\Details.cshtml" />
+    <Content Include="Views\Child\Create.cshtml" />
+    <Content Include="Views\Child\Edit.cshtml" />
+    <Content Include="Views\Child\Delete.cshtml" />
+    <Content Include="Views\shared\_PrisonerMedicalData.cshtml" />
+    <Content Include="Views\shared\_headerMedical.cshtml" />
+    <Content Include="Views\Prisoner\DetailsMedical.cshtml" />
+    <Content Include="Views\Admission\ReleaseMedical.cshtml" />
+    <Content Include="Views\MedicalTreatment\_ViewStart.cshtml" />
+    <Content Include="Views\Admission\Release.cshtml" />
+    <Content Include="Views\PrescribedTest\_ViewStart.cshtml" />
+    <Content Include="Views\MedicalCheckup\_ViewStart.cshtml" />
+    <Content Include="Views\Reports\AdmissionDiary.cshtml" />
+    <Content Include="Views\JudgeType\_ViewStart.cshtml" />
+    <Content Include="Views\JudgeType\Create.cshtml" />
+    <Content Include="Views\JudgeType\Delete.cshtml" />
+    <Content Include="Views\JudgeType\Details.cshtml" />
+    <Content Include="Views\JudgeType\Edit.cshtml" />
+    <Content Include="Views\JudgeType\Index.cshtml" />
+    <Content Include="Views\Admission\Housing.cshtml" />
+    <Content Include="Views\RelationType\_ViewStart.cshtml" />
+    <Content Include="Views\RelationType\Create.cshtml" />
+    <Content Include="Views\RelationType\Delete.cshtml" />
+    <Content Include="Views\RelationType\Details.cshtml" />
+    <Content Include="Views\RelationType\Edit.cshtml" />
+    <Content Include="Views\RelationType\Index.cshtml" />
+    <Content Include="Views\Occupation\_ViewStart.cshtml" />
+    <Content Include="Views\Occupation\Create.cshtml" />
+    <Content Include="Views\Occupation\Delete.cshtml" />
+    <Content Include="Views\Occupation\Details.cshtml" />
+    <Content Include="Views\Occupation\Edit.cshtml" />
+    <Content Include="Views\Occupation\Index.cshtml" />
+    <Content Include="Views\PrisonerTransaction\Create.cshtml" />
+    <Content Include="Views\PrisonerTransaction\Delete.cshtml" />
+    <Content Include="Views\PrisonerTransaction\Details.cshtml" />
+    <Content Include="Views\PrisonerTransaction\Edit.cshtml" />
+    <Content Include="Views\PrisonerTransaction\Index.cshtml" />
+    <Content Include="Views\Reports\Juveniles.cshtml" />
+    <Content Include="Views\Reports\Females.cshtml" />
+    <Content Include="Views\Reports\AdmittedPrisoners.cshtml" />
+    <Content Include="Views\CheckInOut\Index.cshtml" />
+    <Content Include="Views\CheckInOut\History.cshtml" />
+    <Content Include="Views\Reports\_AdmissionPartial.cshtml" />
+    <Content Include="Views\Reports\_PrisonerPartial.cshtml" />
+    <Content Include="Views\Reports\ReleasedPrisoners.cshtml" />
+    <Content Include="Views\shared\_ReportLinksPartial.cshtml" />
+    <Content Include="Views\Reports\AllPrisoners.cshtml" />
+    <Content Include="Views\Home\AboutPMIS.cshtml" />
+    <Content Include="Views\Home\AboutUNODC.cshtml" />
+    <Content Include="Views\Home\Feedback.cshtml" />
+    <Content Include="Views\Visitor\Register.cshtml" />
+    <Content Include="Views\Visitor\Search.cshtml" />
+    <Content Include="Views\Visit\Manage.cshtml" />
+    <Content Include="Views\Visit\Print.cshtml" />
+    <Content Include="Views\shared\_BootstrapLayout.print.cshtml" />
+    <Content Include="Views\Reports\Visitors.cshtml" />
+    <Content Include="Views\CourtDecision\Create.cshtml" />
+    <Content Include="Views\CourtDecision\Details.cshtml" />
+    <Content Include="Views\CourtDecision\Edit.cshtml" />
+    <Content Include="Views\CourtDecision\Index.cshtml" />
+    <Content Include="Views\CourtDecisionSection\Create.cshtml" />
+    <Content Include="Views\CourtDecisionSection\Edit.cshtml" />
+    <Content Include="Views\RemissionType\_ViewStart.cshtml" />
+    <Content Include="Views\RemissionType\Create.cshtml" />
+    <Content Include="Views\RemissionType\Delete.cshtml" />
+    <Content Include="Views\RemissionType\Details.cshtml" />
+    <Content Include="Views\RemissionType\Edit.cshtml" />
+    <Content Include="Views\RemissionType\Index.cshtml" />
+    <Content Include="Views\EarnedRemission\Create.cshtml" />
+    <Content Include="Views\EarnedRemission\Delete.cshtml" />
+    <Content Include="Views\EarnedRemission\Details.cshtml" />
+    <Content Include="Views\EarnedRemission\Edit.cshtml" />
+    <Content Include="Views\EarnedRemission\Index.cshtml" />
+    <Content Include="Views\Reports\PrisonersHealth.cshtml" />
+    <Content Include="Views\CourtType\Create.cshtml" />
+    <Content Include="Views\CourtType\Delete.cshtml" />
+    <Content Include="Views\CourtType\Details.cshtml" />
+    <Content Include="Views\CourtType\Edit.cshtml" />
+    <Content Include="Views\CourtType\Index.cshtml" />
+    <Content Include="Views\CourtType\_ViewStart.cshtml" />
+    <Content Include="Views\Appeal\Create.cshtml" />
+    <Content Include="Views\Appeal\Delete.cshtml" />
+    <Content Include="Views\Appeal\Details.cshtml" />
+    <Content Include="Views\Appeal\Edit.cshtml" />
+    <Content Include="Views\Appeal\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Fingerprints\" />
+    <Folder Include="Photos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\shared\_html5shiv.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>31478</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/PMIS</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

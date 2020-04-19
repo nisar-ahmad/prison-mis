@@ -1,0 +1,92 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Visit
+@{
+    Layout = "~/Views/shared/_BootstrapLayout.print.cshtml";
+    ViewBag.Title = "Visitor Receipt ملاقاتی رسید";
+}
+<style type="text/css">
+    .dl-horizontal dd {
+        margin-left: 270px;
+        width: 100%;
+        line-height: 10px;
+    }
+</style>
+
+<div class="title-visitor-print">
+    @Model.Visitor.Jail.Name
+
+</div>
+<div class="title-visitor-print">
+    @ViewBag.Title
+</div>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.DateOfVisit)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfVisit)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.SerialNumber)</dt>
+    <dd>@Html.DisplayFor(model => model.SerialNumber)</dd>
+</dl>
+
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.BatchNumber)</dt>
+    <dd>@Html.DisplayFor(model => model.BatchNumber)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Visitor.Name)</dt>
+    <dd>@Html.DisplayFor(model => model.Visitor.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Visitor.FatherOrHusbandName)</dt>
+    <dd>@Html.DisplayFor(model => model.Visitor.FatherOrHusbandName)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Visitor.CNIC)</dt>
+    <dd>@Html.DisplayFor(model => model.Visitor.CNIC)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Prisoner)</dt>
+    <dd>@Html.DisplayFor(model => model.Prisoner.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</dt>
+    <dd>@Html.DisplayFor(model => model.Prisoner.FatherOrHusbandName)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.LuggageDetails)</dt>
+    <dd>@Html.DisplayFor(model => model.LuggageDetails)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.PurposeOfVisit)</dt>
+    <dd>@Html.DisplayFor(model => model.PurposeOfVisit)</dd>
+</dl>
+
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.MobileTokenNumber)</dt>
+    <dd>@Html.DisplayFor(model => model.MobileTokenNumber)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+    <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+</dl>
+
+@section Scripts
+{
+    <script>
+
+        window.print();
+
+    </script>
+}

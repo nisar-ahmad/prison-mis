@@ -1,0 +1,129 @@
+body {
+    padding-top:30px;
+    padding-bottom: 40px;
+}
+
+.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.divTable
+{
+            width: 100%;
+            display:block;
+/*          padding-top:10px;
+            padding-bottom:10px;
+            padding-right:10px;
+            padding-left:10px; 
+*/
+}
+.divRow
+{
+         width: 99%; 
+         display:block;
+         padding-bottom:5px;
+}
+
+.divColumn
+{
+         float: left;
+         width: 24%;
+         display:block;
+}
+
+.table2columns {
+    width: 100%;
+}
+    .table2columns td {
+        width: 50%;
+        vertical-align:top;
+    }
+
+.title
+{
+    background-color: #2c8397; /*darkblue;*/
+    font-size:11pt;
+    font-weight:bold;
+    color:white;
+    width:100%;
+    vertical-align:middle;
+    line-height: 25px;
+    padding: 3px;
+    margin: 0px;
+}
+
+.title-visitor-print
+{
+    font-size:14pt;
+    font-weight:bold;
+    color:black;
+    width:100%;
+    vertical-align:middle;
+    line-height: 24px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.title-maroon
+{
+    background-color: maroon;
+    font-size:11pt;
+    font-weight:bold;
+    color:white;
+    width:100%;
+    vertical-align:middle;
+    line-height: 25px;
+    padding: 3px;
+    margin: 0px;
+}
+
+.float-right {
+    float:right;
+}
+
+a.link-green:link {color: greenyellow; }
+a.link-green:visited {color: greenyellow; }
+a.link-green:hover {color: orange; }
+a.link-green:active {color: greenyellow; }
+
+
+a.login:link {color: lightgray; }
+a.login:visited {color: lightgray; }
+a.login:hover {color: white; }
+a.login:active {color: lightgray; }
+
+/* CUSTOM */
+
+/*body img {-o-transition:.5s ease-in, .5s ease-out; -ms-transition:.5s ease-in, .5s ease-out; -moz-transition:.5s ease-in, .5s ease-out; -webkit-transition:.5s ease-in, .5s ease-out; transition:.5s ease-in, .5s ease-out;}
+body img:hover {opacity:0.6; filter:alpha(opacity=60); } */ /* For IE8 and earlier */
+
+.navbg {background-color:#666;}
+.hero-unit {background:#2c8397; color:#FFF; -webkit-border-radius:0px; -moz-border-radius:0px; border-radius:0px;}
+
+.padtop {margin-top:15px;}
+.rowfluid 
+.padtop2 {padding-top:50px;}
+.padleft {padding-left:18px;}
+
+.tile { width:250px; height:100px; margin-bottom:15px; }
+.tile h3 { margin-left:15px; margin-top:25px; color:#FFF;}
+
+a.tile { text-decoration:none;}
+
+.tile-admit-prisoner { background:url(images/unodc-prs-tile-admit-prisoner.png) no-repeat; }
+.tile-health-admission { background:url(images/unodc-prs-tile-health-admission.png) no-repeat; }
+.tile-court-hearing { background:url(images/unodc-prs-tile-court-hearing.png) no-repeat; }
+.tile-search { background:url(images/unodc-prs-tile-search.png) no-repeat; }
+.tile-reports { background:url(images/unodc-prs-tile-reports.png) no-repeat; }
+.tile-settings { background:url(images/unodc-prs-tile-settings.png) no-repeat; }
+
+.span-fixed {width: 500px;}
+
+/* body img {-o-transition:.5s ease-in, .5s ease-out; -ms-transition:.5s ease-in, .5s ease-out; -moz-transition:.5s ease-in, .5s ease-out; -webkit-transition:.5s ease-in, .5s ease-out; transition:.5s ease-in, .5s ease-out; border:none;} */
+/* body img:hover {opacity:0.6; filter:alpha(opacity=60); } */
+
+.unodc-prs-logo {margin-top:10px; margin-bottom:10px;}
+.hero-unit {background:none;}
+.unodc-logo-nav {margin-top:10px;}

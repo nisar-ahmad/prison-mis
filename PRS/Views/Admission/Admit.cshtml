@@ -1,0 +1,117 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Admission
+@{
+    ViewBag.Title = "Admission Step 2 of 2";
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+
+    string ComputerNumber = Model.AdmissionId.ToString();
+
+    if (ComputerNumber == "0")
+    {
+        ComputerNumber = "Not Assigned";
+    }
+}
+
+<div class="title">NEW ADMISSION - STEP 2 of 3</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.AdmissionId)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="title">ADMISSION INFORMATION داخلہ</div>
+        <div class="control-group">
+            <dl class="dl-horizontal" style="color: red;">
+                <dt>@Html.DisplayName("Computer #")</dt>
+                <dd>@Html.Label(ComputerNumber)</dd>
+            </dl>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.PrisonerNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.PrisonerNumber)
+                @Html.ValidationMessageFor(model => model.PrisonerNumber, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfAdmission, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfAdmission" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfAdmission)">
+                @Html.ValidationMessageFor(model => model.DateOfAdmission, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Barrack, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("BarrackId", "-- Select Barrack --")
+                @Html.ValidationMessageFor(model => model.BarrackId, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.BlockNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.BlockNumber)
+                @Html.ValidationMessageFor(model => model.BlockNumber, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.CellNumber, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.CellNumber)
+                @Html.ValidationMessageFor(model => model.CellNumber, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfWarrantCommitment, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfWarrantCommitment" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfWarrantCommitment)">
+                @Html.ValidationMessageFor(model => model.DateOfWarrantCommitment, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfRemand, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" name="DateOfRemand" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfRemand)">
+                @Html.ValidationMessageFor(model => model.DateOfRemand, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Remarks, 3, 50, null)
+                @Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                @Html.ActionLink("<< Back", "Admit", "Prisoner", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], FIRId = Request["FIRId"], CourtHearingId = Request["CourtHearingId"] }, new { @class = "btn btn-info" })
+                <input type="submit" value="Save & Next >>" class="btn btn-primary" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    <script>
+
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+    </script>
+}

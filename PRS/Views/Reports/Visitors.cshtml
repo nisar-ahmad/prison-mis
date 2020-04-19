@@ -1,0 +1,87 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.Visit>
+@{
+    ViewBag.Title = "Visitors Diary";
+
+    int i = 1;
+}
+
+@using (Html.BeginForm())
+{
+<div class="title">
+    BATCH NO.
+    <input type="text" name="BatchNumber" class="input-mini" value="@ViewBag.BatchNumber">
+    VISITORS BETWEEN
+    <input type="text" name="StartDate" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.StartDate">
+    AND
+    <input type="text" name="EndDate" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.EndDate">
+    <input type="submit" value="Refresh" class="btn btn-success fontstyle" />
+    &nbsp;TOTAL = @ViewBag.Total 
+    <div class="float-right">
+        @*<input type="submit" name="Print" value="Print" class="btn btn-small" />*@
+        @Html.ActionLink("<< Back", "Index", null, new { @class = "btn btn-info" })
+    </div>
+</div>
+}
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfVisit)</th>
+            <th>@Html.DisplayNameFor(model => model.SerialNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.BatchNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Visitor.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Visitor.FatherOrHusbandName)</th>
+            <th>@Html.DisplayNameFor(model => model.Visitor.CNIC)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.FatherOrHusbandName)</th>
+            <th>@Html.DisplayNameFor(model => model.PurposeOfVisit)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @i
+                    @{ i++; }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfVisit)</td>
+                <td>@Html.DisplayFor(modelItem => item.SerialNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.BatchNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Visitor.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Visitor.FatherOrHusbandName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Visitor.CNIC)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.FatherOrHusbandName)</td>
+                <td>@Html.DisplayFor(modelItem => item.PurposeOfVisit)</td>
+                <td>@Html.ActionLink("Details", "Manage", "Visit", new { VisitorId = item.VisitorId, VisitId = item.VisitId }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-success fontstyle" id="btn-export">Export</button> &nbsp;<a href="javascript:window.print()" class="btn btn-info">Print</a>&nbsp;
+
+
+@Html.ActionLink("<< Back To Reports", "Index", null, new { @class = "btn btn-info" })
+
+@section Scripts {
+
+    <script>
+        $('.datepicker').datepicker({ autoclose: true });
+    </script>
+<script>
+    $("#btn-export").click(function () {
+        $("#table2excel").table2excel({
+            // exclude CSS class
+            exclude: ".noExl",
+            name: "PMIS Export"
+        });
+    });
+</script>
+}
+
+
+

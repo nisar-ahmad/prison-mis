@@ -1,0 +1,82 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="~/Reports"><h5>Reports</h5></a></li>
+                    @Html.Partial("_ReportLinksPartial")
+                </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+            <div class="hero-unit">
+                <h2>
+                    <img src="~/Content/images/actions-icon-_r1_c1.png" />&nbsp;&nbsp; Reports and Statistics
+                </h2>
+                <p>You can view prison population statistics on this page. Use the links on the left to see other reports.</p>
+            </div>
+            <div class="row-fluid reports-stats">
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r69_c4.png" />&nbsp;&nbsp; Capacity : @ViewBag.Capacity</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4>
+                        <img src="~/Content/images/actions-icon-_r4_c2.png" />&nbsp;&nbsp; Admitted : @ViewBag.Admitted
+                    </h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r60_c2.png" />&nbsp;&nbsp; Released : @ViewBag.Released</h4>
+                    <p></p>
+                </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid reports-stats">
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r13_c4.png" />&nbsp;&nbsp; Under Trial : @ViewBag.UnderTrial</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r48_c2.png" />&nbsp;&nbsp; Convicted : @ViewBag.Convicted</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r5_c4.png" />&nbsp;&nbsp; Condemned :  @ViewBag.Condemned</h4>
+                    <p></p>
+                </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid reports-stats">
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r68_c2.png" />&nbsp;&nbsp; Detainee : @ViewBag.Detainee</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r57_c4.png" />&nbsp;&nbsp; Male : @ViewBag.Male</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r56_c2.png" />&nbsp;&nbsp; Female : @ViewBag.Female</h4>
+                    <p></p>
+                </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid reports-stats">
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r5_c4.png" />&nbsp;&nbsp; Checked-In : @ViewBag.CheckedIn</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h4><img src="~/Content/images/actions-icon-_r60_c2.png" />&nbsp;&nbsp; Checked-Out : @ViewBag.CheckedOut</h4>
+                    <p></p>
+                </div><!--/span-->
+                <div class="span4">
+
+                </div><!--/span-->
+            </div><!--/row-->
+        </div><!--/span-->
+    </div><!--/row-->
+</div>

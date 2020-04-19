@@ -1,0 +1,39 @@
+﻿@using System.Web.Optimization
+@using BootstrapSupport
+@using NavigationRoutes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
+    <link href="~/Content/print.css" rel="stylesheet" media="print" />
+    <style type="text/css">
+      body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        background-color: white;
+      }      
+
+    </style>    <link href="@Styles.Url("~/Content/css-responsive")" rel="stylesheet" type="text/css" />
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+    @* favicons and touch icons go here *@
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+        @*<hr>
+        <footer class="text-center">
+            <p>&copy; UNODC - Prison Registry System @System.DateTime.Now.ToString("yyyy")</p>
+        </footer>*@
+
+    </div> <!-- container -->
+    @Scripts.Render("~/js")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

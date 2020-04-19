@@ -1,0 +1,73 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonOffence
+@{
+    ViewBag.Title = "Offence Details";
+}
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Prisoner)</dt>
+	<dd>@Html.DisplayFor(model => model.Prisoner.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfOffence)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfOffence)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Offence)</dt>
+	<dd>@Html.DisplayFor(model => model.Offence)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Witnesses)</dt>
+	<dd>@Html.DisplayFor(model => model.Witnesses)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.NameAndRankOfReportingPerson)</dt>
+	<dd>@Html.DisplayFor(model => model.NameAndRankOfReportingPerson)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Evidence)</dt>
+	<dd>@Html.DisplayFor(model => model.Evidence)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DefenceOfPrisoner)</dt>
+	<dd>@Html.DisplayFor(model => model.DefenceOfPrisoner)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.FindingsOfSuperintendent)</dt>
+	<dd>@Html.DisplayFor(model => model.FindingsOfSuperintendent)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.PunishmentAwarded)</dt>
+	<dd>@Html.DisplayFor(model => model.PunishmentAwarded)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfInfliction)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfInfliction)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.MedicalOfficerCertificate)</dt>
+	<dd>@Html.DisplayFor(model => model.MedicalOfficerCertificate)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+	<dd>@Html.DisplayFor(model => model.Remarks)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PrisonOffenceId, PrisonerId = Request["PrisonerId"] }, new { @class="btn btn-primary" })  &nbsp; 
+        @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] })
+	</dd>
+</dl>

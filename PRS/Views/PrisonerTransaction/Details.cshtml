@@ -1,0 +1,34 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonerTransaction 
+@{
+    ViewBag.Title = "CASH ENTRY DETAILS"; 
+}
+<div class="title">
+    @ViewBag.Title
+</div>
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.TransactionType) </dt>
+		<dd>@Html.DisplayFor(model => model.TransactionType)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.DateOfTransaction)</dt>
+		<dd>@Html.DisplayFor(model => model.DateOfTransaction)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Amount)</dt>
+        <dd>@Html.DisplayFor(model => model.Amount)</dd>
+    </dl> 
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Reference)</dt>
+        <dd>@Html.DisplayFor(model => model.Reference)</dd>
+    </dl> 
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+    </dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id = Model.PrisonerTransactionId, PrisonerId = Request["PrisonerId"] }, new { @class="btn btn-primary" }) | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] }) </dd>
+	</dl>
+

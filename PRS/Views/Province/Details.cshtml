@@ -1,0 +1,20 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Province 
+@{
+    ViewBag.Title = "Province Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Country) </dt>
+		<dd>@Html.DisplayFor(model => model.Country.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Name)</dt>
+		<dd>@Html.DisplayFor(model => model.Name)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.ProvinceId }) | @Html.ActionLink("Back to List", "Index") </dd>
+	</dl>
+

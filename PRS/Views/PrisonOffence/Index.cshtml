@@ -1,0 +1,56 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.PrisonOffence>
+@{
+    ViewBag.Title = "Discipline / Prison Offences";
+}
+<div class="title">
+    @ViewBag.Title
+    <div class="float-right">@Html.ActionLink("New Offence", "Create", new {PrisonerId = Request["PrisonerId"]}, new { @class = "btn btn-small btn-success" })</div>
+</div>
+
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Prisoner)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfOffence)</th>
+        <th>@Html.DisplayNameFor(model => model.Offence)</th>
+        <th>@Html.DisplayNameFor(model => model.Witnesses)</th>
+        <th>@Html.DisplayNameFor(model => model.NameAndRankOfReportingPerson)</th>
+        <th>@Html.DisplayNameFor(model => model.PunishmentAwarded)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfInfliction)</th>
+        <th>@Html.DisplayNameFor(model => model.MedicalOfficerCertificate)</th>
+        <th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.DateOfOffence)</td>
+        <td>@Html.DisplayFor(modelItem => item.Offence)</td>
+        <td>@Html.DisplayFor(modelItem => item.Witnesses)</td>
+        <td>@Html.DisplayFor(modelItem => item.NameAndRankOfReportingPerson)</td>
+        <td>@Html.DisplayFor(modelItem => item.PunishmentAwarded)</td>
+        <td>@Html.DisplayFor(modelItem => item.DateOfInfliction)</td>
+        <td>@Html.DisplayFor(modelItem => item.MedicalOfficerCertificate)</td>
+        <td>
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.PrisonOffenceId, PrisonerId = Request["PrisonerId"] })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.PrisonOffenceId, PrisonerId = Request["PrisonerId"] })</li>
+                    <li class="divider"></li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.PrisonOffenceId, PrisonerId = Request["PrisonerId"] })</li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
+
+

@@ -1,0 +1,41 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.Settings> 
+@{
+    ViewBag.Title = "Settings"; 
+}
+<h3>@ViewBag.Title</h3> 
+<p>
+    @Html.ActionLink("Add New", "Create")
+</p>
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Jail)</th>
+		<th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Jail.Name)</td> 
+        <td>
+			<div class="btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					Action
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>@Html.ActionLink("Edit", "Edit", new { id=item.SettingsId })</li>
+					<li>@Html.ActionLink("Details", "Details", new { id=item.SettingsId })</li>
+					<li class="divider"></li>
+					<li>@Html.ActionLink("Delete", "Delete", new { id=item.SettingsId })</li>
+				</ul>
+			</div>
+        </td> 
+    </tr> 
+}
+</tbody>
+</table>
+
+
+

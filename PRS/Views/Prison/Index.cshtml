@@ -1,0 +1,36 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.Prison>
+@{
+    ViewBag.Title = "Prison Information";
+}
+
+<h4>@ViewBag.Title</h4>
+
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.District)</th>
+        <th>@Html.DisplayNameFor(model => model.Province)</th>
+        <th>@Html.DisplayNameFor(model => model.Capacity)</th>
+        <th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.District)</td>
+        <td>@Html.DisplayFor(modelItem => item.Province)</td>
+        <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+
+        @if(User.IsAdmin())
+        {
+            <td>@Html.ActionLink("Edit", "Edit", new { id = item.PrisonId })</td>
+        }
+    </tr>
+}
+</tbody>
+</table>
+
+

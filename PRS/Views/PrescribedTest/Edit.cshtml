@@ -1,0 +1,69 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrescribedTest 
+@{
+    ViewBag.Title = "Edit Prescribed Test"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.PrescribedTestId)
+
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.AdmissionId)
+        @Html.HiddenFor(model => model.MedicalTreatmentId)
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="control-group"> @Html.LabelFor(model => model.DateOfTest, new { @class = "control-label" })
+			<div class="controls">
+				<input type="text" name="DateOfTest" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfTest)">
+				@Html.ValidationMessageFor(model => model.DateOfTest, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			@Html.LabelFor(model => model.MedicalTest, new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("MedicalTestId", "-- Select Medical Test --")
+				@Html.ValidationMessageFor(model => model.MedicalTestId, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.TestType, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.TestType)
+				@Html.ValidationMessageFor(model => model.TestType, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.TestResults, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.TestResults)
+				@Html.ValidationMessageFor(model => model.TestResults, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn btn-primary" />
+                 | @Html.ActionLink("Cancel", "Details", "MedicalTreatment", new {MedicalTreatmentId = Model.MedicalTreatmentId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, null)
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	    $.validator.setDefaults({
+	        highlight: function (element) {
+	            $(element).closest(".control-group").addClass("error");
+	        },
+	        unhighlight: function (element) {
+	            $(element).closest(".control-group").removeClass("error");
+	        }
+	    });
+
+	    $('.datepicker').datepicker({ autoclose: true });
+	</script>
+} 

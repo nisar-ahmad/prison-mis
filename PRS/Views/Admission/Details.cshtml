@@ -1,0 +1,152 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Admission
+@{
+    ViewBag.Title = "Admission Details";
+}
+
+<table class="table2columns">
+    <tr>
+        <td>
+            <div class="title">ADMISSION & RELEASE INFORMATION داخلہ و رہائی</div>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.PrisonerNumber)</dt>
+                <dd>@Html.DisplayFor(model => model.PrisonerNumber)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfRemand)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfRemand)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfReleaseWithFullSentence)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfReleaseWithFullSentence)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfRelease)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfRelease)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DecisionStatus)</dt>
+                <dd>@Html.DisplayFor(model => model.DecisionStatus)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.JudgeType)</dt>
+                <dd>@Html.DisplayFor(model => model.JudgeType.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.AuthorityForRelease)</dt>
+                <dd>@Html.DisplayFor(model => model.AuthorityForRelease)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+                <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+            </dl>
+        </td>
+        <td>
+            <div class="title">
+                MEDICAL INFORMATION میڈیکل
+                <div class="float-right">@Html.ActionLink("Edit", "Edit", new { AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class = "btn btn-small btn-warning" })</div>
+            </div>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.HealthOnAdmission)</dt>
+                <dd>@Html.DisplayFor(model => model.HealthOnAdmission)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.WeightOnAdmission)</dt>
+                <dd>@Html.DisplayFor(model => model.WeightOnAdmission)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.KnownAilment)</dt>
+                <dd>@Html.DisplayFor(model => model.KnownAilment)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CommunicableDisease) </dt>
+                <dd>@Html.DisplayFor(model => model.CommunicableDisease.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.ExplainedInjuries)</dt>
+                <dd>@Html.DisplayFor(model => model.ExplainedInjuries)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.UnexplainedInjuries)</dt>
+                <dd>@Html.DisplayFor(model => model.UnexplainedInjuries)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.MedicalRemarks)</dt>
+                <dd>@Html.DisplayFor(model => model.MedicalRemarks)</dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.HealthOnRelease)</dt>
+                <dd>@Html.DisplayFor(model => model.HealthOnRelease)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.WeightOnRelease)</dt>
+                <dd>@Html.DisplayFor(model => model.WeightOnRelease)</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
+<br />
+<div class="title">
+    FIR INFORMATION ایف آئی آر
+    <div class="float-right">@Html.ActionLink("New FIR & Court Production", "Create", "FIR", new { PrisonerId = Model.PrisonerId, AdmissionId = Model.AdmissionId }, new { @class = "btn btn-small btn-success" })</div>
+</div>
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FIRs.FirstOrDefault().FIRNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.FIRs.FirstOrDefault().FIRDate)</th>
+            <th>@Html.DisplayNameFor(model => model.FIRs.FirstOrDefault().PoliceStation)</th>
+            <th>Under Sections</th>
+            <th>@Html.DisplayNameFor(model => model.FIRs.FirstOrDefault().DecisionStatus)</th>
+            <th>@Html.DisplayNameFor(model => model.FIRs.FirstOrDefault().DecisionDate)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FIRs)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FIRNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.FIRDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PoliceStation.Name)</td>
+                <td>
+                    @{
+            var sections = "";
+                    }
+
+                    @foreach (var us in item.Sections)
+                    {
+                        sections += us.Name + ",";
+                    }
+
+                    @if (sections.Length > 0)
+                    {
+                        sections = sections.Remove(sections.Length - 1);
+                    }
+
+                    @Html.Label(sections)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.DecisionStatus)</td>
+                <td>@Html.DisplayFor(modelItem => item.DecisionDate)</td>
+                <td>
+                    @{ var routeValues = new { id = item.FIRId, PrisonerId = Model.PrisonerId, AdmissionId = Model.AdmissionId };}
+                    @Html.ActionLink("Edit", "Create", "FIR", routeValues, new { @class = "btn btn-small btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<dl class="dl-horizontal">
+    <dt></dt>
+    <dd>
+        @Html.ActionLink("Edit", "Edit", new { AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Back to Admissions", "Index", new { PrisonerId = Model.PrisonerId })
+</dd>
+</dl>
+

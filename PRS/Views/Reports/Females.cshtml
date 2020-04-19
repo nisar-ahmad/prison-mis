@@ -1,0 +1,129 @@
+﻿@using BootstrapSupport
+@using PagedList.Mvc;
+@using PagedList;
+@model PRS.Models.PrisonerReport
+@{
+    ViewBag.Title = "Female Prisoners";
+    ViewBag.ShowChildren = true;
+
+    var controller = ViewContext.RouteData.GetRequiredString("controller");
+    var action = ViewContext.RouteData.GetRequiredString("action");
+}
+
+<div class="title">
+    LIST OF ADMITTED FEMALE PRISONERS AND STATUS OF THEIR CHILDREN AS ON @DateTime.Now.ToString("dd MMM yyyy").ToUpper()
+    <div class="float-right">
+        TOTAL = @ViewBag.Count &nbsp;
+        @Html.ActionLink("<< Back", "Index", null, new { @class = "btn btn-info" })
+    </div>
+</div>
+@using (Html.BeginForm(action, controller, FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>Category</td>
+            <td>Status</td>
+            <td>Class</td>
+            @*<td>Gender</td>*@
+            <td>District</td>
+            <td>FIR</td>
+            <td>Section</td>
+            <td>Police Station</td>
+            <td>Trial Court</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("Category", ViewBag.Category as SelectList, "-- All Categories --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("Status", ViewBag.Status as SelectList, "-- All Status --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("Class", ViewBag.Class as SelectList, "-- All Classes --", new { @class = "select-auto" })
+            </td>
+            @*<td>
+                @Html.DropDownList("Gender", ViewBag.Gender as SelectList, "-- All Genders --", new { @class = "select-auto" })
+            </td>*@
+            <td>
+                @Html.DropDownList("District", ViewBag.District as SelectList, "-- All Districts --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("FIR", ViewBag.FIR as SelectList, "-- All FIRs --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("Section", ViewBag.Section as SelectList, "-- All Sections --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("PoliceStation", ViewBag.PoliceStation as SelectList, "-- All Police Stations --", new { @class = "select-auto" })
+            </td>
+            <td>
+                @Html.DropDownList("TrialCourt", ViewBag.TrialCourt as SelectList, "-- All Trial Courts --", new { @class = "select-auto" })
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Prisoner No.</td>
+            <td>Name</td>
+            <td>Parentage</td>
+            <td>Age</td>
+            <td>Admission From</td>
+            <td>Admission To</td>
+            <td>Release From</td>
+            <td>Release To</td>
+            <td>Hearing From</td>
+            <td>Hearing To</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="PrisonerNumber" class="input-small" value="@ViewBag.PrisonerNumber">
+            </td>
+            <td>
+                <input type="text" name="Name" class="input-small" value="@ViewBag.Name">
+            </td>
+            <td>
+                <input type="text" name="Parentage" class="input-small" value="@ViewBag.Parentage">
+            </td>
+            <td>
+                <input type="text" name="Age" class="input-small" value="@ViewBag.Age">
+            </td>
+            <td>
+                <input type="text" name="AdmissionFrom" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.AdmissionFrom">
+            </td>
+            <td>
+                <input type="text" name="AdmissionTo" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.AdmissionTo">
+            </td>
+            <td>
+                <input type="text" name="ReleaseFrom" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.ReleaseFrom">
+            </td>
+            <td>
+                <input type="text" name="ReleaseTo" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.ReleaseTo">
+            </td>
+            <td>
+                <input type="text" name="HearingFrom" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.HearingFrom">
+            </td>
+            <td>
+                <input type="text" name="HearingTo" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@ViewBag.HearingTo">
+            </td>
+            <td>
+                <input type="submit" name="FILTER" value="FILTER" class="btn btn-success" />
+
+                @Html.ActionLink("Reset", action, controller, null, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+    </table>
+}
+@Html.Partial("_PrisonerPartial", Model)
+@Html.ActionLink("Back to Reports", "Index")
+
+@section Scripts {
+
+    <script>
+        $('.datepicker').datepicker({ autoclose: true });
+    </script>
+}
+
+
+

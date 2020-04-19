@@ -1,0 +1,54 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonerAdmission
+@{
+    ViewBag.Title = "Delete Admission";
+}
+
+<h4>Are you sure you want to delete this prisoner admission?</h4>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Prisoner)</dt>
+    <dd>@Html.DisplayFor(model => model.Prisoner.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.PrisonerNumber)</dt>
+    <dd>@Html.DisplayFor(model => model.PrisonerNumber)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.District)</dt>
+    <dd>@Html.DisplayFor(model => model.District)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.ChargedWithActAndSection)</dt>
+    <dd>@Html.DisplayFor(model => model.ChargedWithActAndSection)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Classification)</dt>
+    <dd>@Html.DisplayFor(model => model.Classification.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.BarrackOrCell)</dt>
+    <dd>@Html.DisplayFor(model => model.BarrackOrCell)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt></dt>
+    <dd>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Delete" class="btn btn-danger" />  
+             @Html.ActionLink("Cancel", "Index", new { PrisonerId = Request["PrisonerId"] })
+        }
+    </dd>
+</dl>

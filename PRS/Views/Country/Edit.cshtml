@@ -1,0 +1,51 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Country
+@{
+    ViewBag.Title = "Edit Country";
+}
+
+<h3>@ViewBag.Title</h3>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.CountryId)
+
+        <div class="control-group">
+
+			@Html.LabelFor(model => model.Name, new { @class = "control-label" })
+  
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name, string.Empty, new { @class="help-inline" })
+			</div> 
+		</div>	
+
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn" /> &nbsp; @Html.ActionLink("Cancel", "Index")
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+	});
+
+	</script>
+}
+
+
+

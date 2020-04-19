@@ -1,0 +1,66 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrescribedTest 
+@{
+    ViewBag.Title = "New Prescribed Test"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.Hidden("PrisonerId", Request["PrisonerId"])
+        @Html.Hidden("AdmissionId", Request["AdmissionId"])
+        @Html.Hidden("MedicalTreatmentId", Request["MedicalTreatmentId"])
+        @Html.HiddenFor(model => model.IsActive)
+
+        <div class="control-group"> @Html.LabelFor(model => model.DateOfTest, new { @class = "control-label" })
+			<div class="controls">
+				<input type="text" name="DateOfTest" class="datepicker" data-date-format="dd-M-yyyy">
+				@Html.ValidationMessageFor(model => model.DateOfTest, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			@Html.LabelFor(model => model.MedicalTest, new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("MedicalTestId", "-- Select Medical Test --")
+				@Html.ValidationMessageFor(model => model.MedicalTestId, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.TestType, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.TestType)
+				@Html.ValidationMessageFor(model => model.TestType, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.TestResults, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.TestResults)
+				@Html.ValidationMessageFor(model => model.TestResults, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn btn-primary" /> &nbsp; @Html.ActionLink("Cancel", "Details", "MedicalTreatment", new {MedicalTreatmentId = Request["MedicalTreatmentId"], AdmissionId = Request["AdmissionId"], PrisonerId = Request["PrisonerId"] }, null)
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+		$('.datepicker').datepicker({autoclose: true});
+	</script>
+} 
+
+

@@ -1,0 +1,45 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.PrescribedTest> 
+@{
+    ViewBag.Title = "New Prescribed Test"; 
+}
+<h3>@ViewBag.Title</h3> 
+<p>
+    @Html.ActionLink("New Prescribed Test", "Create", new { PrisonerId = Request["PrisonerId"] }, new { @class= "btn btn-success" })
+</p>
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.DateOfTest)</th>
+        <th>@Html.DisplayNameFor(model => model.MedicalTest)</th>
+        <th>@Html.DisplayNameFor(model => model.TestType)</th>
+        <th>@Html.DisplayNameFor(model => model.TestResults)</th>
+		<th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.DateOfTest)</td> 
+        <td>@Html.DisplayFor(modelItem => item.MedicalTest.Name)</td> 
+        <td>@Html.DisplayFor(modelItem => item.TestType)</td> 
+        <td>@Html.DisplayFor(modelItem => item.TestResults)</td> 
+        <td>
+			<div class="btn-group">
+				<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					Action
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>@Html.ActionLink("Edit", "Edit", new { id = item.PrescribedTestId, PrisonerId = Request["PrisonerId"] })</li>
+					<li>@Html.ActionLink("Details", "Details", new { id = item.PrescribedTestId, PrisonerId = Request["PrisonerId"] })</li>
+				</ul>
+			</div>
+        </td> 
+    </tr> 
+}
+</tbody>
+</table>
+
+
+

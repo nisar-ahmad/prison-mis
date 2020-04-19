@@ -1,0 +1,40 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Jail 
+@{
+    ViewBag.Title = "Jail Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.District) </dt>
+		<dd>@Html.DisplayFor(model => model.District.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Name)</dt>
+		<dd>@Html.DisplayFor(model => model.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Capacity)</dt>
+		<dd>@Html.DisplayFor(model => model.Capacity)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Address)</dt>
+		<dd>@Html.DisplayFor(model => model.Address)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Telephone)</dt>
+		<dd>@Html.DisplayFor(model => model.Telephone)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.SuperintendentName)</dt>
+		<dd>@Html.DisplayFor(model => model.SuperintendentName)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.SuperintendentContactNumber)</dt>
+		<dd>@Html.DisplayFor(model => model.SuperintendentContactNumber)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.JailId }) | @Html.ActionLink("Back to List", "Index") </dd>
+	</dl>
+

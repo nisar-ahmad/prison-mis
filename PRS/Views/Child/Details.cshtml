@@ -1,0 +1,25 @@
+﻿@using BootstrapSupport
+@model PRS.Models.Child 
+@{
+    ViewBag.Title = "Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Name)</dt>
+		<dd>@Html.DisplayFor(model => model.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Gender) </dt>
+		<dd>@Html.DisplayFor(model => model.Gender)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
+		<dd>@Html.DisplayFor(model => model.DateOfBirth)</dd>
+	</dl> 
+
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.ChildId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-primary" }) | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] }) </dd>
+	</dl>
+

@@ -1,0 +1,121 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtDecision
+@{
+    ViewBag.Title = "Court Decision Details"; 
+}
+
+<table class="table2columns">
+    <tr>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.FIR.FIRNumber) </dt>
+                <dd>@Html.DisplayFor(model => model.FIR.FIRNumber)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.FIR.FIRDate) </dt>
+                <dd>@Html.DisplayFor(model => model.FIR.FIRDate)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CourtHearing) </dt>
+                <dd>@Html.DisplayFor(model => model.CourtHearing.DateOfHearing)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CourtHearing.Court) </dt>
+                <dd>@Html.DisplayFor(model => model.CourtHearing.Court.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfSentenceStart)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfSentenceStart)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Admission.DateOfReleaseWithFullSentence)</dt>
+                <dd>@Html.DisplayFor(model => model.Admission.DateOfReleaseWithFullSentence)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfUnderTrialStart)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfUnderTrialStart)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DateOfUnderTrialEnd)</dt>
+                <dd>@Html.DisplayFor(model => model.DateOfUnderTrialEnd)</dd>
+            </dl>
+        </td>
+        <td>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CourtHearing.Judge) </dt>
+                <dd>@Html.DisplayFor(model => model.CourtHearing.Judge.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CourtHearing.JudgeType) </dt>
+                <dd>@Html.DisplayFor(model => model.CourtHearing.JudgeType.Name)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DecisionStatus) </dt>
+                <dd>@Html.DisplayFor(model => model.DecisionStatus)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.CourtDecisionType) </dt>
+                <dd>@Html.DisplayFor(model => model.CourtDecisionType)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Is382BApplied) </dt>
+                <dd>@Html.DisplayFor(model => model.Is382BApplied)</dd>
+            </dl> 
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.DecisionAuthority)</dt>
+                <dd>@Html.DisplayFor(model => model.DecisionAuthority)</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+                <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+            </dl>
+        </td>
+    </tr>
+</table>
+
+<div class="title">
+    SECTION DECISIONS
+    <div class="float-right">@Html.ActionLink("New Section Decision", "Create", "CourtDecisionSection", new { CourtDecisionId = Model.CourtDecisionId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-success" })</div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().Section)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().CourtDecisionType)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().SentenceType)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().SentenceYears)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().SentenceMonths)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().SentenceDays)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().FineAmount)</th>
+            @*<th>@Html.DisplayNameFor(model => model.CourtDecisionSections.FirstOrDefault().Is382BApplied)</th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CourtDecisionSections)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Section.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.CourtDecisionType)</td> 
+                <td>@Html.DisplayFor(modelItem => item.SentenceType)</td>
+                <td>@Html.DisplayFor(modelItem => item.SentenceYears)</td>
+                <td>@Html.DisplayFor(modelItem => item.SentenceMonths)</td>
+                <td>@Html.DisplayFor(modelItem => item.SentenceDays)</td>
+                <td>@Html.DisplayFor(modelItem => item.FineAmount)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.Is382BApplied)</td>*@
+                <td>
+                    @{ var routeValues = new { id = item.CourtDecisionSectionId, CourtDecisionId = item.CourtDecisionId, PrisonerId = Model.PrisonerId, AdmissionId = Model.AdmissionId };}
+                    @Html.ActionLink("Edit", "Edit", "CourtDecisionSection", routeValues, new { @class = "btn btn-small btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.CourtDecisionId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-primary" })
+         | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] }) </dd>
+</dl>

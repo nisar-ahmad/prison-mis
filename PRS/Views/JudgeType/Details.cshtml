@@ -1,0 +1,20 @@
+﻿@using BootstrapSupport
+@model PRS.Models.JudgeType 
+@{
+    ViewBag.Title = "Judge Type Details"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Name)</dt>
+		<dd>@Html.DisplayFor(model => model.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Description)</dt>
+		<dd>@Html.DisplayFor(model => model.Description)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.JudgeTypeId }) | @Html.ActionLink("Back to List", "Index") </dd>
+	</dl>
+

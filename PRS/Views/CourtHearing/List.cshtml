@@ -1,0 +1,84 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.CourtHearing>
+@{
+    ViewBag.Title = "DAILY COURT PRODUCTIONS کورٹ پیشیاں";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+
+    var count = 1;
+}
+
+<div class="title">@ViewBag.Title
+    <div class="float-right">@Html.ActionLink("Back to Home", "Index", "Home", null, new { @class= "btn btn-info" })</div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="row-fluid">
+        <div class="span12">
+            Date of Court Production 
+                <input type="text" name="ProductionDate" class="datepicker" data-date-format="dd-M-yyyy" value="@ViewBag.ProductionDate">
+            <input type="submit" value="Show" class="btn" />
+        </div>
+    </div>
+}
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoner.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Admission.PrisonerNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.FIR)</th>
+            <th>@Html.DisplayNameFor(model => model.Court)</th>
+            <th>@Html.DisplayNameFor(model => model.Judge)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfCourtOrder)</th>
+            <th>@Html.DisplayNameFor(model => model.Remarks)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@Html.DisplayFor(modelItem => item.Prisoner.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Admission.PrisonerNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.FIR.FIRNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Court.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Judge.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfCourtOrder)</td>
+                <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.ActionLink("Change Status", "Edit", new { id = item.CourtHearingId, PrisonerId = item.PrisonerId, Back = "List", ProductionDate = ViewBag.ProductionDate })</td>
+            </tr>
+
+            count++;
+        }
+    </tbody>
+</table>
+<button class="btn btn-success fontstyle" id="btn-export">Export</button> &nbsp;<a href="javascript:window.print()" class="btn btn-info">Print</a>&nbsp;
+@section Scripts {
+    <script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+	$('.datepicker').datepicker({ autoclose: true });
+
+    </script>
+<script>
+    $("#btn-export").click(function () {
+        $("#table2excel").table2excel({
+            // exclude CSS class
+            exclude: ".noExl",
+            name: "PMIS Export"
+        });
+    });
+</script>
+}

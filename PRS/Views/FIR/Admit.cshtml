@@ -1,0 +1,405 @@
+﻿@using BootstrapSupport
+@model PRS.Models.AdmissionFIR
+@{
+    Layout = "~/Views/shared/_BootstrapLayout.basic.cshtml";
+
+    string ComputerNumber = Model.Admission.AdmissionId.ToString();
+
+    if (ComputerNumber == "0")
+    {
+        ComputerNumber = "Not Assigned";
+    }
+}
+
+@section head{
+    @Styles.Render("~/content/typeahead")
+    @Styles.Render("~/content/duallistbox")
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table2columns">
+        <tr>
+            <td>
+                <fieldset class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.Admission.AdmissionId)
+                    @Html.HiddenFor(model => model.Admission.PrisonerId)
+                    @Html.HiddenFor(model => model.FIR.AdmissionId)
+                    @Html.HiddenFor(model => model.FIR.FIRId)
+                    @Html.HiddenFor(model => model.FIR.IsActive)
+
+                    <div class="title">ADMISSION INFORMATION داخلہ</div>
+
+                    <dl class="dl-horizontal" style="color: red;">
+                        <dt>@Html.DisplayName("Computer #")</dt>
+                        <dd>@Html.Label(ComputerNumber)</dd>
+                    </dl>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Admission.PrisonerNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.Admission.PrisonerNumber, new { onkeyup = "onPrisonerNumberChanged()" })
+                            @Html.ValidationMessageFor(model => model.Admission.PrisonerNumber, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.Admission.DateOfAdmission, new { @class = "control-label" })
+                        <div class="controls">
+
+                            @if (Request["Remand"] == "1")
+                            {
+                                <strong>@Html.DisplayFor(model => model.Admission.DateOfAdmission)</strong>
+                                <input type="hidden" id="Admission_DateOfAdmission" name="Admission.DateOfAdmission" value="@Html.DisplayFor(model => model.Admission.DateOfAdmission)" />
+                            }
+                            else
+                            {
+                                <input type="text" id="Admission_DateOfAdmission" name="Admission.DateOfAdmission" class="datepicker" data-date-format="dd-M-yyyy" onchange="onAdmissionDateChanged()"
+                                       value="@Html.DisplayFor(model => model.Admission.DateOfAdmission)" />
+                                @Html.ValidationMessageFor(model => model.Admission.DateOfAdmission, "*", new { @class = "help-inline" })
+                            }
+                        </div>
+                    </div>
+                    @if (Request["Remand"] == "1")
+                    {
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.Admission.DateOfRemand, new { @class = "control-label" })
+                            <div class="controls">
+                                
+                                <input type="text" id="Admission_DateOfRemand" name="Admission.DateOfRemand" class="datepicker" data-date-format="dd-M-yyyy" onchange="onRemandDateChanged()"
+                                       value="@Html.DisplayFor(model => model.Admission.DateOfRemand)" />
+                                @Html.ValidationMessageFor(model => model.Admission.DateOfRemand, "*", new { @class = "help-inline" })
+                            </div>
+                        </div>
+                        <label class="help-inline">* Date of Admission cannot be changed upon return from Remand.</label>
+                        <label class="help-inline">* If Prisoner Number has changed then update above field as <strong>New Number / Old Number</strong>.</label>
+                        <label class="help-inline">&nbsp; e.g. if the old number was <strong>1234</strong> and the new number is <strong>5678</strong> then write <strong>5678  / 1234</strong></label>
+                    }
+                    else
+                    {
+                        <div style="display:block; height:106px"></div>
+                    }
+
+
+                    <div class="title">FIR INFORMATION ایف آئی آر</div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.FIR.FIRNumber, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.FIR.FIRNumber)
+                            @Html.ValidationMessageFor(model => model.FIR.FIRNumber, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.FIR.FIRDate, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="FIR.FIRDate" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.FIR.FIRDate)">
+                            @Html.ValidationMessageFor(model => model.FIR.FIRDate, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.Label("Province صوبہ", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("ProvinceId", "-- Select Province --")
+                            @Html.Label("*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.Label("District ضلع", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("DistrictId", "-- Select District --")
+                            @Html.Label("*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.FIR.PoliceStation, new { @class = "control-label" })
+                        <div class="controls">
+                            <input id="SelectedPS" type="hidden" />
+                            <input id="PSName" name="PSName" type="text" autocomplete="off" value="@ViewBag.PSName" onkeypress="onKeyDownPSName(this);" />
+                            <input id="PoliceStationId" type="hidden" name="FIR.PoliceStationId" value="@Model.FIR.PoliceStationId" />
+                            @Html.Label("*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                </fieldset>
+            </td>
+            <td>
+                <fieldset class="form-horizontal">
+
+                    <div class="title">FIR UNDER SECTIONS ایف آئی آر سیکشن</div>
+
+                    <div class="control-group">
+                        <div>
+                            <select id="sectionList" name="sectionList" multiple></select>
+                        </div>
+                    </div>
+
+                    <div class="title">COURT PRODUCTION کورٹ پیشی</div>
+
+                    @Html.HiddenFor(model => model.CourtHearing.CourtHearingId)
+                    @Html.HiddenFor(model => model.CourtHearing.AdmissionId)
+                    @Html.HiddenFor(model => model.CourtHearing.PrisonerId)
+                    @Html.HiddenFor(model => model.CourtHearing.IsActive)
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.Court, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("CourtHearing.CourtId", ViewBag.CourtId as SelectList, "-- Select Court --", null)
+                            @Html.ValidationMessageFor(model => model.CourtHearing.CourtId, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.JudgeType, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownList("CourtHearing.JudgeTypeId", ViewBag.CourtHearingJudgeTypeId as SelectList, "-- Select Judge Type --", null)
+                            @Html.ValidationMessageFor(model => model.CourtHearing.JudgeTypeId, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.Judge, new { @class = "control-label" })
+                        <div class="controls">
+                            <input id="SelectedJudge" type="hidden" />
+                            <input id="JudgeName" name="JudgeName" type="text" autocomplete="off" value="@ViewBag.JudgeName" onkeypress="onKeyDownJudgeName(this);" />
+                            <input id="JudgeId" type="hidden" name="CourtHearing.JudgeId" value="@Model.CourtHearing.JudgeId" />
+                            @Html.Label("*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.DateOfCourtOrder, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="CourtHearing.DateOfCourtOrder" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.CourtHearing.DateOfCourtOrder)">
+                            @Html.ValidationMessageFor(model => model.CourtHearing.DateOfCourtOrder, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.DateOfHearing, new { @class = "control-label" })
+                        <div class="controls">
+                            <input type="text" name="CourtHearing.DateOfHearing" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.CourtHearing.DateOfHearing)">
+                            @Html.ValidationMessageFor(model => model.CourtHearing.DateOfHearing, "*", new { @class = "help-inline" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(model => model.CourtHearing.Remarks, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.CourtHearing.Remarks)
+                            @Html.ValidationMessageFor(model => model.CourtHearing.Remarks, string.Empty, new { @class = "help-inline" })
+                        </div>
+                    </div>
+
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+
+    @Html.ActionLink("<< Back", "Admit", "Prisoner", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"], FIRId = Request["FIRId"], CourtHearingId = Request["CourtHearingId"] }, new { @class = "btn btn-info" })
+
+    <div class="float-right">
+        <input type="submit" value="Add FIR & Court Production" class="btn btn-success" />
+    </div>
+}
+<div class="float-right">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="AdmissionDate" name="Admission.DateOfAdmission" value="@Html.DisplayFor(model => model.Admission.DateOfAdmission)" />
+        <input type="hidden" id="PrisonerNumber" name="Admission.PrisonerNumber" value="@Html.DisplayFor(model => model.Admission.PrisonerNumber)" />
+        <input type="hidden" id="RemandDate" name="Admission.DateOfRemand" value="@Html.DisplayFor(model => model.Admission.DateOfRemand)" />
+
+        <input name="FinishButton" type="submit" value="Finish & Admit >>" class="btn btn-primary"
+               onclick="return confirm('Are you sure you want to finish and admit this prisoner?')" />
+
+    }
+</div>
+@if (Model.FIRs != null && Model.FIRs.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FIR.FIRNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.FIR.FIRDate)</th>
+                <th>@Html.DisplayNameFor(model => model.FIR.PoliceStation)</th>
+                <th>Under Sections</th>
+                <th>@Html.DisplayNameFor(model => model.FIR.DecisionStatus)</th>
+                <th>@Html.DisplayNameFor(model => model.FIR.JudgeType)</th>
+                <th>@Html.DisplayNameFor(model => model.FIR.DecisionAuthority)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.FIRs)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FIRNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FIRDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PoliceStation.Name)</td>
+                    <td>
+                        @{
+                var sections = "";
+                        }
+
+                        @foreach (var us in item.Sections)
+                        {
+                            sections += us.Name + ",";
+                        }
+
+                        @if (sections.Length > 0)
+                        {
+                            sections = sections.Remove(sections.Length - 1);
+                        }
+
+                        @Html.Label(sections)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.DecisionStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.JudgeType.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DecisionAuthority)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/js/duallistbox")
+    @Scripts.Render("~/bundles/typeahead")
+
+    <script>
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+        $('.datepicker').datepicker({ autoclose: true });
+
+        function onPrisonerNumberChanged() {
+            var val = $("#Admission_PrisonerNumber").val();
+            $("#PrisonerNumber").val(val);
+        }
+
+        function onAdmissionDateChanged() {
+            var val = $("#Admission_DateOfAdmission").val();
+            $("#AdmissionDate").val(val);
+        }
+
+        function onRemandDateChanged() {
+            var val = $("#Admission_DateOfRemand").val();
+            $("#RemandDate").val(val);
+        }
+
+        /////////////////////////////////////////////////////////////// COURT HEARING /////////////////////////////////////////////////////////
+
+        $("#PSName").typeahead({
+            name: 'PoliceStations',
+            valueKey: 'Name',
+            remote: '@Url.Content("~/PoliceStation/List/")%QUERY'
+        });
+
+
+        $("#JudgeName").typeahead({
+            name: 'Judges',
+            valueKey: 'Name',
+            remote: '@Url.Content("~/Judge/List/")%QUERY'
+        });
+
+        /////////////////////////////////////////////////////////////// FIR /////////////////////////////////////////////////////////
+
+
+
+        $("#PSName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+            if (selectedItem) {
+                $("#PoliceStationId").val(selectedItem.PoliceStationId);
+                var name = $("#PSName").val().trim();
+                $("#PSName").val(name);
+                $("#SelectedPS").val(name);
+            }
+        });
+
+        $("#JudgeName").on("typeahead:selected typeahead:autocompleted", function (e, selectedItem) {
+            if (selectedItem) {
+                $("#JudgeId").val(selectedItem.JudgeId);
+                var name = $("#JudgeName").val().trim();
+                $("#JudgeName").val(name);
+                $("#SelectedJudge").val(name);
+            }
+        });
+
+        function onKeyDownPSName(e) {
+            if ($("#PSName").val() != $("#SelectedPS").val()) {
+                $("#PoliceStationId").val("0");
+            }
+        }
+
+        function onKeyDownJudgeName(e) {
+            if ($("#JudgeName").val() != $("#SelectedJudge").val()) {
+                $("#JudgeId").val("0");
+            }
+        }
+
+        var list = $('#sectionList').bootstrapDualListbox({
+            bootstrap2Compatible: true,
+            moveAllLabel: 'MOVE ALL',
+            removeAllLabel: 'REMOVE ALL',
+            moveSelectedLabel: 'MOVE SELECTED',
+            removeSelectedLabel: 'REMOVE SELECTED',
+            filterPlaceHolder: 'FILTER',
+            moveOnSelect: false,
+            preserveSelectionOnMove: 'all',
+            helperSelectNamePostfix: '_myhelper',
+            selectedListLabel: '<strong>Committed Sections</strong>',
+            nonSelectedListLabel: '<strong>Available Sections</strong>'
+        });
+
+        var getUrl = '@Url.Content("~/FIR/FIRSections")?firId=@Model.FIR.FIRId';
+
+        $.getJSON(getUrl, function (data) {
+
+            var items = "";
+
+            $.each(data, function (i, item) {
+                items += "<option value='" + item.Value + "' " + item.Selected + ">" + item.Text + "</option>";
+            });
+
+            list.append(items);
+            list.bootstrapDualListbox('refresh');
+        });
+
+        attachDropDowns("ProvinceId", "DistrictId", "District", '@Url.Content("~/Prisoner/Districts/")');
+
+        function attachDropDowns(parentId, childId, label, url, child2Id, parentKey) {
+            var parent = $('#' + parentId);
+            var child = $('#' + childId);
+
+            parent.change(populateDropDown);
+
+            function populateDropDown(selectedId) {
+                child.prop('disabled', 'disabled');
+
+                var getUrl = url + parent.val();
+
+                if (child2Id)
+                    getUrl = url + $('#' + child2Id).val() + "?" + parentKey + "=" + parent.val();
+
+                $.getJSON(getUrl,
+                    function (data) {
+                        var items = '<option>-- Select ' + label + ' --</option>';
+                        var isDisabled = true;
+
+                        $.each(data, function (i, item) {
+                            items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+                            isDisabled = false;
+                        });
+
+                        child.prop('disabled', isDisabled);
+                        child.html(items);
+                    });
+            }
+        }
+    </script>
+}

@@ -1,0 +1,49 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.CourtDecision>
+@{
+    ViewBag.Title = "COURT DECISIONS کورٹ فیصلے";
+}
+<div class="title">
+    @ViewBag.Title
+<div class="float-right">
+    @Html.ActionLink("New Court Decision", "Create", new { PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-small btn-success" })</div>
+</div>
+<div class="float-right">
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.FirstOrDefault().Admission.DateOfReleaseWithFullSentence)</dt>
+        <dd>@Html.DisplayFor(model => model.FirstOrDefault().Admission.DateOfReleaseWithFullSentence)</dd>
+    </dl>
+</div>
+<label class="help-inline">* Click on <strong>DETAILS</strong> to manage SENTENCE details and SECTION DECISIONS</label>
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FIR)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtHearing)</th>
+            <th>@Html.DisplayNameFor(model => model.DecisionStatus)</th>
+            <th>@Html.DisplayNameFor(model => model.CourtDecisionType)</th>
+            <th>@Html.DisplayNameFor(model => model.DecisionAuthority)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfSentenceStart)</th>
+            <th>@Html.DisplayNameFor(model => model.Is382BApplied)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FIR.FIRNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.CourtHearing.DateOfHearing)</td>
+                <td>@Html.DisplayFor(modelItem => item.DecisionStatus)</td>
+                <td>@Html.DisplayFor(modelItem => item.CourtDecisionType)</td>
+                <td>@Html.DisplayFor(modelItem => item.DecisionAuthority)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfSentenceStart)</td>
+                <td>@Html.DisplayFor(modelItem => item.Is382BApplied)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CourtDecisionId, PrisonerId = Request["PrisonerId"] }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CourtDecisionId, PrisonerId = Request["PrisonerId"] })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

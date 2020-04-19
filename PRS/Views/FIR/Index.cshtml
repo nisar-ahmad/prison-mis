@@ -1,0 +1,49 @@
+﻿@using BootstrapSupport
+@model IEnumerable<PRS.Models.FIR> 
+@{
+    ViewBag.Title = "FIR List"; 
+}
+
+<p>
+    @Html.ActionLink("New FIR", "Create", new { PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] }, new { @class= "btn btn-success" })
+</p>
+<table class="table">
+	<thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FIRNumber)</th>
+        <th>@Html.DisplayNameFor(model => model.FIRDate)</th>
+        <th>@Html.DisplayNameFor(model => model.PoliceStation)</th>
+        <th>@Html.DisplayNameFor(model => model.Victims)</th>
+        <th>@Html.DisplayNameFor(model => model.DamagesCaused)</th>
+        <th>@Html.DisplayNameFor(model => model.Admission)</th>
+		<th></th>
+    </tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.FIRNumber)</td> 
+        <td>@Html.DisplayFor(modelItem => item.FIRDate)</td> 
+        <td>@Html.DisplayFor(modelItem => item.PoliceStation.Name)</td> 
+        <td>@Html.DisplayFor(modelItem => item.Victims)</td> 
+        <td>@Html.DisplayFor(modelItem => item.DamagesCaused)</td> 
+        <td>@Html.DisplayFor(modelItem => item.Admission.PrisonerNumber)</td> 
+        <td>
+			<div class="btn-group">
+				<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					Action
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>@Html.ActionLink("Edit", "Edit", new { id = item.FIRId, PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] })</li>
+					<li>@Html.ActionLink("Details", "Details", new { id = item.FIRId, PrisonerId = Request["PrisonerId"], AdmissionId = Request["AdmissionId"] })</li>
+				</ul>
+			</div>
+        </td> 
+    </tr> 
+}
+</tbody>
+</table>
+
+
+

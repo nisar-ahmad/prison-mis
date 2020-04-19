@@ -1,0 +1,42 @@
+﻿@using BootstrapSupport
+@model PRS.Models.MedicalTreatment 
+@{
+    ViewBag.Title = "Delete Medical Treatment"; 
+}
+<h3>@ViewBag.Title</h3> 
+<h4>Are you sure you want to delete this medical treatment record?</h4>
+
+    <dl class="dl-horizontal">
+		<dt> @Html.DisplayNameFor(model => model.DateOfAdmission)</dt>
+		<dd>@Html.DisplayFor(model => model.DateOfAdmission)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt> @Html.DisplayNameFor(model => model.DateOfDischarge)</dt>
+		<dd>@Html.DisplayFor(model => model.DateOfDischarge)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt> @Html.DisplayNameFor(model => model.Diagnosis)</dt>
+		<dd>@Html.DisplayFor(model => model.Diagnosis)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.Disease) </dt>
+		<dd>@Html.DisplayFor(model => model.Disease.Name)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt> @Html.DisplayNameFor(model => model.Treatment)</dt>
+		<dd>@Html.DisplayFor(model => model.Treatment)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt> @Html.DisplayNameFor(model => model.DietaryRequirements)</dt>
+		<dd>@Html.DisplayFor(model => model.DietaryRequirements)</dd>
+	</dl> 
+    <dl class="dl-horizontal">
+		<dt>@Html.DisplayNameFor(model => model.MedicalOfficer) </dt>
+		<dd>@Html.DisplayFor(model => model.MedicalOfficer.Name)</dd>
+	</dl> 
+	<dl class="dl-horizontal">
+		<dt></dt>
+		<dd>@using (Html.BeginForm()) { @Html.AntiForgeryToken() <input type="submit" value="Delete" class="btn btn-danger" /> @Html.ActionLink("Cancel", "Index", new { PrisonerId = Request["PrisonerId"], UserType = Request["UserType"] }) }</dd>
+	</dl>
+
+

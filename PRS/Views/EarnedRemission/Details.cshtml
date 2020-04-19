@@ -1,0 +1,66 @@
+﻿@using BootstrapSupport
+@model PRS.Models.EarnedRemission 
+@{
+    ViewBag.Title = "Earned Remission Details"; 
+}
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.RemissionType)</dt>
+    <dd>@Html.DisplayFor(model => model.RemissionType.Name)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.DateOfRemission)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfRemission)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.RemissionBy)</dt>
+    <dd>@Html.DisplayFor(model => model.RemissionBy)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.LabourType)</dt>
+    <dd>@Html.DisplayFor(model => model.LabourType)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.DateOfLabourStart)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfLabourStart)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.DateOfLabourEnd)</dt>
+    <dd>@Html.DisplayFor(model => model.DateOfLabourEnd)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.Years)</dt>
+    <dd>@Html.DisplayFor(model => model.Years)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.Months)</dt>
+    <dd>@Html.DisplayFor(model => model.Months)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt> @Html.DisplayNameFor(model => model.Days)</dt>
+    <dd>@Html.DisplayFor(model => model.Days)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.DateOfProbableRelease) </dt>
+    <dd>@Html.DisplayFor(model => model.DateOfProbableRelease)</dd>
+</dl>
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Remarks) </dt>
+    <dd>@Html.DisplayFor(model => model.Remarks)</dd>
+</dl> 
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>@Html.ActionLink("Edit", "Edit", new { id = Model.EarnedRemissionId, AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId }, new { @class = "btn btn-warning" }) 
+        | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] }) </dd>
+</dl>
+

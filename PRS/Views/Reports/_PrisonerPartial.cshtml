@@ -1,0 +1,152 @@
+﻿@using BootstrapSupport
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PRS.Models.PrisonerReport
+@{
+    int currentPage = 1;
+    int pageSize = ViewBag.PageSize;
+
+    bool showStatus = (ViewBag.ShowStatus != null ? ViewBag.ShowStatus : false);
+    bool showCategory = (ViewBag.ShowCategory != null ? ViewBag.ShowCategory : true);
+    bool showFIR = (ViewBag.ShowFIR != null ? ViewBag.ShowFIR : true);
+    bool showReleaseDate = (ViewBag.ShowReleaseDate != null ? ViewBag.ShowReleaseDate : false);
+    bool showCourtHearing = (ViewBag.ShowCourtHearing != null ? ViewBag.ShowCourtHearing : true);
+    bool showChildren = (ViewBag.ShowChildren != null ? ViewBag.ShowChildren : false);
+    bool showMedical = (ViewBag.ShowMedical != null ? ViewBag.ShowMedical : false);
+
+    if (!string.IsNullOrEmpty(Request["page"]))
+    {
+        currentPage = Convert.ToInt32(Request["page"]);
+    }
+
+    int i = 1;
+
+    var controller = ViewContext.RouteData.GetRequiredString("controller");
+    var action = ViewContext.RouteData.GetRequiredString("action");
+}
+
+<table class="table" id="table2excel">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().PrisonerNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Parentage)</th>
+            @if (showStatus)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Status)</th>
+            }
+            @if (showCategory)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Category)</th>
+            }
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Age)</th>
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().District)</th>
+            @if (showFIR)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().FIRs)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().UnderSections)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().PoliceStation)</th>
+            }
+            <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().DateOfAdmission)</th>
+            @if (showReleaseDate)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().DateOfRelease)</th>
+            }
+            @if (showCourtHearing)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().TrialCourt)</th>
+                <th>Date of Hearing تاریخ پیشی</th>
+            }
+            @if (showMedical)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Height)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Weight)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().BloodGroup)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().HealthOnAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().HealthOnRelease)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().WeightOnAdmission)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().WeightOnRelease)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().CommunicableDisease)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().IdentificationMark1)</th>
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Scar)</th>
+            }
+            @if (showChildren)
+            {
+                <th>@Html.DisplayNameFor(model => model.Prisoners.FirstOrDefault().Children)</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Prisoners)
+        {
+            <tr>
+                <td>
+                    @{
+            int num = (currentPage - 1) * pageSize + i;
+            i++;
+                    }
+                    @num
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.PrisonerNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Parentage)</td>
+                @if (showStatus)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                }
+                @if (showCategory)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                }
+                <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                <td>@Html.DisplayFor(modelItem => item.District)</td>
+                @if (showFIR)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.FIRs)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnderSections)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PoliceStation)</td>
+                }
+                <td>@Html.DisplayFor(modelItem => item.DateOfAdmission)</td>
+                @if (showReleaseDate)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.DateOfRelease)</td>
+                }
+                @if (showCourtHearing)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.TrialCourt)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateOfHearing)</td>
+                }
+                @if (showChildren)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.Children)</td>
+                }
+                @if (showMedical)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.Height)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Weight)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BloodGroup)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HealthOnAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HealthOnRelease)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WeightOnAdmission)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WeightOnRelease)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CommunicableDisease)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdentificationMark1)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Scar)</td>
+                }
+                @if (showMedical)
+                {
+                    <td>@Html.ActionLink("Treatments", "Index", "MedicalTreatment", new { PrisonerId = item.PrisonerId }, null)</td>
+                }
+                <td>@Html.ActionLink("Details", "Details", "Prisoner", new { PrisonerId = item.PrisonerId }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model.Prisoners, Page => Url.Action(action, Page, Request.QueryString))
+
+<button class="btn btn-success fontstyle" id="btn-export">Export</button> &nbsp;<a href="javascript:window.print()" class="btn btn-info">Print</a>&nbsp;

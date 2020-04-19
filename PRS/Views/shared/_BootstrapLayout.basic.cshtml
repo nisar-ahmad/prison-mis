@@ -1,0 +1,94 @@
+﻿@using System.Web.Optimization
+@using BootstrapSupport
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/content/css")
+    @RenderSection("head", required: false)
+    @Html.Partial("_html5shiv")
+    @* favicons and touch icons go here *@
+    <link href="~/Content/print.css" rel="stylesheet" media="print" />
+</head>
+<body>
+    <div class="container bodymargin">
+        @Html.Partial("_header")
+        <div class="row-fluid" style="padding-top: 50px;">
+            <div class="span12">
+                @Html.Partial("_alerts")
+                @Html.Partial("_validationSummary")
+                @RenderBody()
+                </div>
+            </div>
+        </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="container footerbg fontms">
+                    <div class="container footerin">
+                        <footer>
+                            <div class="row">
+                                <div class="span6 footerlogo">
+                                    <img src="~/Content/images/pmis-logo-white.png">
+                                </div>
+                                <div class="span6 footerlogo2">
+                                    <img src="~/Content/images/unodc-logo-white.png">
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="row fontfooter">
+                                <div class="span3">
+                                    <ul>
+                                        <li>&nbsp;</li>
+                                        <li class="footertop"><strong>PMIS ACTIONS</strong></li>
+                                        <li><a href="~/Prisoner/Admit">Admit new prisoner</a></li>
+                                        <li><a href="~/Prisoner/SearchPrisoner?NextView=Medical">health information</a></li>
+                                        <li><a href="~/CourtHearing/List?ProductionDate=@DateTime.Now.ToString("dd-MMM-yyyy")">court production</a></li>
+                                        <li><a href="~/Prisoner/SearchPrisoner">search prisoners</a></li>
+                                        <li><a href="~/Reports">reports</a></li>
+                                        <li><a href="~/Settings">settings</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3">
+                                    <ul>
+                                        <li>&nbsp;</li>
+                                        <li><a href="~/Home/AboutPMIS">About PMIS</a></li>
+                                        <li><a href="~/Home/AboutUNODC">About UNODC</a></li>
+                                        <li><a href="~/Help">Help & Support</a></li>
+                                        <li><a href="~/Home/Feedback">Submit feedback</a></li>
+                                    </ul>
+                                </div>
+                                <div class="span3">
+                                    <ul>
+                                        <li>&nbsp;</li>
+
+                                    </ul>
+                                </div>
+                                <div class="span3">
+                                    <ul>
+                                        <li>&nbsp;</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="span12 footer-copyright">
+                            © 2014 Onwards. Prison Management Information System (PMIS), developed by <a href="http://unodc.org/pakistan" target="_blank">UNODC Pakistan</a>.
+                        </div>
+                    </div>
+                    </div>
+    @Scripts.Render("~/js")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

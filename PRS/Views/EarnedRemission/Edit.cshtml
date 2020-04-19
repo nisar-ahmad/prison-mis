@@ -1,0 +1,130 @@
+﻿@using BootstrapSupport
+@model PRS.Models.EarnedRemission 
+@{
+    ViewBag.Title = "Edit Remission"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.EarnedRemissionId)
+        @Html.HiddenFor(model => model.PrisonerId)
+        @Html.HiddenFor(model => model.AdmissionId)
+
+        <div class="control-group"> @Html.LabelFor(model => model.DateOfRemission, new { @class = "control-label" })
+			<div class="controls">
+                <input type="text" name="DateOfRemission" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfRemission)">
+				@Html.ValidationMessageFor(model => model.DateOfRemission, "*", new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group"> @Html.LabelFor(model => model.RemissionBy, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.RemissionBy)
+				@Html.ValidationMessageFor(model => model.RemissionBy, "*", new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+			@Html.LabelFor(model => model.RemissionType, new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("RemissionTypeId")
+				@Html.ValidationMessageFor(model => model.RemissionTypeId, "*", new { @class = "help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.LabourType, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownList("LabourType")
+                @Html.ValidationMessageFor(model => model.LabourType, "*", new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("Labour Period", new { @class = "control-label" })
+            <div class="controls">
+                From :
+                <input type="text" name="DateOfLabourStart" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfLabourStart)">
+                @Html.ValidationMessageFor(model => model.DateOfLabourStart, "", new { @class = "help-inline" })
+                To :
+                <input type="text" name="DateOfLabourEnd" class="datepicker input-small" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfLabourEnd)">
+                @Html.ValidationMessageFor(model => model.DateOfLabourEnd, "", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Remission Earned", new { @class = "control-label" })
+            <div class="controls">
+                Years :
+                @Html.TextBoxFor(model => model.Years, new { @class = "input-mini" })
+                Months :
+                @Html.TextBoxFor(model => model.Months, new { @class = "input-mini" })
+                Days :
+                @Html.TextBoxFor(model => model.Days, new { @class = "input-mini" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Admission.DateOfReleaseWithFullSentence, new { @class = "control-label" })
+            <div class="controls">
+                @Html.Label(ViewBag.DateOfReleaseWithFullSentence as string, new { @class = "help-inline" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.DateOfProbableRelease, new { @class = "control-label" })
+            <div class="controls">
+                <input type="text" id="PDR" name="DateOfProbableRelease" class="datepicker" data-date-format="dd-M-yyyy" value="@Html.DisplayFor(model => model.DateOfProbableRelease)" placeholder="Enter or Calculate ->">
+                <button type="button" class="btn btn-small btn-success" onclick="calculatePDR()">CALCULATE</button> <label class="help-inline">PDR = (Date of Release With Full Sentence) - (Total Remission)</label>
+                @Html.ValidationMessageFor(model => model.DateOfProbableRelease, "", new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group"> @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Remarks)
+				@Html.ValidationMessageFor(model => model.Remarks, string.Empty, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn btn-primary" /> &nbsp; @Html.ActionLink("Cancel", "Index", new {AdmissionId = Model.AdmissionId, PrisonerId = Model.PrisonerId})
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+	});
+
+	function calculatePDR()
+	{
+	    var y = $("#Years").val();
+	    var m = $("#Months").val();
+	    var d = $("#Days").val();
+	    var rid = $("#EarnedRemissionId").val();
+
+	    var url = "@Url.Content("~/EarnedRemission/CalculatePDR?PrisonerId=" + Request["PrisonerId"])" + "&Years=" + y + "&Months=" + m + "&Days=" + d + "&Id=" + rid ;
+	    $.get(url,
+            function (data)
+            {
+                //alert(data);
+                $("#PDR").val(data);
+            });
+	}
+
+	$('.datepicker').datepicker({autoclose: true});
+	</script>
+}
+ 
+

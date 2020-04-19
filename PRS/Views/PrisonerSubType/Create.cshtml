@@ -1,0 +1,56 @@
+﻿@using BootstrapSupport
+@model PRS.Models.PrisonerSubType 
+@{
+    ViewBag.Title = "Add Prisoner Sub Type"; 
+}
+<h3>@ViewBag.Title</h3> 
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <fieldset class="form-horizontal">
+        <legend></legend>
+
+        <div class="control-group">
+			@Html.LabelFor(model => model.PrisonerType, new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("PrisonerTypeId", "-- Select Prisoner Type --")
+				@Html.ValidationMessageFor(model => model.PrisonerTypeId, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name, "*", new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group"> @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description, string.Empty, new { @class="help-inline" })
+			</div>
+		</div>
+        <div class="control-group">
+			<div class="controls">
+				<input type="submit" value="Save" class="btn" /> &nbsp; @Html.ActionLink("Cancel", "Index")
+			</div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+	<script>
+	$.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest(".control-group").addClass("error");
+            },
+            unhighlight: function (element) {
+                $(element).closest(".control-group").removeClass("error");
+            }
+        });
+
+		$('.datepicker').datepicker({autoclose: true});
+	</script>
+} 
+
+

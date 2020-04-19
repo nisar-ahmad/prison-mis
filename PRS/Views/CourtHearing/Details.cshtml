@@ -1,0 +1,36 @@
+﻿@using BootstrapSupport
+@model PRS.Models.CourtHearing 
+@{
+    ViewBag.Title = "Court Production Details"; 
+}
+
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.FIR) </dt>
+	<dd>@Html.DisplayFor(model => model.FIR.FIRNumber)</dd>
+</dl> 
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Court) </dt>
+	<dd>@Html.DisplayFor(model => model.Court.Name)</dd>
+</dl> 
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Judge) </dt>
+	<dd>@Html.DisplayFor(model => model.Judge.Name)</dd>
+</dl> 
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfCourtOrder)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfCourtOrder)</dd>
+</dl> 
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.DateOfHearing)</dt>
+	<dd>@Html.DisplayFor(model => model.DateOfHearing)</dd>
+</dl>
+<dl class="dl-horizontal">
+	<dt>@Html.DisplayNameFor(model => model.Remarks)</dt>
+	<dd>@Html.DisplayFor(model => model.Remarks)</dd>
+</dl> 
+
+<dl class="dl-horizontal">
+	<dt></dt>
+	<dd>@Html.ActionLink("Edit", "Edit", new { id=Model.CourtHearingId, PrisonerId = Request["PrisonerId"] }, new { @class = "btn btn-primary" })
+         | @Html.ActionLink("Back to List", "Index", new { PrisonerId = Request["PrisonerId"] }) </dd>
+</dl>
