@@ -10,8 +10,8 @@ Manages inmates data and daily operations of a prison.
 4. Prisoner Belongings
 5. Medical History
 6. Court Productions
-7 Sentence Management
-8 Visitors Management
+7. Sentence Management
+8. Visitors Management
 9. Fingerprint Enrollment
 10. Fingerpring Search
 11. Mugshot
